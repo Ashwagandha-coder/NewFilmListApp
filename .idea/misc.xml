@@ -5,6 +5,10 @@
       <map>
         <entry key="app/src/main/res/drawable/favorites_film.xml" value="0.294" />
         <entry key="app/src/main/res/drawable/tv-24px.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.3509963768115942" />
+        <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.3509963768115942" />
+        <entry key="app/src/main/res/layout/fragment_popular.xml" value="0.3509963768115942" />
+        <entry key="app/src/main/res/layout/fragment_sort_by_date.xml" value="0.3509963768115942" />
       </map>
     </option>
   </component>
