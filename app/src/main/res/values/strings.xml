@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NewFilmListApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="sort_by_date_fragment">Sort By Date</string>
+    <string name="favorites_fragment">Favorites</string>
+    <string name="popular_fragment">Popular</string>
 </resources>

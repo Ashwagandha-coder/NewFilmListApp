@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:title="Sort"
+        android:icon="@drawable/sort_by_date">
+
+    </item>
+
+    <item
+        android:title="Popular"
+        android:icon="@drawable/popular_film">
+
+    </item>
+
+    <item
+        android:title="Favorites"
+        android:icon="@drawable/favorites_film">
+
+    </item>
+
+</menu>
