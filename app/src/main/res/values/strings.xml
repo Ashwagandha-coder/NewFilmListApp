@@ -3,4 +3,19 @@
     <string name="sort_by_date_fragment">Sort By Date</string>
     <string name="favorites_fragment">Favorites</string>
     <string name="popular_fragment">Popular</string>
+
+    <string-array name="years">
+
+        <item>years</item>
+
+
+    </string-array>
+
+
+    <string-array name="genre">
+
+        <item></item>
+
+
+    </string-array>
 </resources>
