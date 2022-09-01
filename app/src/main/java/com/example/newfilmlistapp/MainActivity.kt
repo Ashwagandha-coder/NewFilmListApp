@@ -11,17 +11,17 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun doSome() {
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-
-
-
-
-    }
+//    fun doSome() {
+//
+//        val retrofit = Retrofit.Builder()
+//            .baseUrl("https://api.github.com/")
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .build()
+//
+//
+//
+//
+//    }
 
 
 
