@@ -7,8 +7,33 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
+    <TextView
+        android:id="@+id/tv_years"
+        android:text="@string/years"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/years"
+        android:layout_marginStart="110dp">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/tv_genre"
+        android:text="@string/genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tv_years"
+        app:layout_constraintBottom_toTopOf="@id/genre"
+        android:layout_marginStart="110dp">
+
+    </TextView>
+
+
     <Spinner
-        android:id="@+id/date"
+        android:id="@+id/years"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,9 +48,37 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="50dp"
-        app:layout_constraintStart_toEndOf="@id/date"
+        app:layout_constraintStart_toEndOf="@id/years"
         android:layout_marginStart="100dp">
     </Spinner>
+
+
+    <ImageButton
+        android:id="@+id/image"
+        android:src="@drawable/favorites_film"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/genre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="150dp">
+
+    </ImageButton>
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Choose"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="150dp">
+
+    </Button>
 
 
 

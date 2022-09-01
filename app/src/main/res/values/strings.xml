@@ -3,6 +3,9 @@
     <string name="sort_by_date_fragment">Sort By Date</string>
     <string name="favorites_fragment">Favorites</string>
     <string name="popular_fragment">Popular</string>
+    <string name="Choose">Подбор</string>
+    <string name="years">Год</string>
+    <string name="genre">Жанр</string>
 
     <string-array name="years">
 
