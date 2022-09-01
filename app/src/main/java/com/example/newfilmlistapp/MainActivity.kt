@@ -2,7 +2,7 @@ package com.example.newfilmlistapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import retrofit2.Retrofit
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -11,17 +11,6 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-//    fun doSome() {
-//
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl("https://api.github.com/")
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//
-//
-//
-//
-//    }
 
 
 
