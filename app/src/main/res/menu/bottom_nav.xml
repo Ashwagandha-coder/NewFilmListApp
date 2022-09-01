@@ -10,7 +10,7 @@
 
     <item
         android:title="Popular"
-        android:icon="@drawable/popular_film">
+        android:icon="@drawable/popular">
 
     </item>
 
