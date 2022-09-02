@@ -1,7 +1,40 @@
 <resources>
     <string name="app_name">NewFilmListApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="sort_by_date_fragment">Sort By Date</string>
     <string name="favorites_fragment">Favorites</string>
     <string name="popular_fragment">Popular</string>
+    <string name="Choose">Подбор</string>
+    <string name="years">Год</string>
+    <string name="genre">Жанр</string>
+
+    <string-array name="years">
+
+        <item>years</item>
+
+    </string-array>
+
+
+    <string-array name="genre">
+
+        <item>Экшен</item>
+        <item>Приключения</item>
+        <item>Анимация</item>
+        <item>Комедия</item>
+        <item>Преступление</item>
+        <item>Документальный</item>
+        <item>Драма</item>
+        <item>Семейный</item>
+        <item>Фантастика</item>
+        <item>История</item>
+        <item>Хоррор</item>
+        <item>Музыка</item>
+        <item>Мистические</item>
+        <item>Романтика</item>
+        <item>Научная Фантастика</item>
+        <item>ТВ</item>
+        <item>Триллер</item>
+        <item>Война</item>
+        <item>Вестерн</item>
+
+    </string-array>
 </resources>
