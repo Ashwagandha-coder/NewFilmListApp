@@ -3,18 +3,21 @@
 
 
     <item
+        android:id="@+id/sortByDate_Menu"
         android:title="Sort"
         android:icon="@drawable/sort_by_date">
 
     </item>
 
     <item
+        android:id="@+id/popular_menu"
         android:title="Popular"
         android:icon="@drawable/popular">
 
     </item>
 
     <item
+        android:id="@+id/favorites_menu"
         android:title="Favorites"
         android:icon="@drawable/favorites_film">
 

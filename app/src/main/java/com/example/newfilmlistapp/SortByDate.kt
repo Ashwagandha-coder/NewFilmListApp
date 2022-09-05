@@ -16,7 +16,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [SortByDate.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SortByDate : Fragment() {
+class SortByDate : Fragment(R.layout.fragment_sort_by_date) {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
