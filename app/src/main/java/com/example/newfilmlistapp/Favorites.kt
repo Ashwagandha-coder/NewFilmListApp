@@ -16,7 +16,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Favorites.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Favorites : Fragment() {
+class Favorites : Fragment(R.layout.fragment_favorites) {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
