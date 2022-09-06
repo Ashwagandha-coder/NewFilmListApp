@@ -1,6 +1,5 @@
 package com.example.newfilmlistapp.model
 
-import kotlin.properties.Delegates
 
 class Genre {
 
