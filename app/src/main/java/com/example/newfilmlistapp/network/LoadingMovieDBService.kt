@@ -2,9 +2,6 @@ package com.example.newfilmlistapp.network
 
 import com.example.newfilmlistapp.API_KEY
 import com.example.newfilmlistapp.LANGUAGE
-import com.example.newfilmlistapp.model.Genres
-import com.example.newfilmlistapp.model.Movie
-import com.example.newfilmlistapp.model.MovieWrapper
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
