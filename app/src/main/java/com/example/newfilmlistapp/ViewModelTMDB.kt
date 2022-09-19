@@ -1,6 +1,8 @@
 package com.example.newfilmlistapp
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -10,41 +12,42 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.Observable
 
 class ViewModelTMDB : ViewModel() {
 
     private lateinit var retrofit: Retrofit
     private lateinit var moshi: Moshi
 
-
+    private lateinit var genresWrapper: GenresWrapper
 
 
     fun getMovie() {}
 
-    fun getGenres(): GenresWrapper? {
+    init {
+        viewModelScope.launch {
+            getGenres()
+        }
+
+        // test
+
+        val observable = Observable()
+
+
+    }
+
+    suspend fun getGenres(): GenresWrapper {
 
         initAllField()
 
-        val loadingMovieDBService =  retrofit.create(LoadingMovieDBService::class.java)
+        val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
 
+        val methodResult: GenresWrapper
 
-        CoroutineScope(Dispatchers.IO).launch {
-
-            var methodResult: GenresWrapper
-
-            try {
-                val result = loadingMovieDBService.getGenres()
-                methodResult = result
-               // Log.d("Test","result: ${result.genres}")
-
-            } catch (e: Exception){
-               // Log.e("error", "fetch movie error $e")
-            }
-
-
-        }
-
-        return null
+        val result = loadingMovieDBService.getGenres()
+        methodResult = result
+        // Log.d("Test","result: ${result.genres}")
+        return result
     }
 
 
@@ -55,7 +58,6 @@ class ViewModelTMDB : ViewModel() {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
-
 
 
     }

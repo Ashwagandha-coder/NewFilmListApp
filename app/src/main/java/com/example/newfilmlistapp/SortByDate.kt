@@ -13,6 +13,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     private lateinit var FragmentSortByDateBinding: FragmentSortByDateBinding
 
+    private lateinit var viewModelTMDB: ViewModelTMDB
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

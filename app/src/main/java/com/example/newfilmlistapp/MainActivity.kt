@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var variable: BottomNavigationView.OnNavigationItemSelectedListener
 
+    private lateinit var viewModel: ViewModelTMDB
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,9 +47,9 @@ class MainActivity : AppCompatActivity() {
             .build()
 
         val loadingMovieDBService =  retrofit.create(LoadingMovieDBService::class.java)
+        observeViewModel()
 
         CoroutineScope(Dispatchers.IO).launch {
-
             try {
                 val result = loadingMovieDBService.getGenres()
                 Log.d("Test","result: ${result.genres}")
@@ -61,6 +63,15 @@ class MainActivity : AppCompatActivity() {
         TODO("Не получается сделать переключение между фрагментами")
 
         init()
+
+    }
+
+    private fun observeViewModel() {
+
+        viewModel = ViewModelTMDB()
+
+
+
 
     }
 
