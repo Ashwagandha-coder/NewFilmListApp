@@ -2,6 +2,7 @@ package com.example.newfilmlistapp
 
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -55,60 +56,56 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+        init()
+
+    }
+
+    fun init() {
+
+        fragmentManager = supportFragmentManager
+
+        sortByDate = SortByDate()
+        popular = Popular()
+        favorites = Favorites()
+
+        active = sortByDate
+
+        variable = BottomNavigationView.OnNavigationItemSelectedListener { chooseItemMenu(it) }
 
     }
 
 
-//    fun init() {
-//
-//
-//        sortByDate = SortByDate()
-//        popular = Popular()
-//        favorites = Favorites()
-//
-//        active = sortByDate
-//
-//
-//        variable = BottomNavigationView.OnNavigationItemSelectedListener { chooseItemMenu(it) }
-//
-//    }
-//
-//
-//    fun chooseItemMenu(item: MenuItem): Boolean {
-//
-//        when (item.itemId) {
-//
-//            R.id.sortByDate -> { fragmentManager.beginTransaction().hide(active).commit()
-//                active = sortByDate
-//
-//                return true
-//
-//            }
-//
-//            R.id.popular -> { fragmentManager.beginTransaction().hide(active).commit()
-//                active = popular
-//
-//                return true
-//
-//
-//            }
-//
-//            R.id.favorites -> { fragmentManager.beginTransaction().hide(active).commit()
-//                active = favorites
-//
-//                return true
-//
-//            }
-//
-//        }
-//
-//        return false
-//
-//    }
-//
-//
-//
-//    fragmentManager = supportFragmentManager
+    fun chooseItemMenu(item: MenuItem): Boolean {
+
+        when (item.itemId) {
+
+            R.id.sortByDate -> { fragmentManager.beginTransaction().hide(active).commit()
+                active = sortByDate
+
+                return true
+
+            }
+
+            R.id.popular -> { fragmentManager.beginTransaction().hide(active).commit()
+                active = popular
+
+                return true
+
+
+            }
+
+            R.id.favorites -> { fragmentManager.beginTransaction().hide(active).commit()
+                active = favorites
+
+                return true
+
+            }
+
+        }
+
+        return false
+
+    }
 
 
 

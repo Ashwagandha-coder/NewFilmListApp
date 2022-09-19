@@ -15,7 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 
-class SortByDate : Fragment() {
+class SortByDate : androidx.fragment.app.Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
