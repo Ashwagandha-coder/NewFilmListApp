@@ -1,17 +1,17 @@
 package com.example.newfilmlistapp.network
 
-import com.example.newfilmlistapp.API_KEY
-import com.example.newfilmlistapp.LANGUAGE
+import com.example.newfilmlistapp.*
 import com.example.newfilmlistapp.model.Genres
-import com.example.newfilmlistapp.model.Movie
+import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
+import com.example.newfilmlistapp.model.Popular
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import java.time.Year
 
 interface LoadingMovieDBService {
-
 
 
     // Popular
@@ -21,7 +21,7 @@ interface LoadingMovieDBService {
         @Query("api_key") api_key: String = API_KEY,
         @Query("language") language: String = LANGUAGE,
         @Query("page") page: Int
-    ): Response<MovieWrapper>
+    ): Popular
 
 
     // Genre
@@ -30,28 +30,33 @@ interface LoadingMovieDBService {
     @GET("genre/movie/list")
     suspend fun getGenres(
         @Query("api_key") api_key: String = API_KEY,
-        @Query("language") language: String = LANGUAGE): Response<Genres>
+        @Query("language") language: String = LANGUAGE): GenresWrapper
 
 
+    // Movie
 
-    // Years
 
-    @GET("movie/{movie_id}/release_dates")
-    suspend fun getRealeaseDate(
+    @GET("discover/movie")
+    suspend fun getMovie(
         @Query("api_key") api_key: String = API_KEY,
         @Query("language") language: String = LANGUAGE,
-        @Path("movieID") movie_id: String?
-    ): Response<Movie>
+        @Query("sort_by") sort_by: String = SORT_BY,
+        @Query("include_adult") include_adult: Boolean = INCLUDE_ADULT,
+        @Query("include_video") include_video: Boolean = INCLUDE_VIDEO,
+        @Query("page") page: Int = PAGE,
+        @Query("primary_release_year") primary_release_year: Int,
+        @Query("year") year: Int = primary_release_year,
+        @Query("with_genres") genres: String,
+        @Query("with_watch_monetization_types") with_watch_monetization_types: String = WITH_WATCH_MONETIZATION_TYPES
 
-    // Movie_ID
+
+    ): MovieWrapper
 
 
-    @GET("movie/{movie_id}")
-    suspend fun getMovieId(
-        @Query("api_key") api_key: String,
-        @Query("language") language: String,
-        @Path("movieID") movie_id: String?
-    ): Response<Movie>
+
+
+
+
 
 
 
