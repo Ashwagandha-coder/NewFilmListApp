@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var variable: BottomNavigationView.OnNavigationItemSelectedListener
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -56,6 +57,9 @@ class MainActivity : AppCompatActivity() {
             }
 
         }
+
+        TODO("Не получается сделать переключение между фрагментами")
+
         init()
 
     }
