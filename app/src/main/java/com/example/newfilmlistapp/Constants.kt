@@ -3,7 +3,7 @@ package com.example.newfilmlistapp
 const val BASE_URL = "https://api.themoviedb.org/3/"
 const val API_KEY = "558bfce892bf52cc73c6399183098967"
 const val LANGUAGE = "en"
-const val SORT_BY = "popularity_desc"
+const val SORT_BY = "popularity.desc"
 const val INCLUDE_ADULT = false
 const val INCLUDE_VIDEO = false
 const val PAGE = 1

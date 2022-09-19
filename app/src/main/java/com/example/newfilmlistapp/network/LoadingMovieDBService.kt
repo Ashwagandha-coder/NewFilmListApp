@@ -3,6 +3,7 @@ package com.example.newfilmlistapp.network
 import com.example.newfilmlistapp.*
 import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.GenresWrapper
+import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.model.Popular
 import retrofit2.Response
 import retrofit2.http.GET
@@ -35,7 +36,7 @@ interface LoadingMovieDBService {
     // Movie
 
 
-    @GET("/discover/movie")
+    @GET("discover/movie")
     suspend fun getMovie(
         @Query("api_key") api_key: String = API_KEY,
         @Query("language") language: String = LANGUAGE,
@@ -49,7 +50,7 @@ interface LoadingMovieDBService {
         @Query("with_watch_monetization_types") with_watch_monetization_types: String = WITH_WATCH_MONETIZATION_TYPES
 
 
-    )
+    ): MovieWrapper
 
 
 

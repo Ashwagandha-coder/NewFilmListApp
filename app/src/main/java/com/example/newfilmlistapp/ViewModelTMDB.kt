@@ -1,9 +1,13 @@
 package com.example.newfilmlistapp
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newfilmlistapp.model.GenresWrapper
+import com.example.newfilmlistapp.model.Movie
+import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -18,35 +22,53 @@ class ViewModelTMDB : ViewModel() {
 
     private lateinit var retrofit: Retrofit
     private lateinit var moshi: Moshi
-
     private lateinit var genresWrapper: GenresWrapper
+   // private val movie: MutableLiveData<Movie> by lazy { MutableLiveData<Movie>() }
 
-
-    fun getMovie() {}
 
     init {
-        viewModelScope.launch {
-            getGenres()
+
+        initAllField()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val param1 = getGenres()
+
         }
 
-        // test
+        CoroutineScope(Dispatchers.IO).launch {
 
-        val observable = Observable()
+            val param2 = getMovie()
+
+        }
+
+
 
 
     }
 
-    suspend fun getGenres(): GenresWrapper {
 
-        initAllField()
+    suspend fun getMovie(): MovieWrapper {
+
 
         val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
 
-        val methodResult: GenresWrapper
+        val result = loadingMovieDBService.getMovie(primary_release_year = 1954, genres = "18")
+
+        Log.d(ViewModelTMDB::class.java.name,"request OK")
+
+        return result
+
+    }
+
+
+    suspend fun getGenres(): GenresWrapper {
+
+
+        val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
 
         val result = loadingMovieDBService.getGenres()
-        methodResult = result
-        // Log.d("Test","result: ${result.genres}")
+
+         Log.d(ViewModelTMDB::class.java.name,"result: ${result.genres}")
         return result
     }
 
