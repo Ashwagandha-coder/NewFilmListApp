@@ -42,6 +42,7 @@ class ViewModelTMDB : ViewModel() {
         }
 
 
+        TODO("Не работает")
 
 
     }
