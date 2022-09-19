@@ -1,21 +1,18 @@
 package com.example.newfilmlistapp
 
-import android.app.Fragment
 import android.os.Bundle
 import android.util.Log
-import androidx.compose.ui.text.TextRange
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.Genres
-import com.example.newfilmlistapp.network.LoadingMovieDBService
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.Moshi
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory;
 
 
 class SortByDate : androidx.fragment.app.Fragment() {
+
+    private lateinit var FragmentSortByDateBinding: FragmentSortByDateBinding
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +29,16 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
 
 
-
-
     }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_sort_by_date, container, false)
+    }
+
+
+
 }
