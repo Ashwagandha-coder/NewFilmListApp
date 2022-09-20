@@ -18,6 +18,8 @@ import com.example.newfilmlistapp.model.MovieWrapper
 import kotlinx.coroutines.launch
 
 
+// todo: Проблемы с версткой
+
 class SortByDate : androidx.fragment.app.Fragment() {
 
     private lateinit var fragmentSortByDateBinding: FragmentSortByDateBinding
