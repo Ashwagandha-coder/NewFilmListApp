@@ -20,30 +20,31 @@ import java.util.Observable
 
 class ViewModelTMDB : ViewModel() {
 
-    private lateinit var retrofit: Retrofit
-    private lateinit var moshi: Moshi
-    private lateinit var genresWrapper: GenresWrapper
-   // private val movie: MutableLiveData<Movie> by lazy { MutableLiveData<Movie>() }
+    private val retrofit: Retrofit by lazy { initRetrofit() }
+    private val moshi: Moshi by lazy { initMoshi() }
+    private val movie: MutableLiveData<Movie> by lazy { MutableLiveData<Movie>() }
 
 
     init {
 
-        initAllField()
-
         CoroutineScope(Dispatchers.IO).launch {
+
+            Log.d(ViewModelTMDB::class.java.name,"Call first coroutine")
+
             val param1 = getGenres()
 
         }
 
         CoroutineScope(Dispatchers.IO).launch {
 
+
+            Log.d(ViewModelTMDB::class.java.name,"Call second coroutine")
+
             val param2 = getMovie()
 
         }
 
-
-        TODO("Не работает")
-
+        // todo : some
 
     }
 
@@ -74,21 +75,26 @@ class ViewModelTMDB : ViewModel() {
     }
 
 
-    fun initRetrofit() {
+    fun initRetrofit(): Retrofit {
 
-        retrofit = Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
 
+        return retrofit
+
+
     }
 
-    fun initMoshi() {
+    fun initMoshi(): Moshi {
 
-        moshi = Moshi.Builder()
+        val moshi = Moshi.Builder()
             .build()
+
+        return moshi
 
     }
 

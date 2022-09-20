@@ -65,7 +65,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelTMDB()
 
-        TODO("Сделать переключение между фрагментами")
+
+        // todo : some 2
 
     }
 
