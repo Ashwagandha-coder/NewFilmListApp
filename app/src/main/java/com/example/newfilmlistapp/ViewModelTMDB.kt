@@ -17,11 +17,16 @@ import java.util.Observable
 
 class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
+
+    private var genresWrapper: GenresWrapper? = null
+    private var movieWrapper: MovieWrapper? = null
+
     private val retrofit: Retrofit by lazy { initRetrofit() }
     private val moshi: Moshi by lazy { initMoshi() }
     private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>().also {
 
         request()
+        it.value = movieWrapper
 
 
     } }
@@ -29,20 +34,19 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
     fun request() = viewModelScope.launch {
 
-        val genresWrapper = getGenres()
+        val genresWrapperRequest = getGenres()
+        genresWrapper = genresWrapperRequest
 
-        val movieWrapper = getMovie()
-
-
-        return@launch
+        val movieWrapperRequest = getMovie()
+        movieWrapper = movieWrapperRequest
 
 
     }
 
 
 
-//    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData }
-//
+    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData }
+
 
     suspend fun getMovie(): MovieWrapper {
 

@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.Genres
+import com.example.newfilmlistapp.model.MovieWrapper
 import kotlinx.coroutines.launch
 
 
@@ -16,10 +18,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     private lateinit var FragmentSortByDateBinding: FragmentSortByDateBinding
 
-    private lateinit var viewModelTMDB: ViewModelTMDB
-
     private val viewModel by lazy { ViewModelTMDB() }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,7 +35,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
 
 
-
+        viewModel.getInstanceLiveData().observe(this,Observer<MovieWrapper> {})
 
 
 
