@@ -22,10 +22,18 @@ class ViewModelTMDB : ViewModel() {
 
     private val retrofit: Retrofit by lazy { initRetrofit() }
     private val moshi: Moshi by lazy { initMoshi() }
-    private val movie: MutableLiveData<Movie> by lazy { MutableLiveData<Movie>() }
+    private val movieWrapper: MovieWrapper? = null
+    private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>().also {
 
 
-    init {
+
+    } }
+
+
+    fun request(): MovieWrapper? {
+
+        val result: Movie
+
 
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -42,11 +50,18 @@ class ViewModelTMDB : ViewModel() {
 
             val param2 = getMovie()
 
+
         }
 
-        // todo : some
+
+        return null
+
 
     }
+
+
+
+    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData }
 
 
     suspend fun getMovie(): MovieWrapper {
