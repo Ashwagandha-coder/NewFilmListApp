@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.Genres
 
@@ -14,6 +15,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private lateinit var FragmentSortByDateBinding: FragmentSortByDateBinding
 
     private lateinit var viewModelTMDB: ViewModelTMDB
+
+    private val viewModel by lazy {  }
 
 
 
