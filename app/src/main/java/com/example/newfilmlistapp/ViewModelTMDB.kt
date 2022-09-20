@@ -26,7 +26,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>() }
 
 
-    fun request() = viewModelScope.launch {
+    protected fun request() = viewModelScope.launch {
 
         val genresWrapperRequest = getGenres()
         genresWrapper = genresWrapperRequest

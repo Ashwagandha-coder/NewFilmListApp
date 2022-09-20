@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="16dp"
-            android:src="@drawable/ic_launcher_background">
+            android:src="@mipmap/ic_launcher_round">
 
         </ImageView>
 

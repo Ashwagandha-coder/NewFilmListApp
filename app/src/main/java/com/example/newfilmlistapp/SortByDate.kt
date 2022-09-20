@@ -5,9 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.Genres
@@ -27,11 +30,9 @@ class SortByDate : androidx.fragment.app.Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        spinnerYear = fragmentSortByDateBinding.genre
-        spinnerGenres = fragmentSortByDateBinding.years
+        initSpinners()
+        workWithViewModel()
 
-
-        viewModel.getInstanceLiveData().observe(this,Observer<MovieWrapper> {})
 
     }
 
@@ -44,18 +45,33 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
 
-    fun initSpinnerYear() {
+    fun workWithViewModel() {
 
+        viewModel.addDataInLiveData()
 
-
-
+        viewModel.getInstanceLiveData().observe(this,Observer<MovieWrapper> {})
 
 
     }
 
+    fun initSpinners() {
 
 
-    fun initSpinnerGenres() {}
+        spinnerYear = fragmentSortByDateBinding.years
+        spinnerGenres = fragmentSortByDateBinding.genre
+
+        val arrayAdapter = ArrayAdapter.createFromResource(this.requireContext(),R.array.genres,android.R.layout.simple_spinner_item)
+
+
+
+        arrayAdapter.also {
+            it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+
+        spinnerGenres.adapter = arrayAdapter
+
+
+    }
 
 
 
