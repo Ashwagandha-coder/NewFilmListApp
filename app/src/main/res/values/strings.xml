@@ -6,6 +6,7 @@
     <string name="Choose">Подбор</string>
     <string name="years">Год</string>
     <string name="genre">Жанр</string>
+    <string name="Text_below_picture">Текст под картинкой</string>
 
     <string-array name="years">
 
