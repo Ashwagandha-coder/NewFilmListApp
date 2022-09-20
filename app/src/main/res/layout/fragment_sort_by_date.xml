@@ -53,50 +53,50 @@
     </Spinner>
 
 
-    <LinearLayout
-        android:id="@+id/linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:orientation="vertical"
-        android:weightSum="50"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="107dp">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linear"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:clickable="true"-->
+<!--        android:orientation="vertical"-->
+<!--        android:weightSum="50"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="0dp"-->
+<!--        tools:layout_editor_absoluteY="107dp">-->
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="16dp"
-            android:src="@mipmap/ic_launcher_round">
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:padding="16dp"-->
+<!--            android:src="@mipmap/ic_launcher_round">-->
 
-        </ImageView>
+<!--        </ImageView>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/Text_below_picture">
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="@string/Text_below_picture">-->
 
-        </TextView>
+<!--        </TextView>-->
 
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="150dp"
-        android:text="@string/Choose"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear">
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="150dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_marginEnd="150dp"-->
+<!--        android:text="@string/Choose"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/linear">-->
 
-    </Button>
+<!--    </Button>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
