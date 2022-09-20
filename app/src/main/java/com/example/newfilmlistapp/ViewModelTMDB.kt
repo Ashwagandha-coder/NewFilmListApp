@@ -1,10 +1,7 @@
 package com.example.newfilmlistapp
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.Movie
 import com.example.newfilmlistapp.model.MovieWrapper
@@ -18,51 +15,34 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.Observable
 
-class ViewModelTMDB : ViewModel() {
+class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
     private val retrofit: Retrofit by lazy { initRetrofit() }
     private val moshi: Moshi by lazy { initMoshi() }
-    private val movieWrapper: MovieWrapper? = null
     private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>().also {
 
+        request()
 
 
     } }
 
 
-    fun request(): MovieWrapper? {
+    fun request() = viewModelScope.launch {
 
-        val result: Movie
+        val genresWrapper = getGenres()
 
-
-        CoroutineScope(Dispatchers.IO).launch {
-
-            Log.d(ViewModelTMDB::class.java.name,"Call first coroutine")
-
-            val param1 = getGenres()
-
-        }
-
-        CoroutineScope(Dispatchers.IO).launch {
+        val movieWrapper = getMovie()
 
 
-            Log.d(ViewModelTMDB::class.java.name,"Call second coroutine")
-
-            val param2 = getMovie()
-
-
-        }
-
-
-        return null
+        return@launch
 
 
     }
 
 
 
-    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData }
-
+//    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData }
+//
 
     suspend fun getMovie(): MovieWrapper {
 
@@ -86,6 +66,7 @@ class ViewModelTMDB : ViewModel() {
         val result = loadingMovieDBService.getGenres()
 
          Log.d(ViewModelTMDB::class.java.name,"result: ${result.genres}")
+
         return result
     }
 
