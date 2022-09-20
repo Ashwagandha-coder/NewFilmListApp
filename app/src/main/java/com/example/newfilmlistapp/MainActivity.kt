@@ -63,10 +63,6 @@ class MainActivity : AppCompatActivity() {
 
         init()
 
-        viewModel = ViewModelTMDB()
-
-        viewModel.request()
-
 
         // todo : some 2
 

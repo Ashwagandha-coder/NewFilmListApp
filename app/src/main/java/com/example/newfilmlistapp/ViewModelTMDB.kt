@@ -45,7 +45,6 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
 
-    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData }
 
 
     suspend fun getMovie(): MovieWrapper {
@@ -74,6 +73,8 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
         return result
     }
 
+    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData }
+
 
     fun initRetrofit(): Retrofit {
 
@@ -98,13 +99,6 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
     }
 
-    fun initAllField() {
-
-        initMoshi()
-        initRetrofit()
-
-
-    }
 
 
 }
