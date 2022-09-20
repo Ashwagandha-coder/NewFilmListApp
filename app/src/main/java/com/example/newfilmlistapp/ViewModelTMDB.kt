@@ -23,13 +23,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
     private val retrofit: Retrofit by lazy { initRetrofit() }
     private val moshi: Moshi by lazy { initMoshi() }
-    private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>().also {
-
-        request()
-        it.value = movieWrapper
-
-
-    } }
+    private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>() }
 
 
     fun request() = viewModelScope.launch {
@@ -39,6 +33,16 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
         val movieWrapperRequest = getMovie()
         movieWrapper = movieWrapperRequest
+
+
+    }
+
+    fun addDataInLiveData() {
+
+        mutableLiveData.also {
+            request()
+            it.value = movieWrapper
+        }
 
 
     }
