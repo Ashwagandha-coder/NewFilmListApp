@@ -48,9 +48,6 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     }
 
 
-
-
-
     suspend fun getMovie(): MovieWrapper {
 
 
