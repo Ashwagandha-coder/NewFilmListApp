@@ -16,7 +16,7 @@ import com.example.newfilmlistapp.model.MovieWrapper
 
 class SortByDate : androidx.fragment.app.Fragment() {
 
-    private lateinit var binding: FragmentSortByDateBinding
+    lateinit var binding: FragmentSortByDateBinding
     private val viewModel by lazy { ViewModelTMDB() }
 
     private lateinit var spinnerYear: Spinner
@@ -47,8 +47,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         viewModel.addDataInLiveData()
 
-
-//        viewModel.getInstanceLiveData().observe(viewLifecycleOwner, Observer<MovieWrapper> { binding.textBelowPictureFilm.text = it. })
+        viewModel.getInstanceLiveData().observe(viewLifecycleOwner, Observer<MovieWrapper> { binding.textBelowPictureFilm.text = it.results[0].overview })
 
 
     }
@@ -86,4 +85,6 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
 
 
+
 }
+

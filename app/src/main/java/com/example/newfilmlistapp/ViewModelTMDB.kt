@@ -18,15 +18,15 @@ import java.util.Observable
 class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
-    private var genresWrapper: GenresWrapper? = null
-    private var movieWrapper: MovieWrapper? = null
+    var genresWrapper: GenresWrapper? = null
+    var movieWrapper: MovieWrapper? = null
 
-    private val retrofit: Retrofit by lazy { initRetrofit() }
-    private val moshi: Moshi by lazy { initMoshi() }
+    val retrofit: Retrofit by lazy { initRetrofit() }
+    val moshi: Moshi by lazy { initMoshi() }
     private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>() }
 
 
-    protected fun request() = viewModelScope.launch {
+    fun request() = CoroutineScope(Dispatchers.IO).launch {
 
         val genresWrapperRequest = getGenres()
         genresWrapper = genresWrapperRequest
@@ -100,6 +100,38 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
     }
 
+
+
+}
+
+// todo: Не работает запрос в сеть
+
+
+fun main() {
+
+
+    val viewModelTMDB = ViewModelTMDB()
+
+    val retrofit = viewModelTMDB.initRetrofit()
+
+    val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
+
+    var param: MovieWrapper? = null
+
+    CoroutineScope(Dispatchers.IO).launch {
+
+        val result = loadingMovieDBService.getMovie(primary_release_year = 1954, genres = "18")
+        param = result
+    }
+
+//    val param2 = viewModelTMDB.movieWrapper
+
+    println(param?.results?.get(0)?.overview)
+
+
+    val param2 = viewModelTMDB.genresWrapper?.genres?.get(0)?.id
+
+    println(param2)
 
 
 }

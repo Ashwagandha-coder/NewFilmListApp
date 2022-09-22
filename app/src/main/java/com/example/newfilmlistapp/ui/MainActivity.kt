@@ -16,58 +16,22 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        binding = ActivityMainBinding.inflate(layoutInflater)
-//        setContentView(binding.mainRoot)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
         bottomNavigationView.setupWithNavController(navHostFragment.navController)
     }
 
-//    private fun observeViewModel() {
-//
-//        viewModel = ViewModelTMDB()
-//
-//
-//    }
 
 
-//    fun chooseItemMenu(item: MenuItem): Boolean {
-//
-//        when (item.itemId) {
-//
-//            R.id.sortByDate -> { fragmentManager.beginTransaction().hide(active).commit()
-//                active = sortByDate
-//
-//                return true
-//
-//            }
-//
-//            R.id.popular -> { fragmentManager.beginTransaction().hide(active).commit()
-//                active = popular
-//
-//                return true
-//
-//
-//            }
-//
-//            R.id.favorites -> { fragmentManager.beginTransaction().hide(active).commit()
-//                active = favorites
-//
-//                return true
-//
-//            }
-//
-//        }
-//
-//        return false
-//
-//    }
 
 
 }
