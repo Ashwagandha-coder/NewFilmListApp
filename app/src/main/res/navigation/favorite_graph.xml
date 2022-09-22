@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/favorite"
+    android:id="@+id/favorite_graph">
+
+    <fragment
+        android:id="@+id/favorite"
+        android:name="com.example.newfilmlistapp.ui.Favorites"
+        android:label="@string/favorites_fragment" />
+</navigation>

@@ -20,7 +20,7 @@ class Favorites : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentFavoritesBinding.inflate(layoutInflater,container,false)
+        binding = FragmentFavoritesBinding.inflate(inflater,container,false)
 
         return binding.root
     }
