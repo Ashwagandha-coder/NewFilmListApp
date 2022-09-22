@@ -6,15 +6,11 @@
     <string name="Choose">Подбор</string>
     <string name="years">Год</string>
     <string name="genre">Жанр</string>
-
-    <string-array name="years">
-
-        <item>years</item>
-
-    </string-array>
+    <string name="Text_below_picture">Текст под картинкой</string>
 
 
-    <string-array name="genre">
+
+    <string-array name="genres">
 
         <item>Экшен</item>
         <item>Приключения</item>

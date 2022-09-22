@@ -1,10 +1,7 @@
 package com.example.newfilmlistapp
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.Movie
 import com.example.newfilmlistapp.model.MovieWrapper
@@ -18,31 +15,34 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.Observable
 
-class ViewModelTMDB : ViewModel() {
-
-    private lateinit var retrofit: Retrofit
-    private lateinit var moshi: Moshi
-    private lateinit var genresWrapper: GenresWrapper
-   // private val movie: MutableLiveData<Movie> by lazy { MutableLiveData<Movie>() }
+class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
-    init {
+    private var genresWrapper: GenresWrapper? = null
+    private var movieWrapper: MovieWrapper? = null
 
-        initAllField()
+    private val retrofit: Retrofit by lazy { initRetrofit() }
+    private val moshi: Moshi by lazy { initMoshi() }
+    private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>() }
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val param1 = getGenres()
 
+    protected fun request() = viewModelScope.launch {
+
+        val genresWrapperRequest = getGenres()
+        genresWrapper = genresWrapperRequest
+
+        val movieWrapperRequest = getMovie()
+        movieWrapper = movieWrapperRequest
+
+
+    }
+
+    fun addDataInLiveData() {
+
+        mutableLiveData.also {
+            request()
+            it.value = movieWrapper
         }
-
-        CoroutineScope(Dispatchers.IO).launch {
-
-            val param2 = getMovie()
-
-        }
-
-
-        TODO("Не работает")
 
 
     }
@@ -70,35 +70,36 @@ class ViewModelTMDB : ViewModel() {
         val result = loadingMovieDBService.getGenres()
 
          Log.d(ViewModelTMDB::class.java.name,"result: ${result.genres}")
+
         return result
     }
 
+    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData }
 
-    fun initRetrofit() {
 
-        retrofit = Retrofit.Builder()
+    fun initRetrofit(): Retrofit {
+
+        val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
 
 
+        return retrofit
+
+
     }
 
-    fun initMoshi() {
+    fun initMoshi(): Moshi {
 
-        moshi = Moshi.Builder()
+        val moshi = Moshi.Builder()
             .build()
 
-    }
-
-    fun initAllField() {
-
-        initMoshi()
-        initRetrofit()
-
+        return moshi
 
     }
+
 
 
 }

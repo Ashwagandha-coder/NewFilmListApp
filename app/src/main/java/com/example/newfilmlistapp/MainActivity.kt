@@ -63,9 +63,8 @@ class MainActivity : AppCompatActivity() {
 
         init()
 
-        viewModel = ViewModelTMDB()
 
-        TODO("Сделать переключение между фрагментами")
+        // todo : поправить верстку экрана
 
     }
 

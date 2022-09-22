@@ -9,25 +9,12 @@
 
     <TextView
         android:id="@+id/tv_years"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/years"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/years"
-        android:layout_marginStart="110dp">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/tv_genre"
-        android:text="@string/genre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_years"
-        app:layout_constraintBottom_toTopOf="@id/genre"
-        android:layout_marginStart="110dp">
+        app:layout_constraintTop_toTopOf="parent">
 
     </TextView>
 
@@ -36,47 +23,72 @@
         android:id="@+id/years"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="160dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="100dp">
+        app:layout_constraintTop_toBottomOf="@id/tv_years">
+
     </Spinner>
+
+    <TextView
+        android:id="@+id/tv_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/genre"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/years"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </TextView>
+
 
     <Spinner
         android:id="@+id/genre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="50dp"
-        app:layout_constraintStart_toEndOf="@id/years"
-        android:layout_marginStart="100dp">
+        android:layout_marginStart="160dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_genre">
+
     </Spinner>
 
-
-    <ImageButton
-        android:id="@+id/image"
-        android:src="@drawable/favorites_film"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/picture_film"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="16dp"
+        android:src="@mipmap/ic_launcher_round"
         app:layout_constraintTop_toBottomOf="@+id/genre"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="150dp"
-        android:layout_marginEnd="150dp">
+        tools:layout_editor_absoluteX="0dp"
+        android:contentDescription="TODO">
 
-    </ImageButton>
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/text_below_picture_film"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/Text_below_picture"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/picture_film">
+    </TextView>
 
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Choose"
-        app:layout_constraintTop_toBottomOf="@+id/image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="150dp"
-        android:layout_marginEnd="150dp">
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="150dp"
+        android:text="@string/Choose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/picture_film"
+        >
 
     </Button>
 
