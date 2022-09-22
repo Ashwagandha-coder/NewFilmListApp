@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/random"
+        android:id="@+id/random_graph"
         android:title="@string/sort_by_date_fragment"
         android:contentDescription="rd-cd"
         android:icon="@drawable/sort_by_date" />
 
     <item
-        android:id="@+id/popular"
+        android:id="@+id/popular_graph"
         android:contentDescription="ff"
         android:title="@string/popular_fragment"
         android:icon="@drawable/popular" />
 
     <item
-        android:id="@+id/favorite"
+        android:id="@+id/favorite_graph"
         android:contentDescription="gg"
         android:title="@string/favorites_fragment"
         android:icon="@drawable/favorites_film" />

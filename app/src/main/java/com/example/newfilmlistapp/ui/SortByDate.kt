@@ -47,7 +47,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         viewModel.addDataInLiveData()
 
-        viewModel.getInstanceLiveData().observe(viewLifecycleOwner, Observer<MovieWrapper> {})
+
+//        viewModel.getInstanceLiveData().observe(viewLifecycleOwner, Observer<MovieWrapper> { binding.textBelowPictureFilm.text = it. })
 
 
     }
