@@ -51,41 +51,33 @@
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toEndOf="@id/years"
         android:layout_marginStart="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/linear">
+        >
     </Spinner>
 
 
-    <LinearLayout
-        android:id="@+id/linear"
+
+    <ImageView
+        android:id="@+id/picture_film"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="16dp"
         android:clickable="true"
-        android:orientation="vertical"
-        android:weightSum="50"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="107dp">
+        android:src="@mipmap/ic_launcher_round">
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:padding="16dp"
-            android:src="@mipmap/ic_launcher_round">
+    </ImageView>
 
-        </ImageView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/Text_below_picture">
-
-        </TextView>
+    <TextView
+        android:id="@+id/text_below_picture_film"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/Text_below_picture"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/picture_film">
+    </TextView>
 
 
-    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
@@ -96,7 +88,7 @@
         android:text="@string/Choose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear"
+        app:layout_constraintTop_toBottomOf="@id/picture_film"
         >
 
     </Button>

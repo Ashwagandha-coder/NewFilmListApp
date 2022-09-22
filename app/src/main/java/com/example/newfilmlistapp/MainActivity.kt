@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         init()
 
 
-        // todo : some 2
+        // todo : поправить верстку экрана
 
     }
 
