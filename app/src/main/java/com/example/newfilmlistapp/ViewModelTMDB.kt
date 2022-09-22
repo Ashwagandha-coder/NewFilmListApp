@@ -10,6 +10,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import com.squareup.moshi.Moshi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -26,13 +27,14 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>() }
 
 
-    fun request() = CoroutineScope(Dispatchers.IO).launch {
+    fun request(): Job = CoroutineScope(Dispatchers.IO).launch {
 
         val genresWrapperRequest = getGenres()
         genresWrapper = genresWrapperRequest
 
         val movieWrapperRequest = getMovie()
         movieWrapper = movieWrapperRequest
+
 
 
     }
@@ -105,9 +107,10 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 }
 
 // todo: Не работает запрос в сеть
+// todo: Пытался в main сделать все равно нихера
 
 
-fun main() {
+suspend fun main() {
 
 
     val viewModelTMDB = ViewModelTMDB()
@@ -118,11 +121,14 @@ fun main() {
 
     var param: MovieWrapper? = null
 
-    CoroutineScope(Dispatchers.IO).launch {
+    val job = CoroutineScope(Dispatchers.IO).launch {
 
         val result = loadingMovieDBService.getMovie(primary_release_year = 1954, genres = "18")
         param = result
     }
+
+//    val other_param = job.join()
+
 
 //    val param2 = viewModelTMDB.movieWrapper
 
