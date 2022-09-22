@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/sortByDate"
-        android:name="com.example.newfilmlistapp.SortByDate"
+        android:name="com.example.newfilmlistapp.ui.SortByDate"
         android:label="fragment_sort_by_date"
         tools:layout="@layout/fragment_sort_by_date" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/favorites"
-        android:name="com.example.newfilmlistapp.Favorites"
+        android:name="com.example.newfilmlistapp.ui.Favorites"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/popular"
-        android:name="com.example.newfilmlistapp.Popular"
+        android:name="com.example.newfilmlistapp.ui.Popular"
         android:label="fragment_popular"
         tools:layout="@layout/fragment_popular" >
         <action

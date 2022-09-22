@@ -1,24 +1,23 @@
-package com.example.newfilmlistapp
+package com.example.newfilmlistapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.newfilmlistapp.network.LoadingMovieDBService
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.ui.setupWithNavController
+import com.example.newfilmlistapp.*
+import com.example.newfilmlistapp.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.Moshi
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+
 
     private lateinit var sortByDate: SortByDate
     private lateinit var popular: Popular
@@ -27,16 +26,20 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fragmentManager: FragmentManager
 
     private lateinit var active: Fragment
-
     private lateinit var variable: BottomNavigationView.OnNavigationItemSelectedListener
-
     private lateinit var viewModel: ViewModelTMDB
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        init()
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_container)
+
+        binding.bottomNavigationView.setupWithNavController(navController)
+
+       // init()
 
 
     }
@@ -59,6 +62,8 @@ class MainActivity : AppCompatActivity() {
         active = sortByDate
 
         variable = BottomNavigationView.OnNavigationItemSelectedListener { chooseItemMenu(it) }
+
+
 
     }
 

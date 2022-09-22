@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp
+package com.example.newfilmlistapp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.lifecycle.Observer
+import com.example.newfilmlistapp.ViewModelTMDB
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.MovieWrapper
 
@@ -15,7 +16,7 @@ import com.example.newfilmlistapp.model.MovieWrapper
 
 class SortByDate : androidx.fragment.app.Fragment() {
 
-    private lateinit var fragmentSortByDateBinding: FragmentSortByDateBinding
+    private lateinit var binding: FragmentSortByDateBinding
     private val viewModel by lazy { ViewModelTMDB() }
 
     private lateinit var spinnerYear: Spinner
@@ -27,17 +28,18 @@ class SortByDate : androidx.fragment.app.Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fragmentSortByDateBinding = FragmentSortByDateBinding.inflate(inflater, container, false)
+        binding = FragmentSortByDateBinding.inflate(inflater, container, false)
 
         initSpinners()
         workWithViewModel()
 
-        return fragmentSortByDateBinding.root
+        return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
     }
 
 
@@ -51,8 +53,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
     fun initSpinners() {
-        spinnerYear = fragmentSortByDateBinding.years
-        spinnerGenres = fragmentSortByDateBinding.genre
+        spinnerYear = binding.years
+        spinnerGenres = binding.genre
 
         val arrayAdapterGenre = ArrayAdapter(
             requireContext(),
@@ -74,9 +76,9 @@ class SortByDate : androidx.fragment.app.Fragment() {
             listYear
         )
 
-        fragmentSortByDateBinding.genre.adapter = arrayAdapterGenre
+        binding.genre.adapter = arrayAdapterGenre
 
-        fragmentSortByDateBinding.years.adapter = arrayAdapterYear
+        binding.years.adapter = arrayAdapterYear
 
 
     }

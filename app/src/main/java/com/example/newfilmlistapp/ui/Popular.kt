@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp
+package com.example.newfilmlistapp.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
