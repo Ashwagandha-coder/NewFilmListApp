@@ -27,7 +27,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>() }
 
 
-    fun request(): Job = CoroutineScope(Dispatchers.IO).launch {
+    fun request(): Job = viewModelScope.launch {
 
         val genresWrapperRequest = getGenres()
         genresWrapper = genresWrapperRequest
@@ -115,22 +115,24 @@ suspend fun main() {
 
     val viewModelTMDB = ViewModelTMDB()
 
-    val retrofit = viewModelTMDB.initRetrofit()
-
-    val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
-
-    var param: MovieWrapper? = null
-
-    val job = CoroutineScope(Dispatchers.IO).launch {
-
-        val result = loadingMovieDBService.getMovie(primary_release_year = 1954, genres = "18")
-        param = result
-    }
+//    val retrofit = viewModelTMDB.initRetrofit()
+//
+//    val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
+//
+//    var param: MovieWrapper? = null
+//
+//    val job = CoroutineScope(Dispatchers.IO).launch {
+//
+//        val result = loadingMovieDBService.getMovie(primary_release_year = 1954, genres = "18")
+//        param = result
+//    }
 
 //    val other_param = job.join()
 
 
 //    val param2 = viewModelTMDB.movieWrapper
+
+    val param = viewModelTMDB.movieWrapper
 
     println(param?.results?.get(0)?.overview)
 
