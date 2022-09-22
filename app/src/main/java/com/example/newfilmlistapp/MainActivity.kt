@@ -36,35 +36,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-//        val moshi = Moshi.Builder()
-//            .build()
-//
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl(BASE_URL)
-//            .addConverterFactory(MoshiConverterFactory.create(moshi))
-//            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-//            .build()
-//
-//        val loadingMovieDBService =  retrofit.create(LoadingMovieDBService::class.java)
-//        observeViewModel()
-//
-//        CoroutineScope(Dispatchers.IO).launch {
-//            try {
-//                val result = loadingMovieDBService.getGenres()
-//                Log.d("Test","result: ${result.genres}")
-//
-//            } catch (e: Exception){
-//                Log.e("error", "fetch movie error $e")
-//            }
-//
-//        }
-
-
         init()
 
-
-        // todo : поправить верстку экрана
 
     }
 
