@@ -29,6 +29,9 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private lateinit var spinnerGenres: Spinner
 
 
+    private lateinit var map_genres: Map<String,Int>
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,7 +54,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     fun workWithViewModel() {
 
-        viewModel.getInstanceLiveDataGenres().observe(viewLifecycleOwner, Observer<GenresWrapper> {})
+        viewModel.getInstanceLiveDataGenres().observe(viewLifecycleOwner, Observer<GenresWrapper> { parseListInMap(it) })
         viewModel.getInstanceLiveDataMovie().observe(viewLifecycleOwner, Observer<MovieWrapper> {})
 
 
@@ -60,6 +63,10 @@ class SortByDate : androidx.fragment.app.Fragment() {
     fun initSpinners() {
         spinnerYear = binding.years
         spinnerGenres = binding.genre
+
+
+        viewModel.requestGenres()
+
 
         // init spinner genres
         val listGenres = resources.getStringArray(R.array.genres)
@@ -92,30 +99,35 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
 
-    fun parseListInMap() {
+    fun parseListInMap(genresWrapper: GenresWrapper) {
 
+        map_genres = mutableMapOf()
 
+        genresWrapper.genres.forEach { e ->
 
-
-
-    }
-
-
-
-    fun setListenerButton() {
-
-        binding.common.setOnClickListener { view ->
-
-            val year_spinner = spinnerYear.get()
-            val genres_spinner = spinnerGenres.get()
-
-
-            viewModel.request()
+            map_genres
 
         }
 
 
     }
+
+
+
+//    fun setListenerButton() {
+//
+//        binding.common.setOnClickListener { view ->
+//
+//            val year_spinner = spinnerYear.get()
+//            val genres_spinner = spinnerGenres.get()
+//
+//
+//            viewModel.requestMovie()
+//
+//        }
+//
+//
+//    }
 
 
 
