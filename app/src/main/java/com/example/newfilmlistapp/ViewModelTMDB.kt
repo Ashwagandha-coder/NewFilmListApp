@@ -17,7 +17,9 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     private val retrofit: Retrofit by lazy { initRetrofit() }
     private val moshi: Moshi by lazy { initMoshi() }
     private val mutableLiveData_movie: MutableLiveData<MovieWrapper> = MutableLiveData()
+    val movie: LiveData<MovieWrapper> = mutableLiveData_movie
     private val mutableLiveData_genres: MutableLiveData<GenresWrapper> = MutableLiveData()
+    private lateinit var genresWrapper: GenresWrapper
 
 
 
@@ -45,18 +47,19 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
     fun requestMovie(year: Int, index: Int) {
-
-
         viewModelScope.launch {
 
             try {
 
-                val string = index.toString()
+              //  val string = index.toString()
 
-                mutableLiveData_movie.value = getMovie(year, string)!!
+
+                genresWrapper = mutableLiveData_genres.value!!
+
+                mutableLiveData_movie.value = getMovie(year, genresWrapper.genres.get(index).toString())!!
+
             }
             catch (e: Exception) {
-
                 Log.d(ViewModelTMDB::class.java.name,"Error Request Movie")
                 e.printStackTrace()
             }
@@ -69,10 +72,9 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
     suspend fun getMovie(year: Int, genre: String): MovieWrapper {
 
-
         val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
 
-        val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = genre)
+        val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf<String>(genre))
 
         Log.d(ViewModelTMDB::class.java.name,"request OK")
 
@@ -125,7 +127,5 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 }
 
-// todo: Не работает запрос в сеть
-// todo: Пытался в main сделать все равно нихера
 
 
