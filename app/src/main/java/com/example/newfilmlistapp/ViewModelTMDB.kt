@@ -3,48 +3,65 @@ package com.example.newfilmlistapp
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.newfilmlistapp.model.GenresWrapper
-import com.example.newfilmlistapp.model.Movie
 import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import java.util.Observable
 
 class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
-    private var genresWrapper: GenresWrapper? = null
-    private var movieWrapper: MovieWrapper? = null
-
     private val retrofit: Retrofit by lazy { initRetrofit() }
     private val moshi: Moshi by lazy { initMoshi() }
-    private val mutableLiveData: MutableLiveData<MovieWrapper> by lazy { MutableLiveData<MovieWrapper>() }
+    private val mutableLiveData_movie: MutableLiveData<MovieWrapper> = MutableLiveData()
+    private val mutableLiveData_genres: MutableLiveData<GenresWrapper> = MutableLiveData()
 
 
-    protected fun request() = viewModelScope.launch {
 
-        val genresWrapperRequest = getGenres()
-        genresWrapper = genresWrapperRequest
+    fun requestGenres() {
 
-        val movieWrapperRequest = getMovie()
-        movieWrapper = movieWrapperRequest
+        viewModelScope.launch {
+
+            try {
+
+                mutableLiveData_genres.value = getGenres()!!
+            }
+            catch (e: Exception) {
+
+                Log.d(ViewModelTMDB::class.java.name,"Error Request Genres")
+                e.printStackTrace()
+            }
+
+
+        }
 
 
     }
 
-    fun addDataInLiveData() {
 
-        mutableLiveData.also {
-            request()
-            it.value = movieWrapper
+
+
+    fun requestMovie() {
+
+
+        viewModelScope.launch {
+
+            try {
+
+                mutableLiveData_movie.value = getMovie()!!
+            }
+            catch (e: Exception) {
+
+                Log.d(ViewModelTMDB::class.java.name,"Error Request Movie")
+                e.printStackTrace()
+            }
+
+
+
         }
-
-
     }
 
 
@@ -74,7 +91,9 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
         return result
     }
 
-    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData }
+    fun getInstanceLiveDataMovie(): LiveData<MovieWrapper> { return mutableLiveData_movie }
+
+    fun getInstanceLiveDataGenres(): LiveData<GenresWrapper> { return mutableLiveData_genres }
 
 
     fun initRetrofit(): Retrofit {
@@ -103,3 +122,8 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
 }
+
+// todo: Не работает запрос в сеть
+// todo: Пытался в main сделать все равно нихера
+
+
