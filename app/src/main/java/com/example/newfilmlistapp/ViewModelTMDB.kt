@@ -44,22 +44,16 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
 
-    fun requestMovie(year: Int, genre: String, genresWrapper: GenresWrapper) {
+    fun requestMovie(year: Int, index: Int) {
 
 
         viewModelScope.launch {
 
             try {
 
-                var id: Int = 0
+                val string = index.toString()
 
-                genresWrapper.genres.forEach {
-                    if (it.name == genre)
-                        id = it.id.toInt()
-                }
-                val string = id.toString()
-
-                mutableLiveData_movie.value = getMovie(year, genre)!!
+                mutableLiveData_movie.value = getMovie(year, string)!!
             }
             catch (e: Exception) {
 
