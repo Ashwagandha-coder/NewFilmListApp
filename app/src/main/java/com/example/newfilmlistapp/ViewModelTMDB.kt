@@ -17,28 +17,45 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     private val retrofit: Retrofit by lazy { initRetrofit() }
     private val moshi: Moshi by lazy { initMoshi() }
     private val mutableLiveData_movie: MutableLiveData<MovieWrapper> = MutableLiveData()
-    private val mutableLiveData_genres: MutableLiveData<GenresWrapper>  = MutableLiveData()
+    private val mutableLiveData_genres: MutableLiveData<GenresWrapper> = MutableLiveData()
 
 
 
-    init {
-        request()
-    }
-
-
-    private fun request() {
-
+    fun requestGenres() {
 
         viewModelScope.launch {
 
             try {
 
                 mutableLiveData_genres.value = getGenres()!!
+            }
+            catch (e: Exception) {
+
+                Log.d(ViewModelTMDB::class.java.name,"Error Request Genres")
+                e.printStackTrace()
+            }
+
+
+        }
+
+
+    }
+
+
+
+
+    fun requestMovie() {
+
+
+        viewModelScope.launch {
+
+            try {
+
                 mutableLiveData_movie.value = getMovie()!!
             }
             catch (e: Exception) {
 
-                Log.d(ViewModelTMDB::class.java.name,"Error Request Network")
+                Log.d(ViewModelTMDB::class.java.name,"Error Request Movie")
                 e.printStackTrace()
             }
 
