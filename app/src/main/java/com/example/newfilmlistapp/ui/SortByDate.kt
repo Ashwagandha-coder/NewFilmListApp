@@ -32,6 +32,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     private val collection: List<String> by lazy { mutableListOf() }
     private lateinit var genresWrapper: GenresWrapper
+    private lateinit var movieWrapper: MovieWrapper
 
 
     override fun onCreateView(
@@ -56,9 +57,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     fun workWithViewModel() {
 
-        viewModel.getInstanceLiveDataGenres()
-            .observe(viewLifecycleOwner, Observer<GenresWrapper> { genresWrapper = it })
-        viewModel.getInstanceLiveDataMovie().observe(viewLifecycleOwner, Observer<MovieWrapper> {})
+        viewModel.getInstanceLiveDataGenres().observe(viewLifecycleOwner, Observer<GenresWrapper> { genresWrapper = it })
+        viewModel.getInstanceLiveDataMovie().observe(viewLifecycleOwner, Observer<MovieWrapper> { movieWrapper = it })
 
 
     }
@@ -104,12 +104,14 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     fun setListenerButton() {
 
-        binding.common.setOnClickListener { view ->
+        binding.common.setOnClickListener {
 
             val year = getItemSpinnerYear()
             val genre = getItemSpinnerGenre()
 
             viewModel.requestMovie(year, genre, genresWrapper)
+
+            binding.textBelowPictureFilm.text = movieWrapper.results.get(0).overview
 
         }
 
