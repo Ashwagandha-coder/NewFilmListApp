@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.core.view.get
@@ -105,46 +107,45 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         binding.common.setOnClickListener { view ->
 
-            val year_spinner = setListenerSpinnerYear()
-            val genres_spinner = setListenerSpinnerGenres()
+//            val year_spinner = setListenerSpinnerYear()
+//            val genres_spinner = setListenerSpinnerGenres()
 
 
-            viewModel.requestMovie()
+           // viewModel.requestMovie()
 
         }
 
     }
 
 
-    fun setListenerSpinnerGenres(): String? {
-
-        val result: String
-
-        spinnerGenres.setOnItemClickListener { adapterView, view, i, l ->
-
-            result = adapterView.adapter.getView(i).toString()
-
-        }
-
-        return result
-
-    }
+//    fun setListenerSpinnerGenres(): String? {
+//
+//        val result: String
+//
+//        spinnerGenres.setOnItemClickListener { adapterView, view, i, l ->
+//
+//            result = adapterView.adapter.getView(i).toString()
+//
+//        }
+//
+//        return result
+//
+//    }
 
 
     fun setListenerSpinnerYear(): Int? {
 
         var result: Int
 
-        spinnerYear.setOnItemClickListener { adapterView, view, i, l ->
-
-            result = adapterView.adapter.getView(i).toString()
-
-        }
+        spinnerYear.onItemSelectedListener = OnItemSelectedListener
 
         return result
 
 
     }
+
+
+
 
 }
 
