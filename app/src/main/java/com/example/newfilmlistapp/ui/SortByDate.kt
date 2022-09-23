@@ -113,6 +113,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     }
 
+    // todo: При нажатии на кнопку приложение крашится lateinit property хотя оно подписано на лив дату
+
 
     fun setListenerButton() {
 
