@@ -69,12 +69,12 @@ class SortByDate : androidx.fragment.app.Fragment() {
         viewModel.movie.observe(viewLifecycleOwner) {
 //                movieWrapper = it
             binding.textBelowPictureFilm.text =
-                it?.results?.firstOrNull()?.overview ?: "128 string SortByDate"
+                it?.results?.firstOrNull()?.originalTitle ?: "128 string SortByDate"
 
             val poster_path: String? = it?.results?.firstOrNull()?.posterPath
 
             Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500/${poster_path}")
+                .load("https://image.tmdb.org/t/p/w500${poster_path}")
                 .into(binding.pictureFilm)
 
         }
