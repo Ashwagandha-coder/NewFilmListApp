@@ -34,7 +34,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     private val collection: List<String> by lazy { mutableListOf() }
     private lateinit var genresWrapper: GenresWrapper
-    private lateinit var movieWrapper: MovieWrapper
+    private var movieWrapper: MovieWrapper? = null
 
     lateinit var stringTest: String
 
@@ -66,11 +66,20 @@ class SortByDate : androidx.fragment.app.Fragment() {
             .observe(viewLifecycleOwner, Observer<GenresWrapper> {
                 setupGenres(it.genres)
             })
-        viewModel.getInstanceLiveDataMovie()
-            .observe(viewLifecycleOwner, Observer<MovieWrapper> { movieWrapper = it })
+        viewModel.movie.observe(viewLifecycleOwner) {
+//                movieWrapper = it
+            binding.textBelowPictureFilm.text =
+                it?.results?.firstOrNull()?.overview ?: "128 string SortByDate"
 
+            val poster_path: String? = it?.results?.firstOrNull()?.posterPath
 
+            Glide.with(this)
+                .load("https://image.tmdb.org/t/p/w500/${poster_path}")
+                .into(binding.pictureFilm)
+
+        }
     }
+
 
     private fun setupGenres(genres: List<Genres>) {
         val arrayAdapterGenre = ArrayAdapter(
@@ -125,15 +134,6 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
             viewModel.requestMovie(year, genre)
 
-            binding.textBelowPictureFilm.text = movieWrapper.results.get(0).overview
-
-            val poster_path: String = movieWrapper.results.get(0).posterPath
-
-            stringTest = poster_path
-
-            Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500/${poster_path}")
-                .into(binding.pictureFilm)
 
         }
 

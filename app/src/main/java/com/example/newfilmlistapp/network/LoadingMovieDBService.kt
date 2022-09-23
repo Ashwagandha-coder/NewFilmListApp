@@ -30,38 +30,34 @@ interface LoadingMovieDBService {
     @GET("genre/movie/list")
     suspend fun getGenres(
         @Query("api_key") api_key: String = API_KEY,
-        @Query("language") language: String = LANGUAGE): GenresWrapper
+        @Query("language") language: String = LANGUAGE
+    ): GenresWrapper
 
 
     // Movie
 
 
+//    @GET("discover/movie")
+//    suspend fun getMovie(
+//        @Query("api_key") api_key: String = API_KEY,
+//        @Query("language") language: String = LANGUAGE,
+//        @Query("sort_by") sort_by: String = SORT_BY,
+//        @Query("include_adult") include_adult: Boolean = INCLUDE_ADULT,
+//        @Query("include_video") include_video: Boolean = INCLUDE_VIDEO,
+//        @Query("page") page: Int = PAGE,
+//        @Query("primary_release_year") primary_release_year: Int,
+//        @Query("year") year: Int = primary_release_year,
+//        @Query("with_genres") genres: String,
+//        @Query("with_watch_monetization_types") with_watch_monetization_types: String = WITH_WATCH_MONETIZATION_TYPES): MovieWrapper
+//
+
     @GET("discover/movie")
     suspend fun getMovie(
         @Query("api_key") api_key: String = API_KEY,
         @Query("language") language: String = LANGUAGE,
-        @Query("sort_by") sort_by: String = SORT_BY,
-        @Query("include_adult") include_adult: Boolean = INCLUDE_ADULT,
-        @Query("include_video") include_video: Boolean = INCLUDE_VIDEO,
-        @Query("page") page: Int = PAGE,
         @Query("primary_release_year") primary_release_year: Int,
-        @Query("year") year: Int = primary_release_year,
-        @Query("with_genres") genres: String,
-        @Query("with_watch_monetization_types") with_watch_monetization_types: String = WITH_WATCH_MONETIZATION_TYPES
-
-
+        @Query("with_genres") genres: List<String>
     ): MovieWrapper
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
