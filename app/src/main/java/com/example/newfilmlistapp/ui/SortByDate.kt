@@ -8,7 +8,6 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import androidx.core.view.get
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.newfilmlistapp.R
@@ -107,37 +106,49 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         binding.common.setOnClickListener { view ->
 
-//            val year_spinner = setListenerSpinnerYear()
-//            val genres_spinner = setListenerSpinnerGenres()
+            val year = getItemSpinnerYear()
+            val genre = getItemSpinnerGenre()
 
-
-           // viewModel.requestMovie()
+            viewModel.requestMovie(year, genre, genresWrapper)
 
         }
 
     }
 
 
-//    fun setListenerSpinnerGenres(): String? {
-//
-//        val result: String
-//
-//        spinnerGenres.setOnItemClickListener { adapterView, view, i, l ->
-//
-//            result = adapterView.adapter.getView(i).toString()
-//
-//        }
-//
-//        return result
-//
-//    }
+    fun getItemSpinnerGenre(): String {
+
+        var result: String = ""
+
+        spinnerGenres.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                result = p0!!.adapter.getItem(p2).toString()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                // Stub
+            }
+        }
+
+        return result
+
+    }
 
 
-    fun setListenerSpinnerYear(): Int? {
+    fun getItemSpinnerYear(): Int {
 
-        var result: Int
+        var result: Int = 0
 
-        spinnerYear.onItemSelectedListener = OnItemSelectedListener
+        spinnerYear.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                result = p0!!.adapter.getItem(p2) as Int
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                // Stub
+            }
+
+        }
 
         return result
 

@@ -44,14 +44,22 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
 
-    fun requestMovie(year: Int, genre: Int) {
+    fun requestMovie(year: Int, genre: String, genresWrapper: GenresWrapper) {
 
 
         viewModelScope.launch {
 
             try {
 
-                mutableLiveData_movie.value = getMovie()!!
+                var id: Int = 0
+
+                genresWrapper.genres.forEach {
+                    if (it.name == genre)
+                        id = it.id.toInt()
+                }
+                val string = id.toString()
+
+                mutableLiveData_movie.value = getMovie(year, genre)!!
             }
             catch (e: Exception) {
 
@@ -65,12 +73,12 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     }
 
 
-    suspend fun getMovie(year: Int, genre: Int): MovieWrapper {
+    suspend fun getMovie(year: Int, genre: String): MovieWrapper {
 
 
         val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
 
-        val result = loadingMovieDBService.getMovie(primary_release_year = 1954, genres = "18")
+        val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = genre)
 
         Log.d(ViewModelTMDB::class.java.name,"request OK")
 
