@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.newfilmlistapp.ViewModelTMDB
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
+import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
 
 
@@ -16,8 +18,11 @@ import com.example.newfilmlistapp.model.MovieWrapper
 
 class SortByDate : androidx.fragment.app.Fragment() {
 
-    lateinit var binding: FragmentSortByDateBinding
-    private val viewModel by lazy { ViewModelTMDB() }
+    private lateinit var binding: FragmentSortByDateBinding
+    private val viewModel: ViewModelTMDB by lazy {
+        ViewModelProvider(this).get(ViewModelTMDB::class.java)
+
+    }
 
     private lateinit var spinnerYear: Spinner
     private lateinit var spinnerGenres: Spinner
@@ -45,9 +50,9 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     fun workWithViewModel() {
 
-        viewModel.addDataInLiveData()
+        viewModel.getInstanceLiveDataGenres().observe(viewLifecycleOwner, Observer<GenresWrapper> {})
 
-        viewModel.getInstanceLiveData().observe(viewLifecycleOwner, Observer<MovieWrapper> { binding.textBelowPictureFilm.text = it.results[0].overview })
+        viewModel.getInstanceLiveDataMovie().observe(viewLifecycleOwner, Observer<MovieWrapper> {})
 
 
     }

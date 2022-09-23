@@ -2,7 +2,6 @@ package com.example.newfilmlistapp
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
@@ -18,7 +17,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     private val retrofit: Retrofit by lazy { initRetrofit() }
     private val moshi: Moshi by lazy { initMoshi() }
     private val mutableLiveData_movie: MutableLiveData<MovieWrapper> = MutableLiveData()
-    private val mutableLiveData_genres: MutableLiveData<Genres>  = MutableLiveData()
+    private val mutableLiveData_genres: MutableLiveData<GenresWrapper>  = MutableLiveData()
 
 
 
@@ -32,10 +31,16 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
         viewModelScope.launch {
 
-            getGenres()
+            try {
 
-            mutableLiveData_movie.value = getMovie()!!
+                mutableLiveData_genres.value = getGenres()!!
+                mutableLiveData_movie.value = getMovie()!!
+            }
+            catch (e: Exception) {
 
+                Log.d(ViewModelTMDB::class.java.name,"Error Request Network")
+                e.printStackTrace()
+            }
 
 
 
@@ -69,7 +74,9 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
         return result
     }
 
-    fun getInstanceLiveData(): LiveData<MovieWrapper> { return mutableLiveData_movie }
+    fun getInstanceLiveDataMovie(): LiveData<MovieWrapper> { return mutableLiveData_movie }
+
+    fun getInstanceLiveDataGenres(): LiveData<GenresWrapper> { return mutableLiveData_genres }
 
 
     fun initRetrofit(): Retrofit {
