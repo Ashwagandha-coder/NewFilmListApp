@@ -44,7 +44,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
 
-    fun requestMovie() {
+    fun requestMovie(year: Int, genre: Int) {
 
 
         viewModelScope.launch {
@@ -65,7 +65,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     }
 
 
-    suspend fun getMovie(): MovieWrapper {
+    suspend fun getMovie(year: Int, genre: Int): MovieWrapper {
 
 
         val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)

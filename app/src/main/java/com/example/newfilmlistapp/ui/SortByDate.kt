@@ -29,7 +29,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private lateinit var spinnerGenres: Spinner
 
 
-    private lateinit var map_genres: Map<String,Int>
+    private val collection: List<String> by lazy { mutableListOf() }
+    private lateinit var genresWrapper: GenresWrapper
 
 
     override fun onCreateView(
@@ -54,7 +55,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     fun workWithViewModel() {
 
-        viewModel.getInstanceLiveDataGenres().observe(viewLifecycleOwner, Observer<GenresWrapper> { parseListInMap(it) })
+        viewModel.getInstanceLiveDataGenres()
+            .observe(viewLifecycleOwner, Observer<GenresWrapper> { genresWrapper = it })
         viewModel.getInstanceLiveDataMovie().observe(viewLifecycleOwner, Observer<MovieWrapper> {})
 
 
@@ -99,38 +101,53 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
 
-    fun parseListInMap(genresWrapper: GenresWrapper) {
+    fun setListenerButton() {
 
-        map_genres = mutableMapOf()
+        binding.common.setOnClickListener { view ->
 
-        genresWrapper.genres.forEach { e ->
+            val year_spinner = setListenerSpinnerYear()
+            val genres_spinner = setListenerSpinnerGenres()
 
-            map_genres
+
+            viewModel.requestMovie()
 
         }
-
 
     }
 
 
+    fun setListenerSpinnerGenres(): String? {
 
-//    fun setListenerButton() {
-//
-//        binding.common.setOnClickListener { view ->
-//
-//            val year_spinner = spinnerYear.get()
-//            val genres_spinner = spinnerGenres.get()
-//
-//
-//            viewModel.requestMovie()
-//
-//        }
-//
-//
-//    }
+        val result: String
+
+        spinnerGenres.setOnItemClickListener { adapterView, view, i, l ->
+
+            result = adapterView.adapter.getView(i).toString()
+
+        }
+
+        return result
+
+    }
 
 
+    fun setListenerSpinnerYear(): Int? {
 
+        var result: Int
+
+        spinnerYear.setOnItemClickListener { adapterView, view, i, l ->
+
+            result = adapterView.adapter.getView(i).toString()
+
+        }
+
+        return result
+
+
+    }
 
 }
+
+
+
 
