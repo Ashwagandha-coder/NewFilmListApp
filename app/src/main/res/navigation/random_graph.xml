@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/random"
         android:name="com.example.newfilmlistapp.ui.SortByDate"
-        android:label="@string/sort_by_date_fragment" />
+        android:label="@string/sort_by_date_fragment" >
+        <action
+            android:id="@+id/action_random_to_movieDetail"
+            app:destination="@id/movieDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetail"
+        android:name="com.example.newfilmlistapp.ui.MovieDetail"
+        android:label="MovieDetail" >
+        <action
+            android:id="@+id/action_movieDetail_to_random"
+            app:destination="@id/random" />
+    </fragment>
 </navigation>
