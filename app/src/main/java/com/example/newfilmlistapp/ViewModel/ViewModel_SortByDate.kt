@@ -1,7 +1,8 @@
-package com.example.newfilmlistapp
+package com.example.newfilmlistapp.ViewModel
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.example.newfilmlistapp.BASE_URL
 import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
@@ -13,7 +14,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import kotlin.random.Random
 
-class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
+class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
 
     private val retrofit: Retrofit by lazy { initRetrofit() }
@@ -27,6 +28,8 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
 
     private lateinit var movie_ID: String
+
+
     private var number_random: Int = 0
     val array_index = number_random
 
@@ -42,7 +45,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
             }
             catch (e: Exception) {
 
-                Log.d(ViewModelTMDB::class.java.name,"Error Request Genres")
+                Log.d(ViewModel_SortByDate::class.java.name,"Error Request Genres")
                 e.printStackTrace()
             }
 
@@ -71,15 +74,15 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
                 number_random = Random.Default.nextInt(0,7)
 
-                Log.d(ViewModelTMDB::class.java.name,"Random number - $number_random")
+                Log.d(ViewModel_SortByDate::class.java.name,"Random number - $number_random")
 
                 movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
 
-                Log.d(ViewModelTMDB::class.java.name,movie_ID + "Значение movie_ID")
+                Log.d(ViewModel_SortByDate::class.java.name,movie_ID + " " + "Значение movie_ID")
 
             }
             catch (e: Exception) {
-                Log.d(ViewModelTMDB::class.java.name,"Error Request -  Movie")
+                Log.d(ViewModel_SortByDate::class.java.name,"Error Request -  Movie")
                 e.printStackTrace()
             }
 
@@ -94,13 +97,33 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
             try {
 
-                mutableLiveData_movie_detail.value = getMovieDetail(movie_ID)!!
+
+//                genresWrapper = mutableLiveData_genres.value!!
+//
+//                val variable = getMovie(year, genresWrapper.genres.get(index).toString())!!
+//
+//
+//                number_random = Random.Default.nextInt(0,7)
+//
+//                Log.d(ViewModelTMDB::class.java.name,"Random number in REQUEST_MOVIE_DETAIL - $number_random")
+//
+//                movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
+//
+//                Log.d(ViewModelTMDB::class.java.name,movie_ID + " " + "Значение movie_ID in REQUEST_MOVIE_DETAIL")
+
+
+
+                // Movie Detail
+             //   Log.d(ViewModelTMDB::class.java.name,"Значение movieID before request - $movie_ID")
+
+                mutableLiveData_movie_detail.value = getMovieDetail("550")!!
 
 
             }
 
             catch (e: Exception) {
-                Log.d(ViewModelTMDB::class.java.name,"Error Request -  Movie Detail")
+                Log.d(ViewModel_SortByDate::class.java.name,"Значение movieID before request with error - $movie_ID")
+                Log.d(ViewModel_SortByDate::class.java.name,"Error Request -  Movie Detail")
                 e.printStackTrace()
             }
 
@@ -122,7 +145,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getMovieDetail(movieID)
 
-        Log.d(ViewModelTMDB::class.java.name, "request OK - Movie Detail ")
+        Log.d(ViewModel_SortByDate::class.java.name, "request OK - Movie Detail ")
 
 
         return result
@@ -136,7 +159,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf<String>(genre))
 
-        Log.d(ViewModelTMDB::class.java.name,"request OK - Random Movie ")
+        Log.d(ViewModel_SortByDate::class.java.name,"request OK - Random Movie ")
 
         return result
 
@@ -150,7 +173,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getGenres()
 
-         Log.d(ViewModelTMDB::class.java.name,"result: ${result.genres}")
+         Log.d(ViewModel_SortByDate::class.java.name,"result: ${result.genres}")
 
         return result
     }

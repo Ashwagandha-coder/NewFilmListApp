@@ -13,11 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.ViewModelTMDB
+import com.example.newfilmlistapp.ViewModel.ViewModel_SortByDate
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.GenresWrapper
-import com.example.newfilmlistapp.model.MovieWrapper
 
 
 // todo: Проблемы с версткой
@@ -25,8 +24,8 @@ import com.example.newfilmlistapp.model.MovieWrapper
 class SortByDate : androidx.fragment.app.Fragment() {
 
     private lateinit var binding: FragmentSortByDateBinding
-    private val viewModel: ViewModelTMDB by lazy {
-        ViewModelProvider(this).get(ViewModelTMDB::class.java)
+    private val viewModel: ViewModel_SortByDate by lazy {
+        ViewModelProvider(this).get(ViewModel_SortByDate::class.java)
     }
 
     private lateinit var spinnerYear: Spinner
@@ -35,11 +34,10 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private var poster_path: String? = null
 
 
-    private val collection: List<String> by lazy { mutableListOf() }
-    private lateinit var genresWrapper: GenresWrapper
-    private var movieWrapper: MovieWrapper? = null
-
-    lateinit var stringTest: String
+    private var year: Int = 0
+    val getYear = year
+    private var genre: Int = 0
+    val getGenre = genre
 
 
     override fun onCreateView(
@@ -138,8 +136,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         binding.common.setOnClickListener {
 
-            val year = getItemSpinnerYear()
-            val genre = getItemSpinnerGenre()
+            year = getItemSpinnerYear()
+            genre = getItemSpinnerGenre()
 
             viewModel.requestMovie(year, genre)
 

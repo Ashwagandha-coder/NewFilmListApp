@@ -1,6 +1,5 @@
 package com.example.newfilmlistapp.ui
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.newfilmlistapp.ViewModelTMDB
+import com.example.newfilmlistapp.ViewModel.ViewModel_SortByDate
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 
 
@@ -18,8 +17,8 @@ class MovieDetail : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
 
-    private val viewModel: ViewModelTMDB by lazy {
-        ViewModelProvider(this).get(ViewModelTMDB::class.java)
+    private val viewModel: ViewModel_SortByDate by lazy {
+        ViewModelProvider(this).get(ViewModel_SortByDate::class.java)
     }
 
     private val args: MovieDetailArgs by navArgs()
@@ -60,7 +59,7 @@ class MovieDetail : Fragment() {
 
         viewModel.movieDetailWrapper.observe(viewLifecycleOwner,{
 
-            val poster_path = args.posterPath
+            val poster_path = it.posterPath
 
             binding.layoutMovie.visibility = View.VISIBLE
             binding.tvEmptyInfo.visibility = View.GONE
