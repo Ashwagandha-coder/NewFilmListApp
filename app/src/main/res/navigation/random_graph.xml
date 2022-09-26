@@ -20,8 +20,8 @@
             android:id="@+id/action_movieDetail_to_random"
             app:destination="@id/random" />
         <argument
-            android:name="poster_path"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="movie_ID"
+            app:argType="integer" />
+
     </fragment>
 </navigation>

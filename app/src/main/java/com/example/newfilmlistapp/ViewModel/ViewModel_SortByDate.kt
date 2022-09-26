@@ -91,66 +91,63 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
         }
     }
 
-    fun requestMovieDetail() {
-
-        viewModelScope.launch {
-
-            try {
-
-
-//                genresWrapper = mutableLiveData_genres.value!!
+//    fun requestMovieDetail() {
 //
-//                val variable = getMovie(year, genresWrapper.genres.get(index).toString())!!
+//        viewModelScope.launch {
+//
+//            try {
 //
 //
-//                number_random = Random.Default.nextInt(0,7)
+////                genresWrapper = mutableLiveData_genres.value!!
+////
+////                val variable = getMovie(year, genresWrapper.genres.get(index).toString())!!
+////
+////
+////                number_random = Random.Default.nextInt(0,7)
+////
+////                Log.d(ViewModelTMDB::class.java.name,"Random number in REQUEST_MOVIE_DETAIL - $number_random")
+////
+////                movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
+////
+////                Log.d(ViewModelTMDB::class.java.name,movie_ID + " " + "Значение movie_ID in REQUEST_MOVIE_DETAIL")
 //
-//                Log.d(ViewModelTMDB::class.java.name,"Random number in REQUEST_MOVIE_DETAIL - $number_random")
 //
-//                movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
 //
-//                Log.d(ViewModelTMDB::class.java.name,movie_ID + " " + "Значение movie_ID in REQUEST_MOVIE_DETAIL")
-
-
-
-                // Movie Detail
-             //   Log.d(ViewModelTMDB::class.java.name,"Значение movieID before request - $movie_ID")
-
-                mutableLiveData_movie_detail.value = getMovieDetail("550")!!
-
-
-            }
-
-            catch (e: Exception) {
-                Log.d(ViewModel_SortByDate::class.java.name,"Значение movieID before request with error - $movie_ID")
-                Log.d(ViewModel_SortByDate::class.java.name,"Error Request -  Movie Detail")
-                e.printStackTrace()
-            }
-
-
-        }
-
-
-
-
-
-    }
+//                // Movie Detail
+//             //   Log.d(ViewModelTMDB::class.java.name,"Значение movieID before request - $movie_ID")
+//
+//                mutableLiveData_movie_detail.value = getMovieDetail("550")!!
+//
+//
+//            }
+//
+//            catch (e: Exception) {
+//                Log.d(ViewModel_SortByDate::class.java.name,"Значение movieID before request with error - $movie_ID")
+//                Log.d(ViewModel_SortByDate::class.java.name,"Error Request -  Movie Detail")
+//                e.printStackTrace()
+//            }
+//
+//
+//        }
+//
+//
+//    }
 
 
 
 
-    suspend fun getMovieDetail(movieID: String): MovieDetailWrapper {
-
-        val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
-
-        val result = loadingMovieDBService.getMovieDetail(movieID)
-
-        Log.d(ViewModel_SortByDate::class.java.name, "request OK - Movie Detail ")
-
-
-        return result
-
-    }
+//    suspend fun getMovieDetail(movieID: String): MovieDetailWrapper {
+//
+//        val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
+//
+//        val result = loadingMovieDBService.getMovieDetail(movieID)
+//
+//        Log.d(ViewModel_SortByDate::class.java.name, "request OK - Movie Detail ")
+//
+//
+//        return result
+//
+//    }
 
 
     suspend fun getMovie(year: Int, genre: String): MovieWrapper {

@@ -1,5 +1,6 @@
-package com.example.newfilmlistapp
+package com.example.newfilmlistapp.network
 
+import com.example.newfilmlistapp.BASE_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 

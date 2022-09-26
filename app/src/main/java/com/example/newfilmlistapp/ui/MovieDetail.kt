@@ -34,7 +34,9 @@ class MovieDetail : Fragment() {
 
         onBackScreen()
         workWithViewModel()
-        viewModel.requestMovieDetail()
+        //
+
+        // todo: Здесь был запрос requestMovieDetail
 
         return binding.root
     }
