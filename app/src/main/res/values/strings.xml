@@ -7,6 +7,8 @@
     <string name="years">Год</string>
     <string name="genre">Жанр</string>
     <string name="Text_below_picture">Текст под картинкой</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>
