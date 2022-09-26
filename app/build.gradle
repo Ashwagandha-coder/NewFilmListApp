@@ -3,6 +3,7 @@ plugins {
     id "org.jetbrains.kotlin.kapt"
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
@@ -35,9 +36,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+
 }
 
+
+
+
 dependencies {
+
 
     ksp 'com.squareup.moshi:moshi-kotlin-codegen:1.14.0'
 

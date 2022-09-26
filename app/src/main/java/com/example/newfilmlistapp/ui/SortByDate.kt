@@ -180,6 +180,20 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
 
+    fun toMovieDetail() {
+
+        binding.pictureFilm.setOnClickListener(object : View.OnClickListener {
+
+            override fun onClick(p0: View?) {
+
+                val action = Sort
+
+            }
+        })
+
+    }
+
+
 }
 
 
