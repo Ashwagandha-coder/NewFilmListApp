@@ -34,7 +34,15 @@ interface LoadingMovieDBService {
     ): GenresWrapper
 
 
-    // Movie
+    // Movie Detail
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovieDetail(
+
+    )
+
+
+
 
 
 //    @GET("discover/movie")
@@ -50,6 +58,8 @@ interface LoadingMovieDBService {
 //        @Query("with_genres") genres: String,
 //        @Query("with_watch_monetization_types") with_watch_monetization_types: String = WITH_WATCH_MONETIZATION_TYPES): MovieWrapper
 //
+
+    // Random Movie
 
     @GET("discover/movie")
     suspend fun getMovie(

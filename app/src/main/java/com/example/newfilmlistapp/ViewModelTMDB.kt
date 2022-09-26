@@ -70,13 +70,26 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     }
 
 
+    suspend fun getMovieDetail(movieID: Int) {
+
+        val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
+
+        val result = loadingMovieDBService.getMovieDetail()
+
+        Log.d(ViewModelTMDB::class.java.name, "request OK - Movie Detail ")
+
+
+
+    }
+
+
     suspend fun getMovie(year: Int, genre: String): MovieWrapper {
 
         val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
 
         val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf<String>(genre))
 
-        Log.d(ViewModelTMDB::class.java.name,"request OK")
+        Log.d(ViewModelTMDB::class.java.name,"request OK - Random Movie ")
 
         return result
 
