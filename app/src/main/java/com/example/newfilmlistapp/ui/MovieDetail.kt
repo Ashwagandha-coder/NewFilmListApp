@@ -1,5 +1,6 @@
 package com.example.newfilmlistapp.ui
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -33,13 +34,15 @@ class MovieDetail : Fragment() {
         binding = FragmentMovieDetailBinding.inflate(inflater,container,false)
 
         onBackScreen()
+        workWithViewModel()
+        viewModel.requestMovieDetail()
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        workWithViewModel()
+
     }
 
     fun onBackScreen() {
@@ -59,14 +62,19 @@ class MovieDetail : Fragment() {
 
             val poster_path = args.posterPath
 
+            binding.layoutMovie.visibility = View.VISIBLE
+            binding.tvEmptyInfo.visibility = View.GONE
+
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${poster_path}")
                 .into(binding.imgMovie)
 
             binding.tvMovieName.text = it.title
             binding.tvDescription.text = it.overview
-            binding.tvRatingText.text = it.voteAverage.toString()
+            binding.tvRatingValue.text = it.voteAverage.toString()
             binding.tvYear.text = it.releaseDate.substring(0,3)
+
+
 
         })
 

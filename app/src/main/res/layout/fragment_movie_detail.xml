@@ -58,7 +58,7 @@
                             android:id="@+id/tv_movie_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Movie year"
+                            android:text="Movie name"
                             android:textSize="20sp"
                             android:layout_marginBottom="8dp" />
 
@@ -66,7 +66,7 @@
                             android:id="@+id/tv_year"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Movie name"
+                            android:text="Movie year"
                             android:layout_marginBottom="8dp"
                             android:textSize="20sp" />
 

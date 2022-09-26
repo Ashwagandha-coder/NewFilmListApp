@@ -35,7 +35,7 @@ interface LoadingMovieDBService {
 
     @GET("movie/{movie_id}")
     suspend fun getMovieDetail(
-        @Path("movie_id") movie_id: Int,
+        @Path("movie_id") movie_id: String,
         @Query("api_key") api_key: String = API_KEY,
         @Query("language") language: String = LANGUAGE
     ): MovieDetailWrapper

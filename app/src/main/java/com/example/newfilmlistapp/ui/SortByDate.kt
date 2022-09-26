@@ -52,7 +52,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
         workWithViewModel()
         initSpinners()
         setListenerButton()
-        toMovieDetail(poster_path!!)
+        toMovieDetail()
 
         return binding.root
     }
@@ -66,16 +66,21 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     fun workWithViewModel() {
 
+        val index = viewModel.array_index
+
         viewModel.getInstanceLiveDataGenres()
             .observe(viewLifecycleOwner, Observer<GenresWrapper> {
                 setupGenres(it.genres)
             })
         viewModel.movie.observe(viewLifecycleOwner) {
 //                movieWrapper = it
-            binding.textBelowPictureFilm.text =
-                it?.results?.firstOrNull()?.originalTitle ?: "128 string SortByDate"
 
-            poster_path = it?.results?.firstOrNull()?.posterPath
+            val index = viewModel.array_index
+
+            binding.textBelowPictureFilm.text =
+                it?.results?.get(index)?.originalTitle ?: "128 string SortByDate"
+
+            poster_path = it?.results?.get(index)?.posterPath
 
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${poster_path}")
@@ -184,12 +189,11 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
 
-    fun toMovieDetail(poster_path: String) {
+    fun toMovieDetail() {
 
         binding.pictureFilm.setOnClickListener(object : View.OnClickListener {
 
             override fun onClick(p0: View?) {
-
 
                 val action = SortByDateDirections.actionRandomToMovieDetail(poster_path)
                 p0?.findNavController()?.navigate(action) ?: "191 string in SortByDate"

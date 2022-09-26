@@ -11,6 +11,7 @@ import com.squareup.moshi.Moshi
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import kotlin.random.Random
 
 class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
@@ -25,7 +26,9 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
 
-    private var movie_ID: Int = 0
+    private lateinit var movie_ID: String
+    private var number_random: Int = 0
+    val array_index = number_random
 
 
 
@@ -66,7 +69,13 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
                 mutableLiveData_movie.value = variable
 
-                movie_ID = variable.results.firstOrNull()?.id?.toInt() ?: 69
+                number_random = Random.Default.nextInt(0,7)
+
+                Log.d(ViewModelTMDB::class.java.name,"Random number - $number_random")
+
+                movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
+
+                Log.d(ViewModelTMDB::class.java.name,movie_ID + "Значение movie_ID")
 
             }
             catch (e: Exception) {
@@ -107,7 +116,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
 
 
-    suspend fun getMovieDetail(movieID: Int): MovieDetailWrapper {
+    suspend fun getMovieDetail(movieID: String): MovieDetailWrapper {
 
         val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
 
