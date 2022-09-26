@@ -10,13 +10,13 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.ViewModelTMDB
+import com.example.newfilmlistapp.ViewModel.ViewModel_SortByDate
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.GenresWrapper
-import com.example.newfilmlistapp.model.MovieWrapper
 
 
 // todo: Проблемы с версткой
@@ -24,19 +24,20 @@ import com.example.newfilmlistapp.model.MovieWrapper
 class SortByDate : androidx.fragment.app.Fragment() {
 
     private lateinit var binding: FragmentSortByDateBinding
-    private val viewModel: ViewModelTMDB by lazy {
-        ViewModelProvider(this).get(ViewModelTMDB::class.java)
+    private val viewModel: ViewModel_SortByDate by lazy {
+        ViewModelProvider(this).get(ViewModel_SortByDate::class.java)
     }
 
     private lateinit var spinnerYear: Spinner
     private lateinit var spinnerGenres: Spinner
 
+    private var poster_path: String? = null
 
-    private val collection: List<String> by lazy { mutableListOf() }
-    private lateinit var genresWrapper: GenresWrapper
-    private var movieWrapper: MovieWrapper? = null
 
-    lateinit var stringTest: String
+    private var year: Int = 0
+    val getYear = year
+    private var genre: Int = 0
+    val getGenre = genre
 
 
     override fun onCreateView(
@@ -49,6 +50,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
         workWithViewModel()
         initSpinners()
         setListenerButton()
+        toMovieDetail()
 
         return binding.root
     }
@@ -62,16 +64,21 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     fun workWithViewModel() {
 
+        val index = viewModel.array_index
+
         viewModel.getInstanceLiveDataGenres()
             .observe(viewLifecycleOwner, Observer<GenresWrapper> {
                 setupGenres(it.genres)
             })
         viewModel.movie.observe(viewLifecycleOwner) {
 //                movieWrapper = it
-            binding.textBelowPictureFilm.text =
-                it?.results?.firstOrNull()?.originalTitle ?: "128 string SortByDate"
 
-            val poster_path: String? = it?.results?.firstOrNull()?.posterPath
+            val index = viewModel.array_index
+
+            binding.textBelowPictureFilm.text =
+                it?.results?.get(index)?.originalTitle ?: "128 string SortByDate"
+
+            poster_path = it?.results?.get(index)?.posterPath
 
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${poster_path}")
@@ -129,8 +136,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         binding.common.setOnClickListener {
 
-            val year = getItemSpinnerYear()
-            val genre = getItemSpinnerGenre()
+            year = getItemSpinnerYear()
+            genre = getItemSpinnerGenre()
 
             viewModel.requestMovie(year, genre)
 
@@ -176,6 +183,21 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         return result
 
+
+    }
+
+
+    fun toMovieDetail() {
+
+        binding.pictureFilm.setOnClickListener(object : View.OnClickListener {
+
+            override fun onClick(p0: View?) {
+
+                val action = SortByDateDirections.actionRandomToMovieDetail(poster_path)
+                p0?.findNavController()?.navigate(action) ?: "191 string in SortByDate"
+
+            }
+        })
 
     }
 
