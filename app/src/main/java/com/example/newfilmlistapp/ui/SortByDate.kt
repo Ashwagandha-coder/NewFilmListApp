@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.ViewModelTMDB
@@ -49,6 +50,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
         workWithViewModel()
         initSpinners()
         setListenerButton()
+        toMovieDetail()
 
         return binding.root
     }
@@ -186,7 +188,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
             override fun onClick(p0: View?) {
 
-                val action = Sort
+                val action = SortByDateDirections.actionRandomToMovieDetail()
+                p0?.findNavController()?.navigate(action) ?: "191 string in SortByDate"
 
             }
         })
