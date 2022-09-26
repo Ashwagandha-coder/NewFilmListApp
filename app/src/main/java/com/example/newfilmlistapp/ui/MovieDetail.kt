@@ -5,13 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.example.newfilmlistapp.ViewModelTMDB
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 
 
 class MovieDetail : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
+
+    private val viewModel: ViewModelTMDB by lazy {
+        ViewModelProvider(this).get(ViewModelTMDB::class.java)
+    }
 
 
     override fun onCreateView(
@@ -39,8 +45,15 @@ class MovieDetail : Fragment() {
 
         }
 
+    }
+
+    fun workWithViewModel() {
+
+
 
     }
+
+
 
 
 }

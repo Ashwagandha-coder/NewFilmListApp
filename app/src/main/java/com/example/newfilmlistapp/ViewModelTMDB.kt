@@ -3,6 +3,7 @@ package com.example.newfilmlistapp
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.newfilmlistapp.model.GenresWrapper
+import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -20,6 +21,11 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
     val movie: LiveData<MovieWrapper> = mutableLiveData_movie
     private val mutableLiveData_genres: MutableLiveData<GenresWrapper> = MutableLiveData()
     private lateinit var genresWrapper: GenresWrapper
+
+    private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
+    val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
+
+    private var movie_ID: Int = 0
 
 
 
@@ -56,11 +62,15 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
                 genresWrapper = mutableLiveData_genres.value!!
 
-                mutableLiveData_movie.value = getMovie(year, genresWrapper.genres.get(index).toString())!!
+                val variable = getMovie(year, genresWrapper.genres.get(index).toString())!!
+
+                mutableLiveData_movie.value = variable
+
+                movie_ID = variable.results.firstOrNull()?.id?.toInt() ?: 69
 
             }
             catch (e: Exception) {
-                Log.d(ViewModelTMDB::class.java.name,"Error Request Movie")
+                Log.d(ViewModelTMDB::class.java.name,"Error Request -  Movie")
                 e.printStackTrace()
             }
 
@@ -69,16 +79,45 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
         }
     }
 
+    fun requestMovieDetail() {
 
-    suspend fun getMovieDetail(movieID: Int) {
+        viewModelScope.launch {
+
+            try {
+
+                mutableLiveData_movie_detail.value = getMovieDetail(movie_ID)!!
+
+
+            }
+
+            catch (e: Exception) {
+                Log.d(ViewModelTMDB::class.java.name,"Error Request -  Movie Detail")
+
+
+            }
+
+
+        }
+
+
+
+
+
+    }
+
+
+
+
+    suspend fun getMovieDetail(movieID: Int): MovieDetailWrapper {
 
         val loadingMovieDBService = retrofit.create(LoadingMovieDBService::class.java)
 
-        val result = loadingMovieDBService.getMovieDetail()
+        val result = loadingMovieDBService.getMovieDetail(movieID)
 
         Log.d(ViewModelTMDB::class.java.name, "request OK - Movie Detail ")
 
 
+        return result
 
     }
 
