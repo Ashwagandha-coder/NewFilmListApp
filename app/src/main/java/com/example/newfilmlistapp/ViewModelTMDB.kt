@@ -92,8 +92,7 @@ class ViewModelTMDB : ViewModel(), ViewModelProvider.Factory {
 
             catch (e: Exception) {
                 Log.d(ViewModelTMDB::class.java.name,"Error Request -  Movie Detail")
-
-
+                e.printStackTrace()
             }
 
 

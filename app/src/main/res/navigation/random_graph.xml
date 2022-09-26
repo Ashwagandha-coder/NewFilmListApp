@@ -19,5 +19,9 @@
         <action
             android:id="@+id/action_movieDetail_to_random"
             app:destination="@id/random" />
+        <argument
+            android:name="poster_path"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

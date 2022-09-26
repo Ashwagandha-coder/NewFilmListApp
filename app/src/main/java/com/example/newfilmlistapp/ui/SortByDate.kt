@@ -32,6 +32,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private lateinit var spinnerYear: Spinner
     private lateinit var spinnerGenres: Spinner
 
+    private var poster_path: String? = null
+
 
     private val collection: List<String> by lazy { mutableListOf() }
     private lateinit var genresWrapper: GenresWrapper
@@ -50,7 +52,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
         workWithViewModel()
         initSpinners()
         setListenerButton()
-        toMovieDetail()
+        toMovieDetail(poster_path!!)
 
         return binding.root
     }
@@ -73,7 +75,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
             binding.textBelowPictureFilm.text =
                 it?.results?.firstOrNull()?.originalTitle ?: "128 string SortByDate"
 
-            val poster_path: String? = it?.results?.firstOrNull()?.posterPath
+            poster_path = it?.results?.firstOrNull()?.posterPath
 
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${poster_path}")
@@ -182,13 +184,14 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
 
-    fun toMovieDetail() {
+    fun toMovieDetail(poster_path: String) {
 
         binding.pictureFilm.setOnClickListener(object : View.OnClickListener {
 
             override fun onClick(p0: View?) {
 
-                val action = SortByDateDirections.actionRandomToMovieDetail()
+
+                val action = SortByDateDirections.actionRandomToMovieDetail(poster_path)
                 p0?.findNavController()?.navigate(action) ?: "191 string in SortByDate"
 
             }
