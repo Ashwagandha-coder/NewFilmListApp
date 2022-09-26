@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".ui.MainActivity">
 
+    <include
+        android:id="@+id/topNavBar"
+        layout="@layout/layout_top_nav_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_host"
         android:name="androidx.navigation.fragment.NavHostFragment"
