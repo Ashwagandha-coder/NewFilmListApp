@@ -1,10 +1,7 @@
 package com.example.newfilmlistapp.network
 
 import com.example.newfilmlistapp.*
-import com.example.newfilmlistapp.model.Genres
-import com.example.newfilmlistapp.model.GenresWrapper
-import com.example.newfilmlistapp.model.MovieWrapper
-import com.example.newfilmlistapp.model.Popular
+import com.example.newfilmlistapp.model.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -38,8 +35,10 @@ interface LoadingMovieDBService {
 
     @GET("movie/{movie_id}")
     suspend fun getMovieDetail(
-
-    )
+        @Path("movie_id") movie_id: Int,
+        @Query("api_key") api_key: String = API_KEY,
+        @Query("language") language: String = LANGUAGE
+    ): MovieDetailWrapper
 
 
 
