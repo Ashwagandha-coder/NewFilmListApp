@@ -17,7 +17,7 @@ import com.example.newfilmlistapp.ViewModel.ViewModel_SortByDate
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.GenresWrapper
-
+import kotlinx.coroutines.flow.combine
 
 
 class SortByDate : androidx.fragment.app.Fragment() {
@@ -48,16 +48,22 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
 
+    override fun onPause() {
+        super.onPause()
+
+    }
+
+
 
 
     fun workWithViewModel() {
 
-        val index = viewModel.array_index
+
 
         viewModel.genres
-            .observe(viewLifecycleOwner, Observer<GenresWrapper> {
+            .observe(viewLifecycleOwner)  {
                 setupGenres(it.genres)
-            })
+            }
         viewModel.movie.observe(viewLifecycleOwner) {
 
             val index = viewModel.array_index
@@ -76,6 +82,16 @@ class SortByDate : androidx.fragment.app.Fragment() {
             movie_ID = it.results.get(index).id.toInt()
 
         }
+    }
+
+    private fun restoreSaveData() {
+
+        viewModel.saveData.observe(viewLifecycleOwner) {
+
+            binding.textBelowPictureFilm.text
+
+        }
+
     }
 
 

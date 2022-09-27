@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
+import com.example.newfilmlistapp.model.SaveDataBackScreen
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -16,12 +17,17 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
     private val mutableLiveData_genres: MutableLiveData<GenresWrapper> = MutableLiveData()
     val genres: LiveData<GenresWrapper> = mutableLiveData_genres
 
+    private val mutableLiveData_saveData: MutableLiveData<SaveDataBackScreen> = MutableLiveData()
+    val saveData: LiveData<SaveDataBackScreen> = mutableLiveData_saveData
+
     private lateinit var genresWrapper: GenresWrapper
 
     private lateinit var movie_ID: String
 
     private var number_random: Int = 0
     val array_index = number_random
+
+
 
 
 
@@ -62,13 +68,17 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
                 mutableLiveData_movie.value = variable
 
-                number_random = Random.Default.nextInt(0,7)
+                number_random = Random.Default.nextInt(0,9)
 
                 Log.d(ViewModel_SortByDate::class.java.name,"Random number - $number_random")
 
                 movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
 
                 Log.d(ViewModel_SortByDate::class.java.name,movie_ID + " " + "Значение movie_ID")
+
+
+
+                mutableLiveData_saveData.value = SaveDataBackScreen(year,index,variable.results.get(index).posterPath)
 
             }
             catch (e: Exception) {
