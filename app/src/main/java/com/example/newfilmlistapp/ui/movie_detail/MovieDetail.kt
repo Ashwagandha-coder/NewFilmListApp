@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.ui
+package com.example.newfilmlistapp.ui.movie_detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.newfilmlistapp.ViewModel.ViewModel_MovieDetail
+import com.example.newfilmlistapp.view_model.ViewModel_MovieDetail
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 
 

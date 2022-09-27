@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.ui
+package com.example.newfilmlistapp.ui.sortByDate
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.ViewModel.ViewModel_SortByDate
+import com.example.newfilmlistapp.view_model.ViewModel_SortByDate
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.MovieWrapper
