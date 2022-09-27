@@ -1,10 +1,9 @@
-package com.example.newfilmlistapp.ViewModel
+package com.example.newfilmlistapp.view_model
 
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
-import com.example.newfilmlistapp.model.SaveDataBackScreen
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import kotlinx.coroutines.launch
 import kotlin.random.Random

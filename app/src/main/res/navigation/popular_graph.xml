@@ -7,6 +7,6 @@
     <fragment
         android:id="@+id/popular"
         android:label="@string/popular_fragment"
-        android:name="com.example.newfilmlistapp.ui.Popular" />
+        android:name="com.example.newfilmlistapp.ui.popular.Popular" />
 
 </navigation>

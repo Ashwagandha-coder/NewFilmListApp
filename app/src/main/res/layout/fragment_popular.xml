@@ -6,7 +6,7 @@
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Popular">
+    tools:context=".ui.popular.Popular">
 
 
     <TextView
@@ -18,7 +18,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="20dp"
         android:text=""
-        android:textColor="#FFFFFF"
+        android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/swipe"

@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.ViewModel
+package com.example.newfilmlistapp.view_model
 
 import android.util.Log
 import androidx.lifecycle.LiveData

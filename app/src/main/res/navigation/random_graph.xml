@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/random"
-        android:name="com.example.newfilmlistapp.ui.SortByDate"
+        android:name="com.example.newfilmlistapp.ui.sortByDate.SortByDate"
         android:label="@string/sort_by_date_fragment" >
         <action
             android:id="@+id/action_random_to_movieDetail"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/movieDetail"
-        android:name="com.example.newfilmlistapp.ui.MovieDetail"
+        android:name="com.example.newfilmlistapp.ui.movie_detail.MovieDetail"
         android:label="MovieDetail" >
         <action
             android:id="@+id/action_movieDetail_to_random"

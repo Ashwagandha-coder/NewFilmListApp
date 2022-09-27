@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.ViewModel
+package com.example.newfilmlistapp.view_model
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -14,6 +14,10 @@ class ViewModel_Popular: ViewModel() {
 
     private val mutableLiveData_popularMovie: MutableLiveData<PopularWrapper> = MutableLiveData()
     val popularMovie = mutableLiveData_popularMovie
+
+
+//    private val popular_adapter
+//    private val mScrollListener
 
     fun requestPopular() {
 
