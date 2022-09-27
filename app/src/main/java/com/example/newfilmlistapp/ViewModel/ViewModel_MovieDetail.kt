@@ -16,6 +16,9 @@ class ViewModel_MovieDetail: ViewModel() {
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
 
 
+
+
+
     fun requestMovieDetail(id: Int) {
 
         viewModelScope.launch {

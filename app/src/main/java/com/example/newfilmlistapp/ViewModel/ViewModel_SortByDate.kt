@@ -18,9 +18,7 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
     private lateinit var genresWrapper: GenresWrapper
 
-
     private lateinit var movie_ID: String
-
 
     private var number_random: Int = 0
     val array_index = number_random
@@ -34,10 +32,11 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
             try {
 
                 mutableLiveData_genres.value = getGenres()!!
+
             }
             catch (e: Exception) {
 
-                Log.d(ViewModel_SortByDate::class.java.name,"Error Request Genres")
+                Log.d(ViewModel_SortByDate::class.java.name,"Error Request -  Genres")
                 e.printStackTrace()
             }
 
@@ -55,7 +54,6 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
             try {
 
-              //  val string = index.toString()
 
 
                 genresWrapper = mutableLiveData_genres.value!!
@@ -104,7 +102,7 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getGenres()
 
-         Log.d(ViewModel_SortByDate::class.java.name,"result: ${result.genres}")
+         Log.d(ViewModel_SortByDate::class.java.name,"request OK - Genres")
 
         return result
     }
