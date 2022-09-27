@@ -16,9 +16,6 @@ class ViewModel_Popular: ViewModel() {
     val popularMovie = mutableLiveData_popularMovie
 
 
-//    private val popular_adapter
-//    private val mScrollListener
-
     fun requestPopular() {
 
         viewModelScope.launch {

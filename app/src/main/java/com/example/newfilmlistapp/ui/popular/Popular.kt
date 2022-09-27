@@ -18,6 +18,9 @@ class Popular : Fragment() {
         ViewModelProvider(this).get(ViewModel_Popular::class.java)
     }
 
+    //    private val popular_adapter
+//    private val mScrollListener
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
