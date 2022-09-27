@@ -52,8 +52,8 @@ class Popular : Fragment(), ScrollBack {
         viewModel.requestPopular()
         viewModel.popularMovie.observe(viewLifecycleOwner) {
 
-            totalResults = it.results.data.totalResults
-            allMovies.addAll(it.data.results)
+            totalResults = it.totalResults.toInt()
+            allMovies.addAll(it.results)
             popularAdapter.submitList(allMovies)
             isLoading = false
 
