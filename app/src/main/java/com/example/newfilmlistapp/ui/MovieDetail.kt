@@ -29,7 +29,7 @@ class MovieDetail : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMovieDetailBinding.inflate(inflater,container,false)
 
         onBackScreen()
