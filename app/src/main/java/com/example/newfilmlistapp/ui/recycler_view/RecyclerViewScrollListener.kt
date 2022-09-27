@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.ui
+package com.example.newfilmlistapp.ui.recycler_view
 
 import androidx.recyclerview.widget.RecyclerView
 
