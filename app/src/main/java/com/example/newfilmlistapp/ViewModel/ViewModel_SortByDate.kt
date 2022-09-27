@@ -28,6 +28,12 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
     val array_index = number_random
 
 
+    private var year_index: Int = 0
+    val getYaerIndex = year_index
+    private var genre_index: Int = 0
+    val getGenreIndex = genre_index
+
+
 
 
 
@@ -77,6 +83,8 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
                 Log.d(ViewModel_SortByDate::class.java.name,movie_ID + " " + "Значение movie_ID")
 
 
+                year_index = year
+                genre_index = index
 
 //                mutableLiveData_saveData.value = SaveDataBackScreen(year,index,variable.results.get(index).posterPath,variable)
 

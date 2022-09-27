@@ -15,6 +15,7 @@ import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.ViewModel.ViewModel_SortByDate
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.model.Genres
+import com.example.newfilmlistapp.model.MovieWrapper
 
 
 class SortByDate : androidx.fragment.app.Fragment() {
@@ -27,13 +28,15 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private lateinit var spinnerGenres: Spinner
     private var movie_ID: Int = 0
 
+    private lateinit var movieWrapper: MovieWrapper
+
 
     // Save Date
 
-    private var year: Int = 0
-    private var genre: Int = 0
-    private var poster_path: String = ""
-    private var tv_below_poster: String = ""
+//    private var year: Int = 0
+//    private var genre: Int = 0
+//    private var poster_path: String = ""
+//    private var tv_below_poster: String = ""
 
 
 
@@ -49,13 +52,14 @@ class SortByDate : androidx.fragment.app.Fragment() {
         setListenerButton()
         toMovieDetail()
 
+        restoreSaveData()
+
         return binding.root
     }
 
 
     override fun onPause() {
         super.onPause()
-        restoreSaveData()
     }
 
 
@@ -71,13 +75,15 @@ class SortByDate : androidx.fragment.app.Fragment() {
             }
         viewModel.movie.observe(viewLifecycleOwner) {
 
+            movieWrapper = it
+
             val index = viewModel.array_index
 
             binding.textBelowPictureFilm.text =
                 it?.results?.get(index)?.originalTitle ?: "75 string SortByDate"
-            tv_below_poster = it?.results?.get(index)?.originalTitle ?: "76 string SortByDate"
+            val tv_below_poster = it?.results?.get(index)?.originalTitle ?: "76 string SortByDate"
 
-            poster_path = it?.results?.get(index)?.posterPath ?: "77 string SortByDate"
+            val poster_path = it?.results?.get(index)?.posterPath ?: "77 string SortByDate"
 
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${poster_path}")
@@ -92,13 +98,18 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     private fun restoreSaveData() {
 
-        binding.years.setSelection(year)
-        binding.genre.setSelection(genre)
-        binding.textBelowPictureFilm.text = tv_below_poster
+        if (viewModel.getYaerIndex != 0 && viewModel.getGenreIndex != 0) {
 
-        Glide.with(this)
-            .load("https://image.tmdb.org/t/p/w500${poster_path}")
-            .into(binding.pictureFilm)
+            binding.years.setSelection(viewModel.getYaerIndex)
+            binding.genre.setSelection(viewModel.getGenreIndex)
+            binding.textBelowPictureFilm.text =
+                movieWrapper.results.get(viewModel.array_index).originalTitle
+
+            Glide.with(this)
+                .load("https://image.tmdb.org/t/p/w500${movieWrapper.results.get(viewModel.array_index).posterPath}")
+                .into(binding.pictureFilm)
+
+        }
 
 
     }
@@ -151,8 +162,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         binding.common.setOnClickListener {
 
-            year = getItemSpinnerYear()
-            genre = getItemSpinnerGenre()
+            val year = getItemSpinnerYear()
+            val genre = getItemSpinnerGenre()
 
             viewModel.requestMovie(year, genre)
 
