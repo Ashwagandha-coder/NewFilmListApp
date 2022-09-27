@@ -28,7 +28,7 @@ class PopularAdapter() : ListAdapter<ResultPopular, PopularViewHolder>(UserDiffC
 
     override fun onBindViewHolder(viewHolder: PopularViewHolder, position: Int) {
 
-         val movie: ResultPopular = getItem(position)
+        val movie: ResultPopular = getItem(position)
         val date = movie.releaseDate
 
 
