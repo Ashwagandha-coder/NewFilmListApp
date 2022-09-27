@@ -26,25 +26,10 @@ class ViewModel_MovieDetail: ViewModel() {
             try {
 
 
-//                genresWrapper = mutableLiveData_genres.value!!
-//
-//                val variable = getMovie(year, genresWrapper.genres.get(index).toString())!!
-//
-//
-//                number_random = Random.Default.nextInt(0,7)
-//
-//                Log.d(ViewModelTMDB::class.java.name,"Random number in REQUEST_MOVIE_DETAIL - $number_random")
-//
-//                movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
-//
-//                Log.d(ViewModelTMDB::class.java.name,movie_ID + " " + "Значение movie_ID in REQUEST_MOVIE_DETAIL")
-
-
-
                 // Movie Detail
-                //   Log.d(ViewModelTMDB::class.java.name,"Значение movieID before request - $movie_ID")
+                Log.d(ViewModel_MovieDetail::class.java.name,"Значение movieID before request - $") // todo: вставить значение movieID
 
-              //  mutableLiveData_movie_detail.value = getMovieDetail("550")!!
+                mutableLiveData_movie_detail.value = getMovieDetail("550")!!
 
 
             }

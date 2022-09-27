@@ -59,7 +59,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         val index = viewModel.array_index
 
-        viewModel.getInstanceLiveDataGenres()
+        viewModel.genres
             .observe(viewLifecycleOwner, Observer<GenresWrapper> {
                 setupGenres(it.genres)
             })
