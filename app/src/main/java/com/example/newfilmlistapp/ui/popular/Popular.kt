@@ -6,11 +6,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.ViewModel_Popular
 import com.example.newfilmlistapp.databinding.FragmentPopularBinding
+import com.example.newfilmlistapp.model.ResultPopular
+import com.example.newfilmlistapp.ui.recycler_view.RecyclerViewScrollListener
+import com.example.newfilmlistapp.ui.recycler_view.ScrollBack
 
 
-class Popular : Fragment() {
+class Popular : Fragment(), ScrollBack {
+
+    // field
+
+    private var allMovies = arrayListOf<ResultPopular>()
+    private var totalResults: Int = -1
+    private var isLoading: Boolean = false
 
     private lateinit var binding: FragmentPopularBinding
 
@@ -18,8 +29,8 @@ class Popular : Fragment() {
         ViewModelProvider(this).get(ViewModel_Popular::class.java)
     }
 
-    //    private val popular_adapter
-//    private val mScrollListener
+    private val popularAdapter: PopularAdapter = PopularAdapter()
+    private val mScrollListener by lazy { RecyclerViewScrollListener(this) }
 
 
     override fun onCreateView(
@@ -29,29 +40,51 @@ class Popular : Fragment() {
     ): View? {
         binding = FragmentPopularBinding.inflate(inflater,container,false)
 
-
-        viewModel.requestPopular()
+        workWithViewModel()
+        setFragmentTitle()
+        setRecyclerView()
 
         return binding.root
     }
 
 
     fun workWithViewModel() {
-
+        viewModel.requestPopular()
         viewModel.popularMovie.observe(viewLifecycleOwner) {
 
-
-
+            totalResults = it.results.data.totalResults
+            allMovies.addAll(it.data.results)
+            popularAdapter.submitList(allMovies)
+            isLoading = false
 
         }
 
 
     }
 
+    private fun setRecyclerView() {
+        binding.recyclerview.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = popularAdapter
+            addOnScrollListener(mScrollListener)
+        }
+    }
 
+    private fun setFragmentTitle() {
+        val string = "Popular Movie"
+        binding.tView.apply {
+            text = string
+        }
+    }
 
-
-
+    override fun onScrollCompleted(firstVisibleItem: Int, isLoadingMoreData: Boolean) {
+        if (allMovies.size != totalResults) {
+            if (!isLoading) {
+                isLoading = true
+                viewModel.requestPopular()
+            }
+        }
+    }
 
 
 }
