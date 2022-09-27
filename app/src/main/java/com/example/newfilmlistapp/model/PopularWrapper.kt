@@ -1,8 +1,9 @@
 package com.example.newfilmlistapp.model
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-
+@JsonClass(generateAdapter = true)
 data class PopularWrapper (
     val page: Long,
     val results: List<ResultPopular>,
@@ -14,7 +15,7 @@ data class PopularWrapper (
     val totalPages: Long
 )
 
-
+@JsonClass(generateAdapter = true)
 data class ResultPopular (
     @Json(name = "poster_path")
     val posterPath: String,
@@ -34,7 +35,7 @@ data class ResultPopular (
     val originalTitle: String,
 
     @Json(name = "original_language")
-    val originalLanguage: OriginalLanguage,
+    val originalLanguage: String,
 
     val title: String,
 
@@ -51,15 +52,7 @@ data class ResultPopular (
     @Json(name = "vote_average")
     val voteAverage: Double
 )
+@JsonClass(generateAdapter = true)
+data class OriginalLanguage(val value: String)
 
-enum class OriginalLanguage(val value: String) {
-    En("en");
-
-    companion object {
-        public fun fromValue(value: String): OriginalLanguage = when (value) {
-            "en" -> En
-            else -> throw IllegalArgumentException()
-        }
-    }
-}
 

@@ -40,7 +40,6 @@ class Popular : Fragment() {
         viewModel.popularMovie.observe(viewLifecycleOwner) {
 
 
-
         }
 
 
