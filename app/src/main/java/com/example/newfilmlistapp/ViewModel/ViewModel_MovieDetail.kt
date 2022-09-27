@@ -16,10 +16,7 @@ class ViewModel_MovieDetail: ViewModel() {
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
 
 
-
-
-
-    fun requestMovieDetail() {
+    fun requestMovieDetail(id: Int) {
 
         viewModelScope.launch {
 
@@ -27,15 +24,15 @@ class ViewModel_MovieDetail: ViewModel() {
 
 
                 // Movie Detail
-                Log.d(ViewModel_MovieDetail::class.java.name,"Значение movieID before request - $") // todo: вставить значение movieID
+                Log.d(ViewModel_MovieDetail::class.java.name,"Значение movieID before request - $id") // todo: вставить значение movieID
 
-                mutableLiveData_movie_detail.value = getMovieDetail("550")!!
+                mutableLiveData_movie_detail.value = getMovieDetail(id.toString())!!
 
 
             }
 
             catch (e: Exception) {
-               // Log.d(ViewModel_SortByDate::class.java.name,"Значение movieID before request with error - $movie_ID")
+                Log.d(ViewModel_SortByDate::class.java.name,"Значение movieID before request with error - $id")
                 Log.d(ViewModel_SortByDate::class.java.name,"Error Request -  Movie Detail")
                 e.printStackTrace()
             }

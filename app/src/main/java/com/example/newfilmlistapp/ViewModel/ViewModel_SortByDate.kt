@@ -2,16 +2,10 @@ package com.example.newfilmlistapp.ViewModel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.newfilmlistapp.BASE_URL
 import com.example.newfilmlistapp.model.GenresWrapper
-import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.Moshi
 import kotlinx.coroutines.launch
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
 import kotlin.random.Random
 
 class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
@@ -24,8 +18,6 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
     private lateinit var genresWrapper: GenresWrapper
 
-    private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
-    val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
 
     private lateinit var movie_ID: String
 

@@ -19,7 +19,6 @@ import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.GenresWrapper
 
 
-// todo: Проблемы с версткой
 
 class SortByDate : androidx.fragment.app.Fragment() {
 
@@ -49,10 +48,6 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-    }
 
 
     fun workWithViewModel() {
@@ -64,7 +59,6 @@ class SortByDate : androidx.fragment.app.Fragment() {
                 setupGenres(it.genres)
             })
         viewModel.movie.observe(viewLifecycleOwner) {
-//                movieWrapper = it
 
             val index = viewModel.array_index
 
@@ -76,6 +70,10 @@ class SortByDate : androidx.fragment.app.Fragment() {
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${poster_path}")
                 .into(binding.pictureFilm)
+
+            // movieID
+
+            movie_ID = it.results.get(index).id.toInt()
 
         }
     }
@@ -122,7 +120,6 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     }
 
-    // todo: При нажатии на кнопку приложение крашится lateinit property хотя оно подписано на лив дату
 
 
     fun setListenerButton() {
@@ -186,7 +183,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
             override fun onClick(p0: View?) {
 
-                val action = SortByDateDirections.actionRandomToMovieDetail(0)
+                val action = SortByDateDirections.actionRandomToMovieDetail(movie_ID)
                 p0?.findNavController()?.navigate(action) ?: "191 string in SortByDate"
 
             }
