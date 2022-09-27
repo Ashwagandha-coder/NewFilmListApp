@@ -1,4 +1,26 @@
 package com.example.newfilmlistapp.ViewModel
 
-class ViewModel_Popular {
+import androidx.lifecycle.ViewModel
+
+class ViewModel_Popular: ViewModel() {
+
+    fun requestPopular() {
+
+
+
+
+
+
+    }
+
+    suspend fun getPopularMovie() {
+
+
+
+    }
+
+
+
+
+
 }
