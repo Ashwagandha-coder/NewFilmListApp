@@ -94,7 +94,7 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
     suspend fun getMovie(year: Int, genre: String): MovieWrapper {
 
-        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java)
+        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java) // todo: Нарушение Dry Нужно вынести в синглетон
 
         val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf<String>(genre))
 
