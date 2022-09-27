@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.example.newfilmlistapp.ViewModel.ViewModel_SortByDate
+import com.example.newfilmlistapp.ViewModel.ViewModel_MovieDetail
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 
 
@@ -17,8 +17,8 @@ class MovieDetail : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
 
-    private val viewModel: ViewModel_SortByDate by lazy {
-        ViewModelProvider(this).get(ViewModel_SortByDate::class.java)
+    private val viewModel: ViewModel_MovieDetail by lazy {
+        ViewModelProvider(this).get(ViewModel_MovieDetail::class.java)
     }
 
     private val args: MovieDetailArgs by navArgs()
@@ -29,18 +29,20 @@ class MovieDetail : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMovieDetailBinding.inflate(inflater,container,false)
 
         onBackScreen()
         workWithViewModel()
-        viewModel.requestMovieDetail()
+        requestWrapper()
 
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    fun requestWrapper() {
+
+        val id: Int = args.movieID
+        viewModel.requestMovieDetail(id)
 
     }
 
@@ -59,13 +61,13 @@ class MovieDetail : Fragment() {
 
         viewModel.movieDetailWrapper.observe(viewLifecycleOwner,{
 
-            val poster_path = it.posterPath
+            val backdrop_path = it.backdropPath
 
             binding.layoutMovie.visibility = View.VISIBLE
             binding.tvEmptyInfo.visibility = View.GONE
 
             Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500${poster_path}")
+                .load("https://image.tmdb.org/t/p/w500${backdrop_path}")
                 .into(binding.imgMovie)
 
             binding.tvMovieName.text = it.title
