@@ -17,8 +17,8 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
     private val mutableLiveData_genres: MutableLiveData<GenresWrapper> = MutableLiveData()
     val genres: LiveData<GenresWrapper> = mutableLiveData_genres
 
-    private val mutableLiveData_saveData: MutableLiveData<SaveDataBackScreen> = MutableLiveData()
-    val saveData: LiveData<SaveDataBackScreen> = mutableLiveData_saveData
+//    private val mutableLiveData_saveData: MutableLiveData<SaveDataBackScreen> = MutableLiveData()
+//    val saveData: LiveData<SaveDataBackScreen> = mutableLiveData_saveData
 
     private lateinit var genresWrapper: GenresWrapper
 
@@ -78,7 +78,7 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
 
 
-                mutableLiveData_saveData.value = SaveDataBackScreen(year,index,variable.results.get(index).posterPath)
+//                mutableLiveData_saveData.value = SaveDataBackScreen(year,index,variable.results.get(index).posterPath,variable)
 
             }
             catch (e: Exception) {
