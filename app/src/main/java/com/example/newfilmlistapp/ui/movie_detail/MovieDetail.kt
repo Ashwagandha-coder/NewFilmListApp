@@ -63,8 +63,8 @@ class MovieDetail : Fragment() {
 
             val backdrop_path = it.backdropPath
 
-            binding.layoutMovie.visibility = View.VISIBLE
-            binding.tvEmptyInfo.visibility = View.GONE
+//            binding.layoutMovie.visibility = View.VISIBLE
+//            binding.tvEmptyInfo.visibility = View.GONE
 
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${backdrop_path}")
@@ -72,7 +72,7 @@ class MovieDetail : Fragment() {
 
             binding.tvMovieName.text = it.title
             binding.tvDescription.text = it.overview
-            binding.tvRatingValue.text = it.voteAverage.toString()
+           // binding.tvRatingValue.text = it.voteAverage.toString()
             binding.tvYear.text = it.releaseDate.substring(0,3)
 
 
