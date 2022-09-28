@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
+import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.ViewModel_MovieDetail
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 
@@ -39,14 +42,14 @@ class MovieDetail : Fragment() {
         return binding.root
     }
 
-    fun requestWrapper() {
+    private fun requestWrapper() {
 
         val id: Int = args.movieID
         viewModel.requestMovieDetail(id)
 
     }
 
-    fun onBackScreen() {
+    private fun onBackScreen() {
 
         binding.topNavBar.returnImageView.setOnClickListener {
 
@@ -57,27 +60,46 @@ class MovieDetail : Fragment() {
 
     }
 
-    fun workWithViewModel() {
+    private fun workWithViewModel() {
 
-        viewModel.movieDetailWrapper.observe(viewLifecycleOwner,{
+        viewModel.movieDetailWrapper.observe(viewLifecycleOwner) {
 
             val backdrop_path = it.backdropPath
 
-            binding.layoutMovie.visibility = View.VISIBLE
-            binding.tvEmptyInfo.visibility = View.GONE
+            val poster_path = args.posterPath
+
+            val vote_average = args.voteAverage
+
+
+            binding.progressBar.apply {
+                progress = (vote_average * 10).toInt()
+            }
+
+            val progressStr: String = binding.progressBar.progress.toString() + "%"
+
+            binding.progressText.apply {
+                text = progressStr
+            }
+
+            binding.movieStatus.setImageResource(R.drawable.ic_realise)
 
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${backdrop_path}")
+                .apply(RequestOptions().centerCrop())
                 .into(binding.imgMovie)
+
+            Glide.with(this)
+                .load(BASE_URL_FOR_PICTURE + poster_path)
+                .apply(RequestOptions().centerCrop())
+                .into(binding.poster)
 
             binding.tvMovieName.text = it.title
             binding.tvDescription.text = it.overview
-            binding.tvRatingValue.text = it.voteAverage.toString()
+           // binding.tvRatingValue.text = it.voteAverage.toString()
             binding.tvYear.text = it.releaseDate.substring(0,3)
 
 
-
-        })
+        }
 
     }
 

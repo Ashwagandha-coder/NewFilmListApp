@@ -87,4 +87,11 @@ class Popular : Fragment(), ScrollBack {
     }
 
 
+    private fun toMovieDetail() {
+
+
+
+    }
+
+
 }
