@@ -34,6 +34,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private var vote_average: Float = 0.0F
 
 
+
     // Save Date
 
 //    private var year: Int = 0
@@ -90,6 +91,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
             val vote_average_local = it?.results?.get(index)?.voteAverage
 
+
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${poster_path_local}")
                 .into(binding.pictureFilm)
@@ -105,6 +107,10 @@ class SortByDate : androidx.fragment.app.Fragment() {
             // Vote Average
 
             vote_average = vote_average_local?.toFloat()!!
+
+
+
+
 
         }
     }

@@ -70,6 +70,19 @@ class MovieDetail : Fragment() {
 
             val vote_average = args.voteAverage
 
+            val runtime = it.runtime
+
+            val runtimeStr = "${runtime.toInt() / 60}h ${runtime.toInt() % 60}m"
+            if (runtime.toInt() >= 60) {
+                binding.movieRuntime.apply {
+                    text = runtimeStr
+                }
+            } else {
+                binding.movieRuntime.apply {
+                    text = runtime.toString()
+                }
+            }
+
 
             binding.progressBar.apply {
                 progress = (vote_average * 10).toInt()
