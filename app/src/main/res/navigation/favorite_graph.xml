@@ -7,5 +7,13 @@
     <fragment
         android:id="@+id/favorite"
         android:name="com.example.newfilmlistapp.ui.favorites.Favorites"
-        android:label="@string/favorites_fragment" />
+        android:label="@string/favorites_fragment" >
+        <action
+            android:id="@+id/action_favorite_to_movieDetail_favorite"
+            app:destination="@id/movieDetail_favorite" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetail_favorite"
+        android:name="com.example.newfilmlistapp.ui.movie_detail.MovieDetail"
+        android:label="MovieDetail" />
 </navigation>
