@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/movieDetail_favorite"
         android:name="com.example.newfilmlistapp.ui.movie_detail.MovieDetail"
-        android:label="MovieDetail" />
+        android:label="MovieDetail" >
+        <action
+            android:id="@+id/action_movieDetail_favorite_to_favorite"
+            app:destination="@id/favorite" />
+    </fragment>
 </navigation>
