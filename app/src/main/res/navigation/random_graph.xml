@@ -27,7 +27,7 @@
             app:argType="string" />
         <argument
             android:name="vote_average"
-            app:argType="double"/>
+            app:argType="float" />
 
     </fragment>
 </navigation>

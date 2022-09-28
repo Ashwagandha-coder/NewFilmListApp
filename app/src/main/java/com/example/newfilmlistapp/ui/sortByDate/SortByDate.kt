@@ -31,7 +31,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private lateinit var movieWrapper: MovieWrapper
 
     private lateinit var poster_path: String
-    private var vote_average: Double = 0.0
+    private var vote_average: Float = 0.0F
 
 
     // Save Date
@@ -104,7 +104,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
             // Vote Average
 
-            vote_average = vote_average_local!!
+            vote_average = vote_average_local?.toFloat()!!
 
         }
     }
