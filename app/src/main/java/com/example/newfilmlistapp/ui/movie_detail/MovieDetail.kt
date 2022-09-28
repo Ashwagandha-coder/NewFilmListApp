@@ -62,14 +62,18 @@ class MovieDetail : Fragment() {
 
     private fun workWithViewModel() {
 
-        viewModel.movieDetailWrapper.observe(viewLifecycleOwner,{
+        viewModel.movieDetailWrapper.observe(viewLifecycleOwner) {
 
             val backdrop_path = it.backdropPath
 
             val poster_path = args.posterPath
 
-//            binding.layoutMovie.visibility = View.VISIBLE
-//            binding.tvEmptyInfo.visibility = View.GONE
+            val vote_average = args.voteAverage
+
+
+            binding.progressBar.apply {
+                progress = (vote_average * 10).toInt()
+            }
 
             val progressStr: String = binding.progressBar.progress.toString() + "%"
 
@@ -95,8 +99,7 @@ class MovieDetail : Fragment() {
             binding.tvYear.text = it.releaseDate.substring(0,3)
 
 
-
-        })
+        }
 
     }
 

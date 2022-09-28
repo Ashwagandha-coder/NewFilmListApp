@@ -25,6 +25,9 @@
         <argument
             android:name="poster_path"
             app:argType="string" />
+        <argument
+            android:name="vote_average"
+            app:argType="double"/>
 
     </fragment>
 </navigation>

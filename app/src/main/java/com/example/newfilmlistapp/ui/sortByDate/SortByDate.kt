@@ -31,6 +31,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private lateinit var movieWrapper: MovieWrapper
 
     private lateinit var poster_path: String
+    private var vote_average: Double = 0.0
 
 
     // Save Date
@@ -87,6 +88,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
             val poster_path_local = it?.results?.get(index)?.posterPath ?: "77 string SortByDate"
 
+            val vote_average_local = it?.results?.get(index)?.voteAverage
+
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${poster_path_local}")
                 .into(binding.pictureFilm)
@@ -98,6 +101,10 @@ class SortByDate : androidx.fragment.app.Fragment() {
             // Poster Path
 
             poster_path = poster_path_local
+
+            // Vote Average
+
+            vote_average = vote_average_local!!
 
         }
     }
@@ -227,7 +234,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
             override fun onClick(p0: View?) {
 
-                val action = SortByDateDirections.actionRandomToMovieDetail(movie_ID,poster_path)
+                val action = SortByDateDirections.actionRandomToMovieDetail(movie_ID,poster_path,vote_average)
                 p0?.findNavController()?.navigate(action) ?: "191 string in SortByDate"
 
             }
