@@ -42,14 +42,14 @@ class MovieDetail : Fragment() {
         return binding.root
     }
 
-    fun requestWrapper() {
+    private fun requestWrapper() {
 
         val id: Int = args.movieID
         viewModel.requestMovieDetail(id)
 
     }
 
-    fun onBackScreen() {
+    private fun onBackScreen() {
 
         binding.topNavBar.returnImageView.setOnClickListener {
 
@@ -60,7 +60,7 @@ class MovieDetail : Fragment() {
 
     }
 
-    fun workWithViewModel() {
+    private fun workWithViewModel() {
 
         viewModel.movieDetailWrapper.observe(viewLifecycleOwner,{
 
@@ -70,6 +70,12 @@ class MovieDetail : Fragment() {
 
 //            binding.layoutMovie.visibility = View.VISIBLE
 //            binding.tvEmptyInfo.visibility = View.GONE
+
+            val progressStr: String = binding.progressBar.progress.toString() + "%"
+
+            binding.progressText.apply {
+                text = progressStr
+            }
 
             binding.movieStatus.setImageResource(R.drawable.ic_realise)
 

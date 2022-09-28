@@ -7,18 +7,10 @@
     <fragment
         android:id="@+id/popular"
         android:label="@string/popular_fragment"
-        android:name="com.example.newfilmlistapp.ui.popular.Popular" >
-        <action
-            android:id="@+id/action_popular_to_movieDetail_popular"
-            app:destination="@id/movieDetail_popular" />
-    </fragment>
+        android:name="com.example.newfilmlistapp.ui.popular.Popular" />
     <fragment
         android:id="@+id/movieDetail_popular"
         android:name="com.example.newfilmlistapp.ui.movie_detail.MovieDetail"
-        android:label="MovieDetail" >
-        <action
-            android:id="@+id/action_movieDetail_popular_to_popular"
-            app:destination="@id/popular" />
-    </fragment>
+        android:label="MovieDetail" />
 
 </navigation>
