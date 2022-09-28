@@ -10,10 +10,10 @@
         android:label="@string/sort_by_date_fragment" >
         <action
             android:id="@+id/action_random_to_movieDetail"
-            app:destination="@id/movieDetail" />
+            app:destination="@id/movieDetail_random" />
     </fragment>
     <fragment
-        android:id="@+id/movieDetail"
+        android:id="@+id/movieDetail_random"
         android:name="com.example.newfilmlistapp.ui.movie_detail.MovieDetail"
         android:label="MovieDetail" >
         <action
