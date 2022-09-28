@@ -85,15 +85,19 @@ class SortByDate : androidx.fragment.app.Fragment() {
                 it?.results?.get(index)?.originalTitle ?: "75 string SortByDate"
             val tv_below_poster = it?.results?.get(index)?.originalTitle ?: "76 string SortByDate"
 
-            val poster_path = it?.results?.get(index)?.posterPath ?: "77 string SortByDate"
+            val poster_path_local = it?.results?.get(index)?.posterPath ?: "77 string SortByDate"
 
             Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500${poster_path}")
+                .load("https://image.tmdb.org/t/p/w500${poster_path_local}")
                 .into(binding.pictureFilm)
 
             // movieID
 
             movie_ID = it.results.get(index).id.toInt()
+
+            // Poster Path
+
+            poster_path = poster_path_local
 
         }
     }
@@ -111,7 +115,6 @@ class SortByDate : androidx.fragment.app.Fragment() {
                 .load("https://image.tmdb.org/t/p/w500${movieWrapper.results.get(viewModel.array_index).posterPath}")
                 .into(binding.pictureFilm)
 
-            poster_path = movieWrapper.results.get(viewModel.array_index).posterPath
 
         }
 
