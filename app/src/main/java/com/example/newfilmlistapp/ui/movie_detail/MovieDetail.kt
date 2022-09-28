@@ -1,6 +1,7 @@
 package com.example.newfilmlistapp.ui.movie_detail
 
 import android.os.Bundle
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,6 +72,38 @@ class MovieDetail : Fragment() {
             val vote_average = args.voteAverage
 
             val runtime = it.runtime
+
+            if (it.releaseDate.isNotEmpty()) {
+                var date = it.releaseDate
+                val dateYear = date.removeRange(4, date.length)
+                var dateMonth = date.removeRange(0, 5)
+                dateMonth = dateMonth.removeRange(2, dateMonth.length)
+                val dateDay = date.removeRange(0, 8)
+                date =
+                    "$dateDay/$dateMonth/$dateYear" + " (${it.productionCountries[0].iso3166_1})"
+
+                binding.tvYear.apply {
+                    text = date
+                }
+
+                val htmlText = "<font color=#ffffff>${it.title}</font> <font color=#cce0e3>(${
+                    it.releaseDate.removeRange(
+                        4,
+                        it.releaseDate.length
+                    )
+                })</font>"
+
+                binding.tvMovieName.apply {
+                    text = Html.fromHtml(htmlText)
+                }
+            } else {
+                binding.tvMovieName.apply {
+                    text = it.title
+                }
+            }
+
+
+
 
             var genres: String? = ""
             for (element in it.genres)
