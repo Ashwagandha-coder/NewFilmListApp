@@ -30,7 +30,7 @@
             android:id="@+id/relativeProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorDarkRelative"
+            android:background="@color/white"
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
