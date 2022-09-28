@@ -9,6 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
+import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.ViewModel_MovieDetail
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 
@@ -63,12 +66,22 @@ class MovieDetail : Fragment() {
 
             val backdrop_path = it.backdropPath
 
+            val poster_path = args.posterPath
+
 //            binding.layoutMovie.visibility = View.VISIBLE
 //            binding.tvEmptyInfo.visibility = View.GONE
 
+            binding.movieStatus.setImageResource(R.drawable.ic_realise)
+
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${backdrop_path}")
+                .apply(RequestOptions().centerCrop())
                 .into(binding.imgMovie)
+
+            Glide.with(this)
+                .load(BASE_URL_FOR_PICTURE + poster_path)
+                .apply(RequestOptions().centerCrop())
+                .into(binding.poster)
 
             binding.tvMovieName.text = it.title
             binding.tvDescription.text = it.overview

@@ -30,6 +30,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     private lateinit var movieWrapper: MovieWrapper
 
+    private lateinit var poster_path: String
+
 
     // Save Date
 
@@ -108,6 +110,8 @@ class SortByDate : androidx.fragment.app.Fragment() {
             Glide.with(this)
                 .load("https://image.tmdb.org/t/p/w500${movieWrapper.results.get(viewModel.array_index).posterPath}")
                 .into(binding.pictureFilm)
+
+            poster_path = movieWrapper.results.get(viewModel.array_index).posterPath
 
         }
 
@@ -220,7 +224,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
             override fun onClick(p0: View?) {
 
-                val action = SortByDateDirections.actionRandomToMovieDetail(movie_ID)
+                val action = SortByDateDirections.actionRandomToMovieDetail(movie_ID,poster_path)
                 p0?.findNavController()?.navigate(action) ?: "191 string in SortByDate"
 
             }
