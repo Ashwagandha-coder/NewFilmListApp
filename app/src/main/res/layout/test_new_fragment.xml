@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:id="@+id/tv_years"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/years"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
+
+    <Spinner
+        android:id="@+id/years"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_years">
+
+    </Spinner>
+
+    <TextView
+        android:id="@+id/tv_genre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/genre"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/years"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </TextView>
+
+
+    <Spinner
+        android:id="@+id/genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_genre">
+
+    </Spinner>
+
+
+    <include
+        android:id="@+id/included_movie_item_sortbydate"
+        layout="@layout/movie_item_sortbydate"
+        app:layout_constraintTop_toBottomOf="@+id/genre"
+        tools:layout_editor_absoluteX="0dp">
+
+    </include>
+
+    <Button
+        android:id="@+id/common"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="150dp"
+        android:text="@string/Choose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/included_movie_item_sortbydate"
+        >
+
+    </Button>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
