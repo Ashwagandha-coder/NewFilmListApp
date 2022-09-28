@@ -72,6 +72,13 @@ class MovieDetail : Fragment() {
 
             val runtime = it.runtime
 
+            var genres: String? = ""
+            for (element in it.genres)
+                genres += "${element.name}, "
+            binding.movieGenres.apply {
+                text = genres!!.substring(0, genres.length - 2)
+            }
+
             val runtimeStr = "${runtime.toInt() / 60}h ${runtime.toInt() % 60}m"
             if (runtime.toInt() >= 60) {
                 binding.movieRuntime.apply {
