@@ -9,30 +9,28 @@
     android:background="@color/black">
 
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/genre_spinner"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/menu_genres"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        android:hint="Genres">
 
-    </androidx.appcompat.widget.AppCompatSpinner>
+        <AutoCompleteTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none" />
 
-    <androidx.appcompat.widget.AppCompatSpinner
-        android:id="@+id/year_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+    </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.appcompat.widget.AppCompatSpinner>
+
 
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="210dp"
-        app:layout_constraintTop_toBottomOf="@id/genre_spinner"
+        app:layout_constraintTop_toBottomOf="@+id/menu_genres"
         android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
