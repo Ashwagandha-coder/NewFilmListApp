@@ -304,9 +304,18 @@
                 android:textStyle="normal" />
 
 
-
         </RelativeLayout>
 
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16.00dp"
+        android:layout_marginBottom="16.00dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_favorite_white_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
