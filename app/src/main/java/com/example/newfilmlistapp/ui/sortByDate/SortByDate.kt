@@ -167,7 +167,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         val arrayAdapterYear = ArrayAdapter(
             requireContext(),
-            android.R.layout.simple_spinner_item,
+            android.R.layout.simple_spinner_dropdown_item,
             listYear
         )
 
