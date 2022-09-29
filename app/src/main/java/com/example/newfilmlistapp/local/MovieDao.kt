@@ -35,14 +35,6 @@ interface MovieDao {
     @Query("DELETE FROM movie")
     suspend fun deleteAll()
 
-    /*
-    @Query("SELECT * FROM playlist " +
-    "WHERE playlist_title LIKE '% :playlistTitle %' " +
-    "GROUP BY playlist_title " +
-    "ORDER BY playlist_title " +
-    "LIMIT :limit")
-    List<IPlaylist> searchPlaylists(String playlistTitle, int limit);
-     */
     @Query("SELECT * FROM movie LIMIT :pageSize OFFSET :pageIndex")
     suspend fun getMoviePage(pageSize: Int, pageIndex: Int): List<ResultPopular>?
 
