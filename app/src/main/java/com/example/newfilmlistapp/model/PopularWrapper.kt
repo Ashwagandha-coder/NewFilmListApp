@@ -1,5 +1,6 @@
 package com.example.newfilmlistapp.model
 
+import androidx.room.Entity
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -16,6 +17,7 @@ data class PopularWrapper (
 )
 
 @JsonClass(generateAdapter = true)
+@Entity(tableName = "movie")
 data class ResultPopular (
     @Json(name = "poster_path")
     val posterPath: String,
@@ -50,7 +52,9 @@ data class ResultPopular (
     val video: Boolean,
 
     @Json(name = "vote_average")
-    val voteAverage: Double
+    val voteAverage: Double,
+
+    var isFavorite: Boolean? = false
 )
 @JsonClass(generateAdapter = true)
 data class OriginalLanguage(val value: String)

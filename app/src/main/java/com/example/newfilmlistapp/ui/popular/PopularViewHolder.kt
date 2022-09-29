@@ -10,11 +10,6 @@ import com.example.newfilmlistapp.databinding.FragmentPopularBinding
 
 class PopularViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-    private lateinit var binding: FragmentPopularBinding
-
-    init {
-
-    }
 
     val cardView: CardView = itemView.findViewById(R.id.cardView)
     val movieName: TextView = itemView.findViewById(R.id.title)
