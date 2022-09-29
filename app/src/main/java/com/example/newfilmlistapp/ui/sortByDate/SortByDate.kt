@@ -138,7 +138,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private fun setupGenres(genres: List<Genres>) {
         val arrayAdapterGenre = ArrayAdapter(
             requireContext(),
-            android.R.layout.simple_spinner_item,
+            android.R.layout.simple_spinner_dropdown_item,
             genres.map { it.name }
         )
         binding.genre.adapter = arrayAdapterGenre
