@@ -46,6 +46,16 @@ android {
 dependencies {
 
 
+    // Room
+
+
+    def room_version = "2.4.3"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+
+
 
     ksp 'com.squareup.moshi:moshi-kotlin-codegen:1.14.0'
 
