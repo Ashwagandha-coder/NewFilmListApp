@@ -22,7 +22,6 @@ interface RepositoryForRoom {
 
     suspend fun deleteMovieLocal(id: String)
 
-
     suspend fun getMoviePageLocal(pageSize: Int, pageIndex: Int): List<ResultPopular>?
 
     suspend fun getFavoriteLocal(pageSize: Int, pageIndex: Int): List<ResultPopular>?
