@@ -30,6 +30,10 @@ class Favorites : androidx.fragment.app.Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun setRecyclerView() {}
+
+    private fun setFragmentTitle() {}
+
 
 
 
