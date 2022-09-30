@@ -10,10 +10,10 @@
         android:label="@string/favorites_fragment" >
         <action
             android:id="@+id/action_favorite_to_movieDetail_favorite"
-            app:destination="@id/movieDetail_favorite" />
+            app:destination="@id/movieDetail" />
     </fragment>
     <fragment
-        android:id="@+id/movieDetail_favorite"
+        android:id="@+id/movieDetail"
         android:name="com.example.newfilmlistapp.ui.movie_detail.MovieDetail"
         android:label="MovieDetail" >
         <action
