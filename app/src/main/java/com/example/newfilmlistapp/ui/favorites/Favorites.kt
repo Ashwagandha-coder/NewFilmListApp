@@ -7,11 +7,16 @@ import android.view.ViewGroup
 import com.example.newfilmlistapp.databinding.ActivityMainBinding
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
 import com.example.newfilmlistapp.databinding.FragmentPopularBinding
+import com.example.newfilmlistapp.ui.popular.PopularAdapter
+import com.example.newfilmlistapp.ui.recycler_view.RecyclerViewScrollListener
 
 
 class Favorites : androidx.fragment.app.Fragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
+
+    private lateinit var favoriteAdapter: Any
+    private lateinit var mScrollListener: RecyclerViewScrollListener
 
 
     override fun onCreateView(
