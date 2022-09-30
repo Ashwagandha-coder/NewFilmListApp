@@ -3,32 +3,17 @@ package com.example.newfilmlistapp.view_model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.newfilmlistapp.load.BaseLoadMoreRefreshViewModel
 import com.example.newfilmlistapp.model.PopularWrapper
 import com.example.newfilmlistapp.repository.RepositoryForRoom
 import kotlinx.coroutines.launch
 
-class ViewModel_Favorites(private val repositoryForRoom: RepositoryForRoom) : ViewModel(), BaseLoadMoreRefreshViewModel<PopularWrapper> {
+class ViewModel_Favorites(private val repositoryForRoom: RepositoryForRoom) : ViewModel() {
 
     private val mutableLiveData_favorite: MutableLiveData<PopularWrapper> = MutableLiveData()
     val favorite = mutableLiveData_favorite
 
 
-    override fun loadData(page: Int) {
-        viewModelScope.launch {
-            try {
-                onLoadSuccess(
-                    page = page,
-                    items = repositoryForRoom.getFavoriteLocal(
-                        pageSize = getNumberItemPerPage(),
-                        pageIndex = page
-                    )
-                )
-            } catch (e: Exception) {
-                onError(e)
-            }
-        }
-    }
+
 
 
 //
