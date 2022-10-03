@@ -17,7 +17,6 @@ data class PopularWrapper (
 )
 
 @JsonClass(generateAdapter = true)
-@Entity(tableName = "movie")
 data class ResultPopular (
     @Json(name = "poster_path")
     val posterPath: String,

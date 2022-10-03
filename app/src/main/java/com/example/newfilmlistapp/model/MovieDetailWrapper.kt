@@ -8,7 +8,6 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
-
 @Entity(tableName = "movie")
 @JsonClass(generateAdapter = true)
 data class MovieDetailWrapper (
@@ -66,14 +65,7 @@ data class MovieDetailWrapper (
 
     @Json(name = "vote_count")
     val voteCount: Long
-) : Parcelable {
-
-    fun getFullBackdropPath() =
-        if (backdropPath.isNullOrBlank()) null else BASE_URL_FOR_PICTURE + backdropPath
-
-    fun getFullPosterPath() =
-        if (posterPath.isNullOrBlank()) null else BASE_URL_FOR_PICTURE + posterPath
-}
+)
 
 @JsonClass(generateAdapter = true)
 data class ProductionCompanyWrapper (
