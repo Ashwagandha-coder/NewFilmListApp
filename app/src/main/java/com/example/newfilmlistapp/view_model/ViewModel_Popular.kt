@@ -39,6 +39,18 @@ class ViewModel_Popular: ViewModel() {
 
     }
 
+    fun testPaginationRequestPopular() {
+
+        viewModelScope.launch {
+
+
+
+
+        }
+
+
+    }
+
     suspend fun getPopularMovie(): PopularWrapper {
 
         val loadingMovieDBService = Retrofit.retrofit.create(LoadingMovieDBService::class.java)
