@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.db
+package com.example.newfilmlistapp.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
