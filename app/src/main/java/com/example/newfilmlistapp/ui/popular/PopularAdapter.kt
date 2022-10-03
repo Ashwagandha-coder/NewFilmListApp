@@ -13,7 +13,6 @@ import com.example.newfilmlistapp.ui.UserDiffCallBack
 
 class PopularAdapter() : ListAdapter<ResultPopular, PopularViewHolder>(UserDiffCallBack()) {
 
-    // todo: Сделать логику скроллинга recycler view
 
     override fun getItemCount(): Int {
         return super.getItemCount()

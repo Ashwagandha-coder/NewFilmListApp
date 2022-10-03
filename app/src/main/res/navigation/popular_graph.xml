@@ -10,10 +10,10 @@
         android:name="com.example.newfilmlistapp.ui.popular.Popular" >
         <action
             android:id="@+id/action_popular_to_movieDetail_popular"
-            app:destination="@id/movieDetail_popular" />
+            app:destination="@id/movieDetail" />
     </fragment>
     <fragment
-        android:id="@+id/movieDetail_popular"
+        android:id="@+id/movieDetail"
         android:name="com.example.newfilmlistapp.ui.movie_detail.MovieDetail"
         android:label="MovieDetail" />
 

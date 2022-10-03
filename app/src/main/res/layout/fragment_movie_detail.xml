@@ -30,7 +30,7 @@
             android:id="@+id/relativeProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorDarkRelative"
+            android:background="@color/black"
             android:orientation="vertical"
             tools:ignore="MissingConstraints">
 
@@ -145,7 +145,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="0dp"
-                android:background="@color/colorDarkRelative">
+                android:background="@color/black">
 
                 <RelativeLayout
                     android:id="@+id/relativeInfoDeep"
@@ -154,7 +154,7 @@
                     android:layout_alignParentStart="false"
                     android:layout_alignParentEnd="false"
                     android:layout_centerHorizontal="true"
-                    android:background="@color/colorDarkRelative">
+                    android:background="@color/black">
 
                     <TextView
                         android:id="@+id/tv_year"
@@ -304,9 +304,18 @@
                 android:textStyle="normal" />
 
 
-
         </RelativeLayout>
 
     </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16.00dp"
+        android:layout_marginBottom="16.00dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:src="@drawable/ic_favorite_white_24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

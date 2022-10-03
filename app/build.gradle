@@ -45,6 +45,30 @@ android {
 
 dependencies {
 
+    def paging_version = "2.1.2"
+
+    implementation "androidx.paging:paging-runtime-ktx:3.1.1"
+    implementation "androidx.paging:paging-runtime:3.1.1"
+
+
+
+
+    // Kotlin std lib
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.7.10"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.7.10"
+    implementation "androidx.multidex:multidex:2.0.1"
+
+
+    // Room
+
+
+    def room_version = "2.4.3"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+
+
 
 
     ksp 'com.squareup.moshi:moshi-kotlin-codegen:1.14.0'

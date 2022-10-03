@@ -1,11 +1,18 @@
 package com.example.newfilmlistapp.model
 
+import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
+import com.example.newfilmlistapp.view_model.ViewModel_Favorites
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
+@Entity(tableName = "movie")
 @JsonClass(generateAdapter = true)
 data class MovieDetailWrapper (
+    @PrimaryKey(autoGenerate = false)
     val adult: Boolean,
 
     @Json(name = "backdrop_path")
@@ -32,7 +39,7 @@ data class MovieDetailWrapper (
     val popularity: Double,
 
     @Json(name = "poster_path")
-    val posterPath: Any? = null,
+    val posterPath: String? = null,
 
     @Json(name = "production_companies")
     val productionCompanies: List<ProductionCompanyWrapper>,
@@ -58,7 +65,9 @@ data class MovieDetailWrapper (
     val voteAverage: Double,
 
     @Json(name = "vote_count")
-    val voteCount: Long
+    val voteCount: Long,
+
+    var isFavorite: Boolean? = false
 )
 
 @JsonClass(generateAdapter = true)

@@ -15,6 +15,23 @@ class ViewModel_MovieDetail: ViewModel() {
     private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
 
+    // init room
+
+
+
+
+    fun loadData() {
+
+        viewModelScope.launch {
+
+
+
+
+        }
+
+
+    }
+
 
 
 
