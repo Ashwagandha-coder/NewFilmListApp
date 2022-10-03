@@ -18,6 +18,21 @@ class ViewModel_MovieDetail: ViewModel() {
 
 
 
+    fun loadData() {
+
+        viewModelScope.launch {
+
+
+
+
+        }
+
+
+    }
+
+
+
+
 
     fun requestMovieDetail(id: Int) {
 

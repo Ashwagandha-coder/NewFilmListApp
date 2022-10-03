@@ -61,6 +61,18 @@ class MovieDetail : Fragment() {
 
     }
 
+
+    private fun onAddInDB() {
+
+        binding.buttonFavorite.setOnClickListener {
+
+            viewModel.loadData()
+
+        }
+
+
+    }
+
     private fun workWithViewModel() {
 
         viewModel.movieDetailWrapper.observe(viewLifecycleOwner) {

@@ -52,7 +52,7 @@ class Favorites : androidx.fragment.app.Fragment(), ScrollBack {
 
     private fun workWithViewModel() {
 
-        viewModel.loadData(1)
+       // viewModel.loadData(1)
         viewModel.favorite.observe(viewLifecycleOwner) {
 
             totalResults = it.totalResults.toInt()
@@ -84,7 +84,7 @@ class Favorites : androidx.fragment.app.Fragment(), ScrollBack {
         if (allMovies.size != totalResults) {
             if (!isLoading) {
                 isLoading = true
-                viewModel.loadData(1)
+                //viewModel.loadData(1)
             }
         }
     }

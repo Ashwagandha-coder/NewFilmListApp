@@ -1,9 +1,14 @@
 package com.example.newfilmlistapp.model
 
+import android.os.Parcelable
+import androidx.room.Entity
+import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
+
+@Entity(tableName = "movie")
 @JsonClass(generateAdapter = true)
 data class MovieDetailWrapper (
     val adult: Boolean,
@@ -32,7 +37,7 @@ data class MovieDetailWrapper (
     val popularity: Double,
 
     @Json(name = "poster_path")
-    val posterPath: Any? = null,
+    val posterPath: String? = null,
 
     @Json(name = "production_companies")
     val productionCompanies: List<ProductionCompanyWrapper>,
@@ -59,7 +64,14 @@ data class MovieDetailWrapper (
 
     @Json(name = "vote_count")
     val voteCount: Long
-)
+) : Parcelable {
+
+    fun getFullBackdropPath() =
+        if (backdropPath.isNullOrBlank()) null else BASE_URL_FOR_PICTURE + backdropPath
+
+    fun getFullPosterPath() =
+        if (posterPath.isNullOrBlank()) null else BASE_URL_FOR_PICTURE + posterPath
+}
 
 @JsonClass(generateAdapter = true)
 data class ProductionCompanyWrapper (
