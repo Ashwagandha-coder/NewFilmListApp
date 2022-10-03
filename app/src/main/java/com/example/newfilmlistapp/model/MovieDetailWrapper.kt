@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
+import com.example.newfilmlistapp.view_model.ViewModel_Favorites
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -64,7 +65,9 @@ data class MovieDetailWrapper (
     val voteAverage: Double,
 
     @Json(name = "vote_count")
-    val voteCount: Long
+    val voteCount: Long,
+
+    var isFavorite: Boolean? = false
 )
 
 @JsonClass(generateAdapter = true)

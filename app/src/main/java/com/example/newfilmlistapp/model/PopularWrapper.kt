@@ -53,7 +53,6 @@ data class ResultPopular (
     @Json(name = "vote_average")
     val voteAverage: Double,
 
-    var isFavorite: Boolean? = false
 )
 @JsonClass(generateAdapter = true)
 data class OriginalLanguage(val value: String)
