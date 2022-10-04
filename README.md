@@ -1,7 +1,7 @@
 # MovieDB App
 
 ![other_movieDB](https://user-images.githubusercontent.com/58209188/193776254-306736ed-099e-4cab-9084-06abff44dbb4.svg)
-<img src="(https://user-images.githubusercontent.com/58209188/193776254-306736ed-099e-4cab-9084-06abff44dbb4.svg)" width="200" height="200" />
+<img src="(https://user-images.githubusercontent.com/58209188/193776254-306736ed-099e-4cab-9084-06abff44dbb4.svg)" width="500" height="500" />
 
 
 Application for test. MovieDB
