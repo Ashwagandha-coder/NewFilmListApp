@@ -8,6 +8,9 @@ import com.example.newfilmlistapp.view_model.ViewModel_Popular
 
 class MoviePopularPagingSource(private val repositoryAPI: RepositoryAPI): PagingSource<Int, ResultPopular>() {
 
+    // todo: Проблема с запросом при добавлении Query page
+    // todo: Не проходит запрос из за page параметра
+
 
     override fun getRefreshKey(state: PagingState<Int, ResultPopular>): Int? {
 
