@@ -11,7 +11,10 @@ class MoviePopularPagingSource(private val repositoryAPI: RepositoryAPI): Paging
 
     override fun getRefreshKey(state: PagingState<Int, ResultPopular>): Int? {
 
-        return null
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
 
     }
 
@@ -24,7 +27,7 @@ class MoviePopularPagingSource(private val repositoryAPI: RepositoryAPI): Paging
             val data = repositoryAPI.getPopularMovie().results ?: emptyList()
 
             LoadResult.Page(data = data,
-                prevKey = if (currentPage == 1) null else -1,
+                prevKey = null,
                 nextKey = currentPage.plus(1)
             )
         }
