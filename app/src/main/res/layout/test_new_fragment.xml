@@ -20,6 +20,7 @@
         android:hint="Genre">
 
         <AutoCompleteTextView
+            android:id="@+id/autoComplete_tv_genre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="none" />
@@ -38,6 +39,7 @@
         android:hint="Year">
 
         <AutoCompleteTextView
+            android:id="@+id/autoComplete_tv_years"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number" />
