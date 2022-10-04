@@ -14,6 +14,8 @@ import com.example.newfilmlistapp.databinding.FragmentPopularBinding
 import com.example.newfilmlistapp.model.ResultPopular
 import com.example.newfilmlistapp.ui.recycler_view.RecyclerViewScrollListener
 import com.example.newfilmlistapp.ui.recycler_view.ScrollBack
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class Popular : Fragment() {
@@ -41,7 +43,7 @@ class Popular : Fragment() {
     ): View? {
         binding = FragmentPopularBinding.inflate(inflater,container,false)
 
-        workWithViewModel()
+        workWithViewModel2()
         setFragmentTitle()
         setRecyclerView()
 
@@ -50,16 +52,10 @@ class Popular : Fragment() {
 
     private fun workWithViewModel2() {
 
-        viewModel.testPaginationRequestPopular()
-        viewModel.pager.observe(viewLifecycleOwner) {
-
-//            totalResults = it.totalResults.toInt()
-//            allMovies.addAll(it.results)
-
-            val some = it
-
-            isLoading = false
-
+        lifecycleScope.launch {
+            viewModel.getListData.collect {
+                popularAdapter.submitData(it)
+            }
         }
 
 

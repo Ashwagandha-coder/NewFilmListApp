@@ -24,6 +24,14 @@ class ViewModel_Popular: ViewModel() {
     val pager = mutableLiveData_pager
 
 
+    private val listData = Pager(PagingConfig(pageSize = 1)) {
+
+        MoviePopularPagingSource()
+
+    }.flow.cachedIn(viewModelScope)
+    val getListData = listData
+
+
     fun requestPopular() {
 
         viewModelScope.launch {
@@ -46,16 +54,14 @@ class ViewModel_Popular: ViewModel() {
 
     fun testPaginationRequestPopular() {
 
-        viewModelScope.launch {
+        val testPopularMovie = Pager(PagingConfig(pageSize = 1)) {
 
-            val popular_movie = Pager(PagingConfig(pageSize = 1)) {
+            MoviePopularPagingSource()
 
-                MoviePopularPagingSource()
+        }.flow.cachedIn(viewModelScope)
 
-            }.flow.cachedIn(viewModelScope)
+//
 
-//            mutableLiveData_pager.value = popularMovie
-        }
 
     }
 
