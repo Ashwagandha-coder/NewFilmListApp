@@ -52,18 +52,6 @@ class ViewModel_Popular: ViewModel() {
 
     }
 
-    fun testPaginationRequestPopular() {
-
-        val testPopularMovie = Pager(PagingConfig(pageSize = 1)) {
-
-            MoviePopularPagingSource()
-
-        }.flow.cachedIn(viewModelScope)
-
-//
-
-
-    }
 
     suspend fun getPopularMovie(): PopularWrapper {
 
@@ -76,17 +64,6 @@ class ViewModel_Popular: ViewModel() {
         return result
 
     }
-
-    suspend fun testGetPopularMovie() {
-
-
-
-
-
-    }
-
-
-
 
 
 }
