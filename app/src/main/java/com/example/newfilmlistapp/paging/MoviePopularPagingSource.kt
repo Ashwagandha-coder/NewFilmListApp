@@ -2,16 +2,22 @@ package com.example.newfilmlistapp.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.newfilmlistapp.model.PopularWrapper
 import com.example.newfilmlistapp.model.ResultPopular
+import com.example.newfilmlistapp.repository.RepositoryAPI
 import com.example.newfilmlistapp.view_model.ViewModel_Popular
 
-class MoviePopularPagingSource(): PagingSource<Int, ResultPopular>() {
+class MoviePopularPagingSource(private val repositoryAPI: RepositoryAPI): PagingSource<Int, ResultPopular>() {
+
+    // todo: Проблема с запросом при добавлении Query page
+    // todo: Не проходит запрос из за page параметра
 
 
     override fun getRefreshKey(state: PagingState<Int, ResultPopular>): Int? {
 
-        return null
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
 
     }
 
@@ -21,10 +27,10 @@ class MoviePopularPagingSource(): PagingSource<Int, ResultPopular>() {
         return try {
 
             val currentPage = params.key ?: 1
-            val data = ViewModel_Popular().getPopularMovie().results ?: emptyList()
+            val data = repositoryAPI.getPopularMovie().results ?: emptyList()
 
             LoadResult.Page(data = data,
-                prevKey = if (currentPage == 1) null else -1,
+                prevKey = null,
                 nextKey = currentPage.plus(1)
             )
         }

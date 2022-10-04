@@ -57,7 +57,7 @@ class Favorites : androidx.fragment.app.Fragment(), ScrollBack {
 
             totalResults = it.totalResults.toInt()
             allMovies.addAll(it.results)
-            favoritesAdapter.submitList(allMovies)
+           // favoritesAdapter.submitList(allMovies)
             isLoading = false
 
         }

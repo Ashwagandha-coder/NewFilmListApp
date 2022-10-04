@@ -2,6 +2,7 @@ package com.example.newfilmlistapp.ui.popular
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -11,7 +12,7 @@ import com.example.newfilmlistapp.model.ResultPopular
 import com.example.newfilmlistapp.ui.UserDiffCallBack
 
 
-class PopularAdapter() : ListAdapter<ResultPopular, PopularViewHolder>(UserDiffCallBack()) {
+class PopularAdapter() : PagingDataAdapter<ResultPopular,PopularViewHolder>(UserDiffCallBack()) {
 
 
     override fun getItemCount(): Int {
@@ -27,7 +28,7 @@ class PopularAdapter() : ListAdapter<ResultPopular, PopularViewHolder>(UserDiffC
 
     override fun onBindViewHolder(viewHolder: PopularViewHolder, position: Int) {
 
-        val movie: ResultPopular = getItem(position)
+        val movie: ResultPopular = getItem(position)!!
         val date = movie.releaseDate
 
 
