@@ -1,6 +1,7 @@
 # MovieDB App
 
-![movieDB](https://user-images.githubusercontent.com/58209188/193775381-24d11da2-9974-489a-90b2-b8b653e3feaa.svg)
+![other_movieDB](https://user-images.githubusercontent.com/58209188/193776254-306736ed-099e-4cab-9084-06abff44dbb4.svg)
+
 
 Application for test. MovieDB
 
