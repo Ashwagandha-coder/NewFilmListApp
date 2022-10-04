@@ -1,6 +1,7 @@
 # MovieDB App
 
 ![other_movieDB](https://user-images.githubusercontent.com/58209188/193776254-306736ed-099e-4cab-9084-06abff44dbb4.svg)
+img[alt=other_movieDB] { width: 200px; }
 
 
 Application for test. MovieDB
