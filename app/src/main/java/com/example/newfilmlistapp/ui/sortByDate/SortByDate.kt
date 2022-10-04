@@ -160,7 +160,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
         // init spinner years
         val listYear = mutableListOf<Int>()
 
-        for (i in 1874..2022) {
+        for (i in 2022..1874) {
             listYear.add(i)
         }
 
@@ -198,7 +198,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         var result: Int = 0
 
-        spinnerGenres.onItemSelectedListener = object : OnItemSelectedListener {
+        binding.genre.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 result = p2
             }
@@ -217,7 +217,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         var result: Int = 0
 
-        spinnerYear.onItemSelectedListener = object : OnItemSelectedListener {
+        binding.years.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 result = p0!!.adapter.getItem(p2) as Int
             }
