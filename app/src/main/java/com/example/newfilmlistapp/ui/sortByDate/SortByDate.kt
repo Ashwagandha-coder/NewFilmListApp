@@ -275,6 +275,46 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private fun workWithViewModel2() {
 
 
+        viewModel.genres
+            .observe(viewLifecycleOwner)  {
+                setupGenres(it.genres)
+            }
+        viewModel.movie.observe(viewLifecycleOwner) {
+
+            movieWrapper = it
+
+            val index = viewModel.array_index
+
+            binding.textBelowPictureFilm.text =
+                it?.results?.get(index)?.originalTitle ?: "75 string SortByDate"
+            val tv_below_poster = it?.results?.get(index)?.originalTitle ?: "76 string SortByDate"
+
+            val poster_path_local = it?.results?.get(index)?.posterPath ?: "77 string SortByDate"
+
+            val vote_average_local = it?.results?.get(index)?.voteAverage
+
+
+            Glide.with(this)
+                .load("https://image.tmdb.org/t/p/w500${poster_path_local}")
+                .into(binding.pictureFilm)
+
+            // movieID
+
+            movie_ID = it.results.get(index).id.toInt()
+
+            // Poster Path
+
+            poster_path = poster_path_local
+
+            // Vote Average
+
+            vote_average = vote_average_local?.toFloat()!!
+
+
+
+
+
+        }
 
 
 
