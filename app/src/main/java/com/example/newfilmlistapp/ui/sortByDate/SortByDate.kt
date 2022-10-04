@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.ViewModel_SortByDate
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
+import com.example.newfilmlistapp.databinding.FragmentTestNewFragmentBinding
 import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.MovieWrapper
 
@@ -24,12 +25,16 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private val viewModel: ViewModel_SortByDate by lazy {
         ViewModelProvider(this).get(ViewModel_SortByDate::class.java)
     }
-    private var movie_ID: Int = 0
-
     private lateinit var movieWrapper: MovieWrapper
 
+    // for navigation
+
+    private var movie_ID: Int = 0
     private lateinit var poster_path: String
     private var vote_average: Float = 0.0F
+
+
+    private lateinit var binding_newFragment: FragmentTestNewFragmentBinding
 
 
 
@@ -50,7 +55,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
         binding = FragmentSortByDateBinding.inflate(inflater, container, false)
 
         workWithViewModel()
-        initSpinners()
+        setupYears()
         setListenerButton()
         toMovieDetail()
 
@@ -143,23 +148,13 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     }
 
-    fun initSpinners() {
-
+    private fun setupYears() {
 
         viewModel.requestGenres()
-
-
-        // init spinner genres
-        val listGenres = resources.getStringArray(R.array.genres)
-
-
-        // init spinner years
         val listYear = mutableListOf<Int>()
-
         for (i in 2022..1874) {
             listYear.add(i)
         }
-
 
         val arrayAdapterYear = ArrayAdapter(
             requireContext(),
@@ -169,8 +164,36 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
         binding.years.adapter = arrayAdapterYear
 
-
     }
+
+//    fun initSpinners() {
+//
+//
+//        viewModel.requestGenres()
+//
+//
+//        // init spinner genres
+//        val listGenres = resources.getStringArray(R.array.genres)
+//
+//
+//        // init spinner years
+//        val listYear = mutableListOf<Int>()
+//
+//        for (i in 2022..1874) {
+//            listYear.add(i)
+//        }
+//
+//
+//        val arrayAdapterYear = ArrayAdapter(
+//            requireContext(),
+//            android.R.layout.simple_spinner_dropdown_item,
+//            listYear
+//        )
+//
+//        binding.years.adapter = arrayAdapterYear
+//
+//
+//    }
 
 
 
@@ -241,6 +264,19 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
             }
         })
+
+    }
+
+
+
+    // work with new fragment
+
+
+    private fun workWithViewModel2() {
+
+
+
+
 
     }
 
