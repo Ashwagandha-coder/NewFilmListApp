@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
+import androidx.paging.cachedIn
 import com.example.newfilmlistapp.model.PopularWrapper
 import com.example.newfilmlistapp.model.ResultPopular
 import com.example.newfilmlistapp.network.LoadingMovieDBService
@@ -47,13 +48,13 @@ class ViewModel_Popular: ViewModel() {
 
         viewModelScope.launch {
 
-            val popularMovie = Pager(PagingConfig(pageSize = 1)) {
+            val popular_movie = Pager(PagingConfig(pageSize = 1)) {
 
                 MoviePopularPagingSource()
 
-            }
+            }.flow.cachedIn(viewModelScope)
 
-            mutableLiveData_pager.value = popularMovie
+//            mutableLiveData_pager.value = popularMovie
         }
 
     }

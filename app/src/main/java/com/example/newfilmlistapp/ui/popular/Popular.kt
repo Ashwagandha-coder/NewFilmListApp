@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.ViewModel_Popular
@@ -15,7 +16,7 @@ import com.example.newfilmlistapp.ui.recycler_view.RecyclerViewScrollListener
 import com.example.newfilmlistapp.ui.recycler_view.ScrollBack
 
 
-class Popular : Fragment(), ScrollBack {
+class Popular : Fragment() {
 
     // field
 
@@ -30,7 +31,7 @@ class Popular : Fragment(), ScrollBack {
     }
 
     private val popularAdapter: PopularAdapter = PopularAdapter()
-    private val mScrollListener by lazy { RecyclerViewScrollListener(this) }
+    //private val mScrollListener by lazy { RecyclerViewScrollListener(this) }
 
 
     override fun onCreateView(
@@ -52,7 +53,12 @@ class Popular : Fragment(), ScrollBack {
         viewModel.testPaginationRequestPopular()
         viewModel.pager.observe(viewLifecycleOwner) {
 
+//            totalResults = it.totalResults.toInt()
+//            allMovies.addAll(it.results)
 
+            val some = it
+
+            isLoading = false
 
         }
 
@@ -69,7 +75,7 @@ class Popular : Fragment(), ScrollBack {
 
             totalResults = it.totalResults.toInt()
             allMovies.addAll(it.results)
-            popularAdapter.submitList(allMovies)
+//            popularAdapter.submitAll(allMovies)
             isLoading = false
 
         }
@@ -81,7 +87,7 @@ class Popular : Fragment(), ScrollBack {
         binding.recyclerview.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = popularAdapter
-            addOnScrollListener(mScrollListener)
+            //addOnScrollListener(mScrollListener)
         }
     }
 
@@ -92,14 +98,6 @@ class Popular : Fragment(), ScrollBack {
         }
     }
 
-    override fun onScrollCompleted(firstVisibleItem: Int, isLoadingMoreData: Boolean) {
-        if (allMovies.size != totalResults) {
-            if (!isLoading) {
-                isLoading = true
-                viewModel.requestPopular()
-            }
-        }
-    }
 
 
     private fun toMovieDetail() {
