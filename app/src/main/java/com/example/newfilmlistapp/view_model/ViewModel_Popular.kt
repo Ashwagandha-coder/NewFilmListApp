@@ -12,6 +12,7 @@ import com.example.newfilmlistapp.model.ResultPopular
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
 import com.example.newfilmlistapp.paging.MoviePopularPagingSource
+import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
 import kotlinx.coroutines.launch
 
 class ViewModel_Popular: ViewModel() {
@@ -26,7 +27,7 @@ class ViewModel_Popular: ViewModel() {
 
     private val listData = Pager(PagingConfig(pageSize = 1)) {
 
-        MoviePopularPagingSource()
+        MoviePopularPagingSource(ImplRepositoryAPI())
 
     }.flow.cachedIn(viewModelScope)
     val getListData = listData
