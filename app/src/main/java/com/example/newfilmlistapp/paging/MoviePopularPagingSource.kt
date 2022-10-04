@@ -2,7 +2,6 @@ package com.example.newfilmlistapp.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.newfilmlistapp.model.PopularWrapper
 import com.example.newfilmlistapp.model.ResultPopular
 import com.example.newfilmlistapp.view_model.ViewModel_Popular
 

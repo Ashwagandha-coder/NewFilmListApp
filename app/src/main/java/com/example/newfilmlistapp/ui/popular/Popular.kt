@@ -47,6 +47,21 @@ class Popular : Fragment(), ScrollBack {
         return binding.root
     }
 
+    private fun workWithViewModel2() {
+
+        viewModel.testPaginationRequestPopular()
+        viewModel.pager.observe(viewLifecycleOwner) {
+
+
+
+        }
+
+
+    }
+
+
+
+
 
     fun workWithViewModel() {
         viewModel.requestPopular()

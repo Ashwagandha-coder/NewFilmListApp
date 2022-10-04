@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.example.newfilmlistapp.model.PopularWrapper
+import com.example.newfilmlistapp.model.ResultPopular
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
 import com.example.newfilmlistapp.paging.MoviePopularPagingSource
@@ -17,6 +18,9 @@ class ViewModel_Popular: ViewModel() {
 
     private val mutableLiveData_popularMovie: MutableLiveData<PopularWrapper> = MutableLiveData()
     val popularMovie = mutableLiveData_popularMovie
+
+    private val mutableLiveData_pager: MutableLiveData<Pager<Int,ResultPopular>> = MutableLiveData()
+    val pager = mutableLiveData_pager
 
 
     fun requestPopular() {
@@ -43,11 +47,14 @@ class ViewModel_Popular: ViewModel() {
 
         viewModelScope.launch {
 
+            val popularMovie = Pager(PagingConfig(pageSize = 1)) {
 
+                MoviePopularPagingSource()
 
+            }
 
+            mutableLiveData_pager.value = popularMovie
         }
-
 
     }
 
@@ -65,11 +72,7 @@ class ViewModel_Popular: ViewModel() {
 
     suspend fun testGetPopularMovie() {
 
-        val popularMovie = Pager(PagingConfig(pageSize = 1)) {
 
-            MoviePopularPagingSource()
-
-        }
 
 
 
