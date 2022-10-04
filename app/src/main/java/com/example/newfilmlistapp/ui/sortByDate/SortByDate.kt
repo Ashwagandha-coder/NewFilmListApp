@@ -24,8 +24,6 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private val viewModel: ViewModel_SortByDate by lazy {
         ViewModelProvider(this).get(ViewModel_SortByDate::class.java)
     }
-    private lateinit var spinnerYear: Spinner
-    private lateinit var spinnerGenres: Spinner
     private var movie_ID: Int = 0
 
     private lateinit var movieWrapper: MovieWrapper
@@ -146,8 +144,6 @@ class SortByDate : androidx.fragment.app.Fragment() {
     }
 
     fun initSpinners() {
-        spinnerYear = binding.years
-        spinnerGenres = binding.genre
 
 
         viewModel.requestGenres()
