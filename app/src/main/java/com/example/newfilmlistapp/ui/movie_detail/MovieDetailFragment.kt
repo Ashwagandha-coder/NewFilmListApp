@@ -25,7 +25,7 @@ class MovieDetailFragment : Fragment() {
         ViewModelProvider(this).get(MovieDetailViewModel::class.java)
     }
 
-    private val args: MovieDetailArgs by navArgs()
+    private val args: MovieDetailFragmentArgs by navArgs()
 
 
 

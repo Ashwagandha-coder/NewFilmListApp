@@ -1,6 +1,7 @@
 package com.example.newfilmlistapp.ui.movie_recomendation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -98,7 +99,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
 
     private fun bindGenres() {
-
+        viewModel.requestGenres()
         viewModel.genres.observe(viewLifecycleOwner)  {
                 setupGenres(it.genres)
         }
@@ -133,6 +134,10 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
             positionGenre = position
 
+            Log.d(MovieRecomendationFragment::class.java.name, "string Name  " + genres.get(position).name)
+
+            listPopupWindowButton.text = genres.get(position).name
+
             // Dismiss popup.
             listPopupWindow.dismiss()
         }
@@ -153,7 +158,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         listPopupWindow.anchorView = listPopupWindowButton
 
         val listYear = mutableListOf<Int>()
-        for (i in 2022..1874) {
+        for (i in 2022 downTo 1874) {
             listYear.add(i)
         }
         val arrayAdapterYear = ArrayAdapter(
@@ -169,12 +174,19 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
             positionYear = position
 
+            Log.d(MovieRecomendationFragment::class.java.name,"string with Name  " + listYear.get(position).toString())
+
+            listPopupWindowButton.text = listYear.get(position).toString()
+
             // Dismiss popup.
             listPopupWindow.dismiss()
         }
 
         // Show list popup window on button click.
-        listPopupWindowButton.setOnClickListener { v: View? -> listPopupWindow.show() }
+        listPopupWindowButton.setOnClickListener { v: View? -> listPopupWindow.show()
+
+
+        }
 
 
 
