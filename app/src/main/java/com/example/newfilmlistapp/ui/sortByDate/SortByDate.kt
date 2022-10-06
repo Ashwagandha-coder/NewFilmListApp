@@ -8,7 +8,6 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.newfilmlistapp.view_model.ViewModel_SortByDate
