@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -54,8 +55,7 @@ class MovieDetail : Fragment() {
 
         binding.topNavBar.returnImageView.setOnClickListener {
 
-            val action = MovieDetailDirections.actionMovieDetailToRandom()
-            it.findNavController().navigate(action)
+            findNavController().popBackStack()
 
         }
 
