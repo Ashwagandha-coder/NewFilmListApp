@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.ui.sortByDate
+package com.example.newfilmlistapp.ui.MovieRecomendation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -105,8 +105,6 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
 
 
-
-
         }
     }
 
@@ -128,7 +126,6 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
 
     }
-
 
     private fun setupGenres(genres: List<Genres>) {
         val arrayAdapterGenre = ArrayAdapter(
