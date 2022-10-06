@@ -53,19 +53,12 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
         binding = FragmentMovieRecomendationBinding.inflate(inflater, container, false)
 
         bindGenres()
-        setupYears()
+        bindYears()
         setListenerButtonRequest()
         toMovieDetail()
 
         return binding.root
     }
-
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-
 
 
     private fun bindGenres() {
@@ -74,20 +67,12 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
                 setupGenres(it.genres)
         }
 
-
     }
-
 
     private fun bindYears() {
 
-        viewModel.movie.observe(viewLifecycleOwner) {
-
-        }
-
+        setupYears()
     }
-
-
-
 
 
     private fun setupGenres(genres: List<Genres>) {
@@ -167,15 +152,14 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
             viewModel.requestMovie(positionYear,positionGenre)
 
 
-
         }
 
     }
 
 
-    fun toMovieDetail() {
+    private fun toMovieDetail() {
 
-        binding.pictureFilm.setOnClickListener {
+        binding.cardView.setOnClickListener {
 
             val action = MovieRecomendationDirections.actionRandomToMovieDetail(movie_ID,poster_path,vote_average)
             it.findNavController().navigate(action)
@@ -183,6 +167,8 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
         }
 
     }
+
+
 
 
 }
