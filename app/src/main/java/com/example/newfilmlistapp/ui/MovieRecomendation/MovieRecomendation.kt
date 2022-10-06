@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.databinding.FragmentMovieRecomendationBinding
 import com.example.newfilmlistapp.view_model.ViewModel_SortByDate
 import com.example.newfilmlistapp.model.Genres
@@ -23,9 +24,12 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
     private lateinit var movieWrapper: MovieWrapper
 
     // for navigation
-    private var movie_ID: Int = 0
-    private lateinit var poster_path: String
-    private var vote_average: Float = 0.0F
+
+
+
+//    private var movie_ID: Int = 0
+//    private lateinit var poster_path: String
+//    private var vote_average: Float = 0.0F
 
 
 
@@ -46,12 +50,10 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
     ): View? {
         binding = FragmentMovieRecomendationBinding.inflate(inflater, container, false)
 
-        workWithViewModel()
+        bindGenres()
         setupYears()
         setListenerButton()
         toMovieDetail()
-
-        restoreSaveData()
 
         return binding.root
     }
@@ -64,22 +66,25 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
 
 
-    fun workWithViewModel() {
+    private fun bindGenres() {
 
-
-
-        viewModel.genres
-            .observe(viewLifecycleOwner)  {
+        viewModel.genres.observe(viewLifecycleOwner)  {
                 setupGenres(it.genres)
-            }
+        }
+
+
+    }
+
+
+    private fun bindYears() {
+
         viewModel.movie.observe(viewLifecycleOwner) {
 
             movieWrapper = it
 
             val index = viewModel.array_index
 
-            binding.textBelowPictureFilm.text =
-                it?.results?.get(index)?.originalTitle ?: "75 string SortByDate"
+            binding.textBelowPictureFilm.text = it?.results?.get(index)?.originalTitle ?: "75 string SortByDate"
             val tv_below_poster = it?.results?.get(index)?.originalTitle ?: "76 string SortByDate"
 
             val poster_path_local = it?.results?.get(index)?.posterPath ?: "77 string SortByDate"
@@ -88,7 +93,7 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
 
             Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500${poster_path_local}")
+                .load(BASE_URL_FOR_PICTURE + "${poster_path_local}")
                 .into(binding.pictureFilm)
 
             // movieID
@@ -106,26 +111,10 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
 
         }
-    }
-
-    private fun restoreSaveData() {
-
-        if (viewModel.getYaerIndex != 0 && viewModel.getGenreIndex != 0) {
-
-            binding.years.setSelection(viewModel.getYaerIndex)
-            binding.genre.setSelection(viewModel.getGenreIndex)
-            binding.textBelowPictureFilm.text =
-                movieWrapper.results.get(viewModel.array_index).originalTitle
-
-            Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500${movieWrapper.results.get(viewModel.array_index).posterPath}")
-                .into(binding.pictureFilm)
-
-
-        }
-
 
     }
+
+
 
     private fun setupGenres(genres: List<Genres>) {
         val arrayAdapterGenre = ArrayAdapter(
