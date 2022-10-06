@@ -15,14 +15,13 @@ import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.databinding.FragmentMovieRecomendationBinding
 import com.example.newfilmlistapp.view_model.MovieRecomendationViewModel
 import com.example.newfilmlistapp.model.Genres
-import com.example.newfilmlistapp.model.MovieWrapper
 
 
 class MovieRecomendation : androidx.fragment.app.Fragment() {
 
     private lateinit var binding: FragmentMovieRecomendationBinding
     private val viewModel: MovieRecomendationViewModel by viewModels()
-    private lateinit var movieWrapper: MovieWrapper
+
 
     private var positionGenre = 0
     private var positionYear = 0
