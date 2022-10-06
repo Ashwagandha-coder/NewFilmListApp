@@ -2,6 +2,7 @@ package com.example.newfilmlistapp.ui.popular
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
@@ -10,6 +11,7 @@ import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.model.ResultPopular
 import com.example.newfilmlistapp.ui.UserDiffCallBack
+import com.example.newfilmlistapp.ui.movie_detail.MovieDetailFragment
 
 
 class PopularAdapter() : PagingDataAdapter<ResultPopular,PopularViewHolder>(UserDiffCallBack()) {
@@ -49,6 +51,19 @@ class PopularAdapter() : PagingDataAdapter<ResultPopular,PopularViewHolder>(User
                 .load(BASE_URL_FOR_PICTURE + movie.posterPath)
                 .apply(RequestOptions().centerCrop())
                 .into(viewHolder.posterPath)
+        }
+
+        toMovieDetail(viewHolder)
+
+    }
+
+    private fun toMovieDetail(viewHolder: PopularViewHolder) {
+
+        viewHolder.cardView.setOnClickListener {
+
+            val action = PopularFragmentDirections.actionPopularToMovieDetailPopular()
+            it.findNavController().navigate(action)
+
         }
 
     }
