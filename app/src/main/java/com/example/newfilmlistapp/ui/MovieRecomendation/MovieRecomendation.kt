@@ -61,6 +61,18 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
     }
 
 
+    private fun bindInfoMovie() {
+
+        viewModel.movie.observe(viewLifecycleOwner) {
+
+
+
+        }
+
+
+    }
+
+
     private fun bindGenres() {
 
         viewModel.genres.observe(viewLifecycleOwner)  {
