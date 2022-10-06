@@ -127,6 +127,13 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
     private fun setupYears() {
 
+        val listPopupWindowButton = binding.btnPopupMenuYear
+        val listPopupWindow = ListPopupWindow(this.requireContext(), null, androidx.appcompat.R.attr.listPopupWindowStyle)
+
+
+        // Set button as the list popup's anchor
+        listPopupWindow.anchorView = listPopupWindowButton
+
         val listYear = mutableListOf<Int>()
         for (i in 2022..1874) {
             listYear.add(i)
@@ -136,6 +143,20 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
             android.R.layout.simple_spinner_dropdown_item,
             listYear
         )
+
+        listPopupWindow.setAdapter(arrayAdapterYear)
+
+        // Set list popup's item click listener
+        listPopupWindow.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
+
+            positionYear = position
+
+            // Dismiss popup.
+            listPopupWindow.dismiss()
+        }
+
+        // Show list popup window on button click.
+        listPopupWindowButton.setOnClickListener { v: View? -> listPopupWindow.show() }
 
 
 
