@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
@@ -20,9 +21,7 @@ import com.example.newfilmlistapp.model.MovieWrapper
 class SortByDate : androidx.fragment.app.Fragment() {
 
     private lateinit var binding: FragmentSortByDateBinding
-    private val viewModel: ViewModel_SortByDate by lazy {
-        ViewModelProvider(this).get(ViewModel_SortByDate::class.java)
-    }
+    private val viewModel: ViewModel_SortByDate by viewModels()
     private lateinit var movieWrapper: MovieWrapper
 
     // for navigation
