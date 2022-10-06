@@ -1,10 +1,10 @@
-package com.example.newfilmlistapp.ui.MovieRecomendation
+package com.example.newfilmlistapp.ui.movie_recomendation
 
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 
-class ImplSpinnerYear : OnItemSelectedListener {
+class ImplSpinnerGenre : OnItemSelectedListener {
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
@@ -16,6 +16,6 @@ class ImplSpinnerYear : OnItemSelectedListener {
 
     }
 
-
     fun returnPosition(position: Int): Int = position
+
 }

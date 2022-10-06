@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.ui.MovieRecomendation
+package com.example.newfilmlistapp.ui.movie_recomendation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,7 @@ import com.example.newfilmlistapp.view_model.MovieRecomendationViewModel
 import com.example.newfilmlistapp.model.Genres
 
 
-class MovieRecomendation : androidx.fragment.app.Fragment() {
+class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
     private lateinit var binding: FragmentMovieRecomendationBinding
     private val viewModel: MovieRecomendationViewModel by viewModels()
@@ -196,7 +196,7 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
         binding.cardView.setOnClickListener {
 
-            val action = MovieRecomendationDirections.actionRandomToMovieDetail(movie_ID,poster_path,vote_average)
+            val action = MovieRecomendationFragmentDirections.actionRandomToMovieDetail(movie_ID,poster_path,vote_average)
             it.findNavController().navigate(action)
 
         }

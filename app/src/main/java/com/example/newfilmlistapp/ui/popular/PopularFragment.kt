@@ -14,7 +14,7 @@ import com.example.newfilmlistapp.model.ResultPopular
 import kotlinx.coroutines.launch
 
 
-class Popular : Fragment() {
+class PopularFragment : Fragment() {
 
     // field
 

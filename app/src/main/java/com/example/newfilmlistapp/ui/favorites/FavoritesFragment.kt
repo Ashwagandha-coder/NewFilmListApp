@@ -4,17 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
-import com.example.newfilmlistapp.model.ResultPopular
-import com.example.newfilmlistapp.ui.popular.PopularAdapter
-import com.example.newfilmlistapp.ui.recycler_view.RecyclerViewScrollListener
-import com.example.newfilmlistapp.ui.recycler_view.ScrollBack
-import com.example.newfilmlistapp.view_model.FavoritesViewModel
 
 
-class Favorites : androidx.fragment.app.Fragment() {
+class FavoritesFragment : androidx.fragment.app.Fragment() {
 /*
     private lateinit var binding: FragmentFavoritesBinding
 

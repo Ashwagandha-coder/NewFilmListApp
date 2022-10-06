@@ -17,7 +17,7 @@ import com.example.newfilmlistapp.view_model.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 
 
-class MovieDetail : Fragment() {
+class MovieDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
 
