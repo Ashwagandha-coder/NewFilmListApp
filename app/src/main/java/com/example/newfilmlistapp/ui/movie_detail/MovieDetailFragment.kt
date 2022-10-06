@@ -2,6 +2,7 @@ package com.example.newfilmlistapp.ui.movie_detail
 
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -134,6 +135,20 @@ class MovieDetailFragment : Fragment() {
                 }
             }
 
+            if (it.tagline.isEmpty()) binding.movieTagline.visibility = View.GONE
+            else {
+                binding.movieTagline.apply {
+                    text = it.tagline
+                }
+            }
+
+            if (it.overview.isEmpty()) binding.movieHeadline.visibility = View.GONE
+            else {
+                binding.movieHeadline.apply {
+                    text = context.getString(R.string.overview)
+                }
+            }
+
 
             binding.progressBar.apply {
                 progress = (vote_average * 10).toInt()
@@ -157,10 +172,10 @@ class MovieDetailFragment : Fragment() {
                 .apply(RequestOptions().centerCrop())
                 .into(binding.poster)
 
-            binding.tvMovieName.text = it.title
             binding.tvDescription.text = it.overview
            // binding.tvRatingValue.text = it.voteAverage.toString()
-            binding.tvYear.text = it.releaseDate.substring(0,3)
+            Log.d(MovieDetailFragment::class.java.name,"realease Date " + it.releaseDate.substring(0,3))
+
 
 
         }
