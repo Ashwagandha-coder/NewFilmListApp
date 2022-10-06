@@ -8,17 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.view_model.ViewModel_Popular
+import com.example.newfilmlistapp.view_model.PopularViewModel
 import com.example.newfilmlistapp.databinding.FragmentPopularBinding
 import com.example.newfilmlistapp.model.ResultPopular
-import com.example.newfilmlistapp.ui.recycler_view.RecyclerViewScrollListener
-import com.example.newfilmlistapp.ui.recycler_view.ScrollBack
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
-class Popular : Fragment() {
+class PopularFragment : Fragment() {
 
     // field
 
@@ -28,8 +24,8 @@ class Popular : Fragment() {
 
     private lateinit var binding: FragmentPopularBinding
 
-    private val viewModel: ViewModel_Popular by lazy {
-        ViewModelProvider(this).get(ViewModel_Popular::class.java)
+    private val viewModel: PopularViewModel by lazy {
+        ViewModelProvider(this).get(PopularViewModel::class.java)
     }
 
     private val popularAdapter: PopularAdapter = PopularAdapter()

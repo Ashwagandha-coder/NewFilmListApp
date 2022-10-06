@@ -8,7 +8,7 @@ import com.example.newfilmlistapp.network.LoadingMovieDBService
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
+class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
 
     private val mutableLiveData_movie: MutableLiveData<MovieWrapper> = MutableLiveData()
@@ -47,7 +47,7 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
             }
             catch (e: Exception) {
 
-                Log.d(ViewModel_SortByDate::class.java.name,"Error Request -  Genres")
+                Log.d(MovieRecomendationViewModel::class.java.name,"Error Request -  Genres")
                 e.printStackTrace()
             }
 
@@ -75,11 +75,11 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
                 number_random = Random.Default.nextInt(0,9)
 
-                Log.d(ViewModel_SortByDate::class.java.name,"Random number - $number_random")
+                Log.d(MovieRecomendationViewModel::class.java.name,"Random number - $number_random")
 
                 movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
 
-                Log.d(ViewModel_SortByDate::class.java.name,movie_ID + " " + "Значение movie_ID")
+                Log.d(MovieRecomendationViewModel::class.java.name,movie_ID + " " + "Значение movie_ID")
 
 
                 year_index = year
@@ -89,7 +89,7 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
             }
             catch (e: Exception) {
-                Log.d(ViewModel_SortByDate::class.java.name,"Error Request -  Movie")
+                Log.d(MovieRecomendationViewModel::class.java.name,"Error Request -  Movie")
                 e.printStackTrace()
             }
 
@@ -105,7 +105,7 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf<String>(genre))
 
-        Log.d(ViewModel_SortByDate::class.java.name,"request OK - Random Movie ")
+        Log.d(MovieRecomendationViewModel::class.java.name,"request OK - Random Movie ")
 
         return result
 
@@ -119,7 +119,7 @@ class ViewModel_SortByDate : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getGenres()
 
-         Log.d(ViewModel_SortByDate::class.java.name,"request OK - Genres")
+         Log.d(MovieRecomendationViewModel::class.java.name,"request OK - Genres")
 
         return result
     }

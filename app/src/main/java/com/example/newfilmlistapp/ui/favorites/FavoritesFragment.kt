@@ -4,29 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newfilmlistapp.databinding.ActivityMainBinding
-import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
-import com.example.newfilmlistapp.databinding.FragmentPopularBinding
-import com.example.newfilmlistapp.model.ResultPopular
-import com.example.newfilmlistapp.ui.popular.PopularAdapter
-import com.example.newfilmlistapp.ui.recycler_view.RecyclerViewScrollListener
-import com.example.newfilmlistapp.ui.recycler_view.ScrollBack
-import com.example.newfilmlistapp.view_model.ViewModel_Favorites
-import com.example.newfilmlistapp.view_model.ViewModel_Popular
 
 
-class Favorites : androidx.fragment.app.Fragment(), ScrollBack {
-
+class FavoritesFragment : androidx.fragment.app.Fragment() {
+/*
     private lateinit var binding: FragmentFavoritesBinding
 
     private var allMovies = arrayListOf<ResultPopular>()
     private var totalResults: Int = -1
     private var isLoading: Boolean = false
 
-    private val viewModel: ViewModel_Favorites by lazy {
-        ViewModelProvider(this).get(ViewModel_Favorites::class.java)
+    private val viewModel: FavoritesViewModel by lazy {
+        ViewModelProvider(this).get(FavoritesViewModel::class.java)
     }
 
     private val favoritesAdapter: PopularAdapter = PopularAdapter()
@@ -91,5 +80,18 @@ class Favorites : androidx.fragment.app.Fragment(), ScrollBack {
 
 
 
+
+}
+
+
+ */
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
 }

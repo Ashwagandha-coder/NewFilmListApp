@@ -10,7 +10,7 @@ import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
 import kotlinx.coroutines.launch
 
-class ViewModel_MovieDetail: ViewModel() {
+class MovieDetailViewModel: ViewModel() {
 
     private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
@@ -44,7 +44,7 @@ class ViewModel_MovieDetail: ViewModel() {
 
 
                 // Movie Detail
-                Log.d(ViewModel_MovieDetail::class.java.name,"Значение movieID before request - $id") // todo: вставить значение movieID
+                Log.d(MovieDetailViewModel::class.java.name,"Значение movieID before request - $id") // todo: вставить значение movieID
 
                 mutableLiveData_movie_detail.value = getMovieDetail(id.toString())!!
 
@@ -52,8 +52,8 @@ class ViewModel_MovieDetail: ViewModel() {
             }
 
             catch (e: Exception) {
-                Log.d(ViewModel_SortByDate::class.java.name,"Значение movieID before request with error - $id")
-                Log.d(ViewModel_SortByDate::class.java.name,"Error Request -  Movie Detail")
+                Log.d(MovieRecomendationViewModel::class.java.name,"Значение movieID before request with error - $id")
+                Log.d(MovieRecomendationViewModel::class.java.name,"Error Request -  Movie Detail")
                 e.printStackTrace()
             }
 
@@ -68,7 +68,7 @@ class ViewModel_MovieDetail: ViewModel() {
 
         val result = loadingMovieDBService.getMovieDetail(movieID)
 
-        Log.d(ViewModel_SortByDate::class.java.name, "request OK - Movie Detail ")
+        Log.d(MovieRecomendationViewModel::class.java.name, "request OK - Movie Detail ")
 
 
         return result
