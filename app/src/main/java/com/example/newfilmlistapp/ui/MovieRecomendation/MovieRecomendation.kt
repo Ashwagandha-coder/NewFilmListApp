@@ -29,11 +29,9 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
     // for navigation
 
-
-
-//    private var movie_ID: Int = 0
-//    private lateinit var poster_path: String
-//    private var vote_average: Float = 0.0F
+    private var movie_ID: Int = 0
+    private lateinit var poster_path: String
+    private var vote_average: Float = 0.0F
 
 
 
@@ -92,6 +90,11 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
                 it.text = movie.title
             }
+
+            movie_ID = movie.id.toInt()
+            poster_path = movie.posterPath
+            vote_average = movie.voteAverage.toFloat()
+
 
 
         }
