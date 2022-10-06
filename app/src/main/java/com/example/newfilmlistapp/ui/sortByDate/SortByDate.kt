@@ -7,11 +7,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
-import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.ViewModel_SortByDate
 import com.example.newfilmlistapp.databinding.FragmentSortByDateBinding
 import com.example.newfilmlistapp.databinding.FragmentTestNewFragmentBinding
@@ -28,7 +26,6 @@ class SortByDate : androidx.fragment.app.Fragment() {
     private lateinit var movieWrapper: MovieWrapper
 
     // for navigation
-
     private var movie_ID: Int = 0
     private lateinit var poster_path: String
     private var vote_average: Float = 0.0F
@@ -199,7 +196,7 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     fun setListenerButton() {
 
-        binding.common.setOnClickListener {
+        binding.request.setOnClickListener {
 
             val year = getItemSpinnerYear()
             val genre = getItemSpinnerGenre()
@@ -255,15 +252,12 @@ class SortByDate : androidx.fragment.app.Fragment() {
 
     fun toMovieDetail() {
 
-        binding.pictureFilm.setOnClickListener(object : View.OnClickListener {
+        binding.pictureFilm.setOnClickListener {
 
-            override fun onClick(p0: View?) {
+            val action = SortByDateDirections.actionRandomToMovieDetail(movie_ID,poster_path,vote_average)
+            it.findNavController().navigate(action) ?: "191 string in SortByDate"
 
-                val action = SortByDateDirections.actionRandomToMovieDetail(movie_ID,poster_path,vote_average)
-                p0?.findNavController()?.navigate(action) ?: "191 string in SortByDate"
-
-            }
-        })
+        }
 
     }
 
