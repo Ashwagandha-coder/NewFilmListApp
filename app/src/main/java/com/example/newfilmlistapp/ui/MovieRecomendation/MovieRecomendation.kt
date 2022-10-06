@@ -9,6 +9,9 @@ import android.widget.ArrayAdapter
 import android.widget.ListPopupWindow
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.databinding.FragmentMovieRecomendationBinding
 import com.example.newfilmlistapp.view_model.MovieRecomendationViewModel
 import com.example.newfilmlistapp.model.Genres
@@ -64,6 +67,31 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
         viewModel.movie.observe(viewLifecycleOwner) {
 
+            val random = (0..19).random()
+            val movie = it.results[random]
+
+            Glide.with(this)
+                .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                .apply(RequestOptions().centerCrop())
+                .into(binding.posterPath)
+
+
+            binding.overview.also {
+
+                it.text = movie.overview
+
+            }
+
+            binding.releaseDate.also {
+
+                it.text = movie.releaseDate
+
+            }
+
+            binding.title.also {
+
+                it.text = movie.title
+            }
 
 
         }
