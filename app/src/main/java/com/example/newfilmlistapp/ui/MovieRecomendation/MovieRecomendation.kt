@@ -10,9 +10,6 @@ import android.widget.ArrayAdapter
 import android.widget.ListPopupWindow
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
-import com.bumptech.glide.Glide
-import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
-import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.databinding.FragmentMovieRecomendationBinding
 import com.example.newfilmlistapp.view_model.ViewModel_SortByDate
 import com.example.newfilmlistapp.model.Genres
@@ -57,7 +54,7 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
         bindGenres()
         setupYears()
-        setListenerButton()
+        setListenerButtonRequest()
         toMovieDetail()
 
         return binding.root
@@ -163,58 +160,15 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
     }
 
 
-    fun setListenerButton() {
+    private fun setListenerButtonRequest() {
 
         binding.request.setOnClickListener {
 
-            val year = getItemSpinnerYear()
-            val genre = getItemSpinnerGenre()
-
-            viewModel.requestMovie(year, genre)
+            viewModel.requestMovie(positionYear,positionGenre)
 
 
 
         }
-
-    }
-
-
-    fun getItemSpinnerGenre(): Int {
-
-        var result: Int = 0
-
-        binding.genre.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                result = p2
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                // Stub
-            }
-        }
-
-        return result
-
-    }
-
-
-    fun getItemSpinnerYear(): Int {
-
-        var result: Int = 0
-
-        binding.years.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                result = p0!!.adapter.getItem(p2) as Int
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-                // Stub
-            }
-
-        }
-
-        return result
-
 
     }
 
