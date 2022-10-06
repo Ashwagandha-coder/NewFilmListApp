@@ -6,15 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newfilmlistapp.databinding.ActivityMainBinding
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
-import com.example.newfilmlistapp.databinding.FragmentPopularBinding
 import com.example.newfilmlistapp.model.ResultPopular
 import com.example.newfilmlistapp.ui.popular.PopularAdapter
 import com.example.newfilmlistapp.ui.recycler_view.RecyclerViewScrollListener
 import com.example.newfilmlistapp.ui.recycler_view.ScrollBack
-import com.example.newfilmlistapp.view_model.ViewModel_Favorites
-import com.example.newfilmlistapp.view_model.ViewModel_Popular
+import com.example.newfilmlistapp.view_model.FavoritesViewModel
 
 
 class Favorites : androidx.fragment.app.Fragment(), ScrollBack {
@@ -25,8 +22,8 @@ class Favorites : androidx.fragment.app.Fragment(), ScrollBack {
     private var totalResults: Int = -1
     private var isLoading: Boolean = false
 
-    private val viewModel: ViewModel_Favorites by lazy {
-        ViewModelProvider(this).get(ViewModel_Favorites::class.java)
+    private val viewModel: FavoritesViewModel by lazy {
+        ViewModelProvider(this).get(FavoritesViewModel::class.java)
     }
 
     private val favoritesAdapter: PopularAdapter = PopularAdapter()

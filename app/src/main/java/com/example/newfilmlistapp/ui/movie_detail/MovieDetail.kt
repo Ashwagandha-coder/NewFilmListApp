@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.view_model.ViewModel_MovieDetail
+import com.example.newfilmlistapp.view_model.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 
 
@@ -22,8 +21,8 @@ class MovieDetail : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
 
-    private val viewModel: ViewModel_MovieDetail by lazy {
-        ViewModelProvider(this).get(ViewModel_MovieDetail::class.java)
+    private val viewModel: MovieDetailViewModel by lazy {
+        ViewModelProvider(this).get(MovieDetailViewModel::class.java)
     }
 
     private val args: MovieDetailArgs by navArgs()

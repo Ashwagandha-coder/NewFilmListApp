@@ -5,7 +5,7 @@ import com.example.newfilmlistapp.model.PopularWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
 import com.example.newfilmlistapp.repository.RepositoryAPI
-import com.example.newfilmlistapp.view_model.ViewModel_Popular
+import com.example.newfilmlistapp.view_model.PopularViewModel
 
 class ImplRepositoryAPI: RepositoryAPI {
 
@@ -17,7 +17,7 @@ class ImplRepositoryAPI: RepositoryAPI {
 
         val result = loadingMovieDBService.getPopularMovie()
 
-        Log.d(ViewModel_Popular::class.java.name,"request OK - Popular Movie")
+        Log.d(PopularViewModel::class.java.name,"request OK - Popular Movie")
 
         return result
 

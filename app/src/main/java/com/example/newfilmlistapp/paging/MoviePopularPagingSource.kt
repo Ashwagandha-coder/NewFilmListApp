@@ -4,7 +4,6 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.newfilmlistapp.model.ResultPopular
 import com.example.newfilmlistapp.repository.RepositoryAPI
-import com.example.newfilmlistapp.view_model.ViewModel_Popular
 
 class MoviePopularPagingSource(private val repositoryAPI: RepositoryAPI): PagingSource<Int, ResultPopular>() {
 

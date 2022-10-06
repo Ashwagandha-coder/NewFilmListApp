@@ -15,7 +15,7 @@ import com.example.newfilmlistapp.paging.MoviePopularPagingSource
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
 import kotlinx.coroutines.launch
 
-class ViewModel_Popular: ViewModel() {
+class PopularViewModel: ViewModel() {
 
 
     private val mutableLiveData_popularMovie: MutableLiveData<PopularWrapper> = MutableLiveData()
@@ -44,7 +44,7 @@ class ViewModel_Popular: ViewModel() {
             }
 
             catch (e: Exception) {
-                Log.d(ViewModel_Popular::class.java.name,"request Error - Popular Movie")
+                Log.d(PopularViewModel::class.java.name,"request Error - Popular Movie")
                 e.printStackTrace()
             }
 
@@ -60,7 +60,7 @@ class ViewModel_Popular: ViewModel() {
 
         val result = loadingMovieDBService.getPopularMovie()
 
-        Log.d(ViewModel_Popular::class.java.name,"request OK - Popular Movie")
+        Log.d(PopularViewModel::class.java.name,"request OK - Popular Movie")
 
         return result
 

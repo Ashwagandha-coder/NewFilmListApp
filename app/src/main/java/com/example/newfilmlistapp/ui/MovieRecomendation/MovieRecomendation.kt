@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.ListPopupWindow
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import com.example.newfilmlistapp.databinding.FragmentMovieRecomendationBinding
-import com.example.newfilmlistapp.view_model.ViewModel_SortByDate
+import com.example.newfilmlistapp.view_model.MovieRecomendationViewModel
 import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.MovieWrapper
 
@@ -19,7 +18,7 @@ import com.example.newfilmlistapp.model.MovieWrapper
 class MovieRecomendation : androidx.fragment.app.Fragment() {
 
     private lateinit var binding: FragmentMovieRecomendationBinding
-    private val viewModel: ViewModel_SortByDate by viewModels()
+    private val viewModel: MovieRecomendationViewModel by viewModels()
     private lateinit var movieWrapper: MovieWrapper
 
     private var positionGenre = 0
