@@ -36,24 +36,18 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
 
 
-    // Save Date
-
-//    private var year: Int = 0
-//    private var genre: Int = 0
-//    private var poster_path: String = ""
-//    private var tv_below_poster: String = ""
-
 
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMovieRecomendationBinding.inflate(inflater, container, false)
 
         bindGenres()
         bindYears()
+        bindInfoMovie()
         setListenerButtonRequest()
         toMovieDetail()
 
