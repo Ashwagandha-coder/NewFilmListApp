@@ -12,7 +12,6 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.newfilmlistapp.databinding.FragmentMovieRecomendationBinding
 import com.example.newfilmlistapp.view_model.ViewModel_SortByDate
-import com.example.newfilmlistapp.databinding.FragmentTestNewFragmentBinding
 import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.MovieWrapper
 
@@ -28,8 +27,6 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
     private lateinit var poster_path: String
     private var vote_average: Float = 0.0F
 
-
-    private lateinit var binding_newFragment: FragmentTestNewFragmentBinding
 
 
 
@@ -161,36 +158,6 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
 
     }
 
-//    fun initSpinners() {
-//
-//
-//        viewModel.requestGenres()
-//
-//
-//        // init spinner genres
-//        val listGenres = resources.getStringArray(R.array.genres)
-//
-//
-//        // init spinner years
-//        val listYear = mutableListOf<Int>()
-//
-//        for (i in 2022..1874) {
-//            listYear.add(i)
-//        }
-//
-//
-//        val arrayAdapterYear = ArrayAdapter(
-//            requireContext(),
-//            android.R.layout.simple_spinner_dropdown_item,
-//            listYear
-//        )
-//
-//        binding.years.adapter = arrayAdapterYear
-//
-//
-//    }
-
-
 
     fun setListenerButton() {
 
@@ -253,62 +220,9 @@ class MovieRecomendation : androidx.fragment.app.Fragment() {
         binding.pictureFilm.setOnClickListener {
 
             val action = MovieRecomendationDirections.actionRandomToMovieDetail(movie_ID,poster_path,vote_average)
-            it.findNavController().navigate(action) ?: "191 string in SortByDate"
+            it.findNavController().navigate(action)
 
         }
-
-    }
-
-
-
-    // work with new fragment
-
-
-    private fun workWithViewModel2() {
-
-
-        viewModel.genres
-            .observe(viewLifecycleOwner)  {
-                setupGenres(it.genres)
-            }
-        viewModel.movie.observe(viewLifecycleOwner) {
-
-            movieWrapper = it
-
-            val index = viewModel.array_index
-
-            binding.textBelowPictureFilm.text =
-                it?.results?.get(index)?.originalTitle ?: "75 string SortByDate"
-            val tv_below_poster = it?.results?.get(index)?.originalTitle ?: "76 string SortByDate"
-
-            val poster_path_local = it?.results?.get(index)?.posterPath ?: "77 string SortByDate"
-
-            val vote_average_local = it?.results?.get(index)?.voteAverage
-
-
-            Glide.with(this)
-                .load("https://image.tmdb.org/t/p/w500${poster_path_local}")
-                .into(binding.pictureFilm)
-
-            // movieID
-
-            movie_ID = it.results.get(index).id.toInt()
-
-            // Poster Path
-
-            poster_path = poster_path_local
-
-            // Vote Average
-
-            vote_average = vote_average_local?.toFloat()!!
-
-
-
-
-
-        }
-
-
 
     }
 
