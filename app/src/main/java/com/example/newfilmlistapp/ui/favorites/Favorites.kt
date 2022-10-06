@@ -14,8 +14,8 @@ import com.example.newfilmlistapp.ui.recycler_view.ScrollBack
 import com.example.newfilmlistapp.view_model.FavoritesViewModel
 
 
-class Favorites : androidx.fragment.app.Fragment(), ScrollBack {
-
+class Favorites : androidx.fragment.app.Fragment() {
+/*
     private lateinit var binding: FragmentFavoritesBinding
 
     private var allMovies = arrayListOf<ResultPopular>()
@@ -88,5 +88,18 @@ class Favorites : androidx.fragment.app.Fragment(), ScrollBack {
 
 
 
+
+}
+
+
+ */
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
 
 }
