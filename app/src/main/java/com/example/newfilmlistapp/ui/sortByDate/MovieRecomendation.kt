@@ -17,7 +17,7 @@ import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.model.MovieWrapper
 
 
-class SortByDate : androidx.fragment.app.Fragment() {
+class MovieRecomendation : androidx.fragment.app.Fragment() {
 
     private lateinit var binding: FragmentSortByDateBinding
     private val viewModel: ViewModel_SortByDate by viewModels()
