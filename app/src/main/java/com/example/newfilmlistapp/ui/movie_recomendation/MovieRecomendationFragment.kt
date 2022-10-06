@@ -12,6 +12,7 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
+import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.databinding.FragmentMovieRecomendationBinding
 import com.example.newfilmlistapp.view_model.MovieRecomendationViewModel
 import com.example.newfilmlistapp.model.Genres
@@ -122,7 +123,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         val arrayAdapterGenre = ArrayAdapter(
             requireContext(),
-            android.R.layout.simple_spinner_dropdown_item,
+            R.layout.item_popup_menu,
             genres.map { it.name }
         )
         listPopupWindow.setAdapter(arrayAdapterGenre)
@@ -157,7 +158,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         }
         val arrayAdapterYear = ArrayAdapter(
             requireContext(),
-            android.R.layout.simple_spinner_dropdown_item,
+            R.layout.item_popup_menu,
             listYear
         )
 
