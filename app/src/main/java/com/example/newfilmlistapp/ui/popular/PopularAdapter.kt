@@ -51,15 +51,15 @@ class PopularAdapter() : PagingDataAdapter<ResultPopular,PopularViewHolder>(User
                 .into(viewHolder.posterPath)
         }
 
-        toMovieDetail(viewHolder)
+        toMovieDetail(viewHolder, movie.id.toInt(),movie.posterPath, movie.voteAverage.toFloat())
 
     }
 
-    private fun toMovieDetail(viewHolder: PopularViewHolder) {
+    private fun toMovieDetail(viewHolder: PopularViewHolder, movieID: Int, poster_path: String, vote_average: Float) {
 
         viewHolder.cardView.setOnClickListener {
 
-            val action = PopularFragmentDirections.actionPopularToMovieDetailPopular()
+            val action = PopularFragmentDirections.actionPopularToMovieDetailPopular(movieID,poster_path,vote_average)
             it.findNavController().navigate(action)
 
         }
