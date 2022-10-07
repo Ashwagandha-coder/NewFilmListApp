@@ -25,7 +25,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private val viewModel: MovieRecomendationViewModel by viewModels()
 
 
-    private var genre: Int = 0
+    private lateinit var genre: String
     private var year = 0
 
     // for navigation
@@ -131,13 +131,13 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         // Set list popup's item click listener
         listPopupWindow.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
 
-            this.genre = position
+            this.genre = genres[position].id.toString()
 
             Log.d(MovieRecomendationFragment::class.java.name,"position genre: " + position)
 
-            Log.d(MovieRecomendationFragment::class.java.name, "genre  " + genres.get(position).id)
+            Log.d(MovieRecomendationFragment::class.java.name, "genre  " + genres[position].id.toString())
 
-            listPopupWindowButton.text = genres.get(position).name
+            listPopupWindowButton.text = genres[position].name
 
             // Dismiss popup.
             listPopupWindow.dismiss()
@@ -173,11 +173,11 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         // Set list popup's item click listener
         listPopupWindow.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
 
-            year = position
+            year = listYear[position]
 
             Log.d(MovieRecomendationFragment::class.java.name,"position year: " + position)
 
-            Log.d(MovieRecomendationFragment::class.java.name,"year  " + listYear.get(position).toString())
+            Log.d(MovieRecomendationFragment::class.java.name,"year  " + listYear[position].toString())
 
             listPopupWindowButton.text = listYear.get(position).toString()
 

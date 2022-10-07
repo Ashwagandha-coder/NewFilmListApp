@@ -60,9 +60,7 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
             try {
 
-                genresWrapper = mutableLiveData_genres.value!!
-
-                val variable = getMovie(2021,"18")
+                val variable = getMovie(2017,"20")
 
                 mutableLiveData_default_movie.value = variable
 
@@ -91,16 +89,14 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
     }
 
 
-
-
-    fun requestMovie(year: Int, index: Int) {
+    fun requestMovie(year: Int, genre: String) {
         viewModelScope.launch {
 
             try {
 
-                genresWrapper = mutableLiveData_genres.value!!
+                Log.d(MovieRecomendationViewModel::class.java.name,"year " + year.javaClass + " " + "genre " + genre.javaClass + " " + "- In Request Movie")
 
-                val variable = getMovie(year, genresWrapper.genres.get(index).toString())!!
+                val variable = getMovie(year, genre)!!
 
                 mutableLiveData_movie.value = variable
 
