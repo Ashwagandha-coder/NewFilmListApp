@@ -15,6 +15,16 @@
     <fragment
         android:id="@+id/movieDetail"
         android:name="com.example.newfilmlistapp.ui.movie_detail.MovieDetailFragment"
-        android:label="MovieDetail" />
+        android:label="MovieDetail">
+        <argument
+           android:name="movie_ID"
+           app:argType="integer" />
+        <argument
+           android:name="poster_path"
+           app:argType="string" />
+        <argument
+           android:name="vote_average"
+           app:argType="float" />
+    </fragment>
 
 </navigation>

@@ -6,7 +6,6 @@ import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
@@ -16,23 +15,10 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
     private val mutableLiveData_genres: MutableLiveData<GenresWrapper> = MutableLiveData()
     val genres: LiveData<GenresWrapper> = mutableLiveData_genres
 
-//    private val mutableLiveData_saveData: MutableLiveData<SaveDataBackScreen> = MutableLiveData()
-//    val saveData: LiveData<SaveDataBackScreen> = mutableLiveData_saveData
+    // Default Movie
 
-    private lateinit var genresWrapper: GenresWrapper
-
-    private lateinit var movie_ID: String
-
-    private var number_random: Int = 0
-    val array_index = number_random
-
-
-    private var year_index: Int = 0
-    val getYaerIndex = year_index
-    private var genre_index: Int = 0
-    val getGenreIndex = genre_index
-
-
+    private val mutableLiveData_default_movie: MutableLiveData<MovieWrapper> = MutableLiveData()
+    val default_movie: LiveData<MovieWrapper> = mutableLiveData_default_movie
 
 
 
@@ -58,34 +44,41 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
     }
 
 
+    fun requestDefaultMovie() {
 
-
-    fun requestMovie(year: Int, index: Int) {
         viewModelScope.launch {
 
             try {
 
+                val variable = getDefaultMovie()
+
+                mutableLiveData_default_movie.value = variable
+
+            }
+            catch (e: Exception) {
+                Log.d(MovieRecomendationViewModel::class.java.name,"Error Request - Default Movie")
+                e.printStackTrace()
+            }
 
 
-                genresWrapper = mutableLiveData_genres.value!!
 
-                val variable = getMovie(year, genresWrapper.genres.get(index).toString())!!
+        }
+
+
+    }
+
+
+    fun requestMovie(year: Int, genre: String) {
+        viewModelScope.launch {
+
+            try {
+
+                Log.d(MovieRecomendationViewModel::class.java.name,"year " + year.javaClass + " " + "genre " + genre.javaClass + " " + "- In Request Movie")
+
+                val variable = getMovie(year, genre)
 
                 mutableLiveData_movie.value = variable
 
-                number_random = Random.Default.nextInt(0,9)
-
-                Log.d(MovieRecomendationViewModel::class.java.name,"Random number - $number_random")
-
-                movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
-
-                Log.d(MovieRecomendationViewModel::class.java.name,movie_ID + " " + "Значение movie_ID")
-
-
-                year_index = year
-                genre_index = index
-
-//                mutableLiveData_saveData.value = SaveDataBackScreen(year,index,variable.results.get(index).posterPath,variable)
 
             }
             catch (e: Exception) {
@@ -101,11 +94,11 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
     suspend fun getMovie(year: Int, genre: String): MovieWrapper {
 
-        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java) // todo: Нарушение Dry Нужно вынести в синглетон
+        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java)
 
-        val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf<String>(genre))
+        val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf(genre))
 
-        Log.d(MovieRecomendationViewModel::class.java.name,"request OK - Random Movie ")
+        Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Random Movie ")
 
         return result
 
@@ -119,9 +112,23 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getGenres()
 
-         Log.d(MovieRecomendationViewModel::class.java.name,"request OK - Genres")
+         Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Genres")
 
         return result
+    }
+
+
+    suspend fun getDefaultMovie(): MovieWrapper {
+
+        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java)
+
+        val result = loadingMovieDBService.getDefaultMovie()
+
+        Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Default Movie ")
+
+        return result
+
+
     }
 
 
