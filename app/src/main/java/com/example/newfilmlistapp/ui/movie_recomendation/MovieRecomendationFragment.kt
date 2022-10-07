@@ -38,7 +38,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,6 +47,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         bindGenres()
         bindYears()
+        defaultMovie()
         bindInfoMovie()
         setListenerButtonRequest()
         toMovieDetail()
@@ -187,6 +187,47 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         }
 
+
+
+    }
+
+
+    private fun defaultMovie() {
+
+        viewModel.default_movie.observe(viewLifecycleOwner) {
+
+            val random = (0..19).random()
+            val movie = it.results[random]
+
+            Glide.with(this)
+                .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                .apply(RequestOptions().centerCrop())
+                .into(binding.posterPath)
+
+
+            binding.overview.also {
+
+                it.text = movie.overview
+
+            }
+
+            binding.releaseDate.also {
+
+                it.text = movie.releaseDate
+
+            }
+
+            binding.title.also {
+
+                it.text = movie.title
+            }
+
+            movie_ID = movie.id.toInt()
+            poster_path = movie.posterPath
+            vote_average = movie.voteAverage.toFloat()
+
+
+        }
 
 
     }
