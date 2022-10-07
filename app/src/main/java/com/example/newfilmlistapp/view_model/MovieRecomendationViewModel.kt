@@ -60,7 +60,7 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
             try {
 
-                val variable = getMovie(2017,"20")
+                val variable = getDefaultMovie()
 
                 mutableLiveData_default_movie.value = variable
 
@@ -146,6 +146,20 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
          Log.d(MovieRecomendationViewModel::class.java.name,"request OK - Genres")
 
         return result
+    }
+
+
+    suspend fun getDefaultMovie(): MovieWrapper {
+
+        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java)
+
+        val result = loadingMovieDBService.getDefaultMovie()
+
+        Log.d(MovieRecomendationViewModel::class.java.name,"request OK - Default Movie ")
+
+        return result
+
+
     }
 
 

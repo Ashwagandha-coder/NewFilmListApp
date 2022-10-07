@@ -51,4 +51,13 @@ interface LoadingMovieDBService {
     ): MovieWrapper
 
 
+    // Default Movie
+
+    @GET("discover/movie")
+    suspend fun getDefaultMovie(
+        @Query("api_key") api_key: String = API_KEY,
+        @Query("language") language: String = LANGUAGE
+    ) : MovieWrapper
+
+
 }
