@@ -98,7 +98,7 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf(genre))
 
-        Log.d(MovieRecomendationViewModel::class.java.name,"request OK - Random Movie ")
+        Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Random Movie ")
 
         return result
 
@@ -112,7 +112,7 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getGenres()
 
-         Log.d(MovieRecomendationViewModel::class.java.name,"request OK - Genres")
+         Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Genres")
 
         return result
     }
@@ -124,7 +124,7 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
         val result = loadingMovieDBService.getDefaultMovie()
 
-        Log.d(MovieRecomendationViewModel::class.java.name,"request OK - Default Movie ")
+        Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Default Movie ")
 
         return result
 

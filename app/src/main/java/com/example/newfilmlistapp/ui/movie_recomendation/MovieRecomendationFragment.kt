@@ -35,7 +35,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private var vote_average: Float = 0.0F
 
 
-    private lateinit var movieResult: com.example.newfilmlistapp.model.Result
+    private lateinit var list: List<com.example.newfilmlistapp.model.Result>
 
 
     override fun onCreateView(
@@ -55,10 +55,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
-
-    }
 
 
     private fun bindInfoMovie() {
@@ -95,7 +91,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
             poster_path = movie.posterPath
             vote_average = movie.voteAverage.toFloat()
 
-            saveState(movie)
 
         }
 
@@ -221,37 +216,81 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         viewModel.default_movie.observe(viewLifecycleOwner) {
 
-            val random = (0..19).random()
-            val movie = it.results[random]
 
-            Glide.with(this)
-                .load(BASE_URL_FOR_PICTURE + movie.posterPath)
-                .apply(RequestOptions().centerCrop())
-                .into(binding.posterPath)
+            if (list.isEmpty()) {
+
+                val random = (0..19).random()
+                val movie = it.results[random]
+
+                list = listOf(movie)
 
 
-            binding.overview.also {
+                Glide.with(this)
+                    .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                    .apply(RequestOptions().centerCrop())
+                    .into(binding.posterPath)
 
-                it.text = movie.overview
+
+                binding.overview.also {
+
+                    it.text = movie.overview
+
+                }
+
+                binding.releaseDate.also {
+
+                    it.text = movie.releaseDate
+
+                }
+
+                binding.title.also {
+
+                    it.text = movie.title
+                }
+
+                movie_ID = movie.id.toInt()
+                poster_path = movie.posterPath
+                vote_average = movie.voteAverage.toFloat()
+
+
 
             }
 
-            binding.releaseDate.also {
+            else {
 
-                it.text = movie.releaseDate
+                val movie = list[0]
+
+
+                Glide.with(this)
+                    .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                    .apply(RequestOptions().centerCrop())
+                    .into(binding.posterPath)
+
+
+                binding.overview.also {
+
+                    it.text = movie.overview
+
+                }
+
+                binding.releaseDate.also {
+
+                    it.text = movie.releaseDate
+
+                }
+
+                binding.title.also {
+
+                    it.text = movie.title
+                }
+
+                movie_ID = movie.id.toInt()
+                poster_path = movie.posterPath
+                vote_average = movie.voteAverage.toFloat()
+
+
 
             }
-
-            binding.title.also {
-
-                it.text = movie.title
-            }
-
-            movie_ID = movie.id.toInt()
-            poster_path = movie.posterPath
-            vote_average = movie.voteAverage.toFloat()
-
-            saveState(movie)
 
 
         }
@@ -285,48 +324,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
     }
 
-    private fun bindRestroredMovie() {
 
-        Glide.with(this)
-            .load(BASE_URL_FOR_PICTURE + movieResult.posterPath)
-            .apply(RequestOptions().centerCrop())
-            .into(binding.posterPath)
-
-
-        binding.overview.also {
-
-            it.text = movieResult.overview
-
-        }
-
-        binding.releaseDate.also {
-
-            it.text = movieResult.releaseDate
-
-        }
-
-        binding.title.also {
-
-            it.text = movieResult.title
-        }
-
-        movie_ID = movieResult.id.toInt()
-        poster_path = movieResult.posterPath
-        vote_average = movieResult.voteAverage.toFloat()
-
-
-    }
-
-    private fun saveState(movieResult: com.example.newfilmlistapp.model.Result) {
-
-        this.movieResult = movieResult
-
-    }
-
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-    }
 }
 
 
