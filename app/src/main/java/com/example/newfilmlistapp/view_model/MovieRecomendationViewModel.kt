@@ -58,7 +58,30 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
         viewModelScope.launch {
 
+            try {
 
+                genresWrapper = mutableLiveData_genres.value!!
+
+                val variable = getMovie(2021,"18")
+
+                mutableLiveData_default_movie.value = variable
+
+                number_random = Random.Default.nextInt(0,9)
+
+                Log.d(MovieRecomendationViewModel::class.java.name,"Random number - $number_random")
+
+                movie_ID = variable.results.get(number_random)?.id.toString() ?: ""
+
+                Log.d(MovieRecomendationViewModel::class.java.name,movie_ID + " " + "Значение movie_ID")
+
+
+//                mutableLiveData_saveData.value = SaveDataBackScreen(year,index,variable.results.get(index).posterPath,variable)
+
+            }
+            catch (e: Exception) {
+                Log.d(MovieRecomendationViewModel::class.java.name,"Error Request - Default Movie")
+                e.printStackTrace()
+            }
 
 
 

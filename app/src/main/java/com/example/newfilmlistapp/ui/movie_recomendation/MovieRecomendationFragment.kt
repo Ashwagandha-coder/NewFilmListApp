@@ -25,8 +25,8 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private val viewModel: MovieRecomendationViewModel by viewModels()
 
 
-    private var positionGenre = 0
-    private var positionYear = 0
+    private var genre: Int = 0
+    private var year = 0
 
     // for navigation
 
@@ -107,7 +107,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     }
 
     private fun bindYears() {
-
         setupYears()
     }
 
@@ -132,7 +131,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         // Set list popup's item click listener
         listPopupWindow.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
 
-            positionGenre = position
+            this.genre = genres.get(position).id.toInt()
 
             Log.d(MovieRecomendationFragment::class.java.name, "string Name  " + genres.get(position).name)
 
@@ -172,7 +171,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         // Set list popup's item click listener
         listPopupWindow.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
 
-            positionYear = position
+            year = listYear.get(position)
 
             Log.d(MovieRecomendationFragment::class.java.name,"string with Name  " + listYear.get(position).toString())
 
@@ -197,8 +196,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         binding.request.setOnClickListener {
 
-            viewModel.requestMovie(positionYear,positionGenre)
-
+            viewModel.requestMovie(year,genre)
 
         }
 
