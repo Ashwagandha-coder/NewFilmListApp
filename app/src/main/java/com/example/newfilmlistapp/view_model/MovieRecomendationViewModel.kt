@@ -16,6 +16,11 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
     private val mutableLiveData_genres: MutableLiveData<GenresWrapper> = MutableLiveData()
     val genres: LiveData<GenresWrapper> = mutableLiveData_genres
 
+    // Default Movie
+
+    private val mutableLiveData_default_movie: MutableLiveData<MovieWrapper> = MutableLiveData()
+    val default_movie: LiveData<MovieWrapper> = mutableLiveData_default_movie
+
 //    private val mutableLiveData_saveData: MutableLiveData<SaveDataBackScreen> = MutableLiveData()
 //    val saveData: LiveData<SaveDataBackScreen> = mutableLiveData_saveData
 
@@ -25,15 +30,6 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
     private var number_random: Int = 0
     val array_index = number_random
-
-
-    private var year_index: Int = 0
-    val getYaerIndex = year_index
-    private var genre_index: Int = 0
-    val getGenreIndex = genre_index
-
-
-
 
 
     fun requestGenres() {
@@ -58,14 +54,26 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
     }
 
 
+    fun requestDefaultMovie() {
+
+        viewModelScope.launch {
+
+
+
+
+
+        }
+
+
+    }
+
+
 
 
     fun requestMovie(year: Int, index: Int) {
         viewModelScope.launch {
 
             try {
-
-
 
                 genresWrapper = mutableLiveData_genres.value!!
 
@@ -81,9 +89,6 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
                 Log.d(MovieRecomendationViewModel::class.java.name,movie_ID + " " + "Значение movie_ID")
 
-
-                year_index = year
-                genre_index = index
 
 //                mutableLiveData_saveData.value = SaveDataBackScreen(year,index,variable.results.get(index).posterPath,variable)
 
@@ -101,7 +106,7 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
     suspend fun getMovie(year: Int, genre: String): MovieWrapper {
 
-        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java) // todo: Нарушение Dry Нужно вынести в синглетон
+        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java)
 
         val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf<String>(genre))
 

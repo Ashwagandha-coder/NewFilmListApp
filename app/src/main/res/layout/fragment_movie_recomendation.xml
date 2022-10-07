@@ -16,7 +16,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
-        android:text="Genre">
+        android:text="Genre"
+        android:freezesText="true">
     </Button>
 
     <Button
@@ -27,7 +28,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:text="Year">
+        android:text="Year"
+        android:freezesText="true">
 
     </Button>
 
