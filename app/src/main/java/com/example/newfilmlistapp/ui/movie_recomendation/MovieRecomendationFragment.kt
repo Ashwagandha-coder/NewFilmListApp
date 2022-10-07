@@ -47,7 +47,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         bindGenres()
         bindYears()
-        defaultMovie()
+        setupDefaultMovie()
         bindInfoMovie()
         setListenerButtonRequest()
         toMovieDetail()
@@ -131,9 +131,11 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         // Set list popup's item click listener
         listPopupWindow.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
 
-            this.genre = genres.get(position).id.toInt()
+            this.genre = position
 
-            Log.d(MovieRecomendationFragment::class.java.name, "string Name  " + genres.get(position).name)
+            Log.d(MovieRecomendationFragment::class.java.name,"position genre: " + position)
+
+            Log.d(MovieRecomendationFragment::class.java.name, "genre  " + genres.get(position).id)
 
             listPopupWindowButton.text = genres.get(position).name
 
@@ -171,9 +173,11 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         // Set list popup's item click listener
         listPopupWindow.setOnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
 
-            year = listYear.get(position)
+            year = position
 
-            Log.d(MovieRecomendationFragment::class.java.name,"string with Name  " + listYear.get(position).toString())
+            Log.d(MovieRecomendationFragment::class.java.name,"position year: " + position)
+
+            Log.d(MovieRecomendationFragment::class.java.name,"year  " + listYear.get(position).toString())
 
             listPopupWindowButton.text = listYear.get(position).toString()
 
@@ -192,7 +196,9 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     }
 
 
-    private fun defaultMovie() {
+    private fun setupDefaultMovie() {
+
+        viewModel.requestDefaultMovie()
 
         viewModel.default_movie.observe(viewLifecycleOwner) {
 
