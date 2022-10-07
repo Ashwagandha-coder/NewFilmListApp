@@ -38,9 +38,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private lateinit var movieResult: com.example.newfilmlistapp.model.Result
 
 
-
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,6 +53,11 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         toMovieDetail()
 
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+
     }
 
 
@@ -93,7 +95,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
             poster_path = movie.posterPath
             vote_average = movie.voteAverage.toFloat()
 
-            movieResult = movie
+            saveState(movie)
 
         }
 
@@ -103,8 +105,8 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
     private fun bindGenres() {
         viewModel.requestGenres()
-        viewModel.genres.observe(viewLifecycleOwner)  {
-                setupGenres(it.genres)
+        viewModel.genres.observe(viewLifecycleOwner) {
+            setupGenres(it.genres)
         }
 
     }
@@ -117,7 +119,11 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private fun setupGenres(genres: List<Genres>) {
 
         val listPopupWindowButton = binding.btnPopupMenuGenre
-        val listPopupWindow = ListPopupWindow(this.requireContext(), null, androidx.appcompat.R.attr.listPopupWindowStyle)
+        val listPopupWindow = ListPopupWindow(
+            this.requireContext(),
+            null,
+            androidx.appcompat.R.attr.listPopupWindowStyle
+        )
 
 
         // Set button as the list popup's anchor
@@ -136,9 +142,12 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
             this.genre = genres[position].id.toString()
 
-            Log.d(MovieRecomendationFragment::class.java.name,"position genre: " + position)
+            Log.d(MovieRecomendationFragment::class.java.name, "position genre: " + position)
 
-            Log.d(MovieRecomendationFragment::class.java.name, "genre  " + genres[position].id.toString())
+            Log.d(
+                MovieRecomendationFragment::class.java.name,
+                "genre  " + genres[position].id.toString()
+            )
 
             listPopupWindowButton.text = genres[position].name
 
@@ -155,7 +164,11 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private fun setupYears() {
 
         val listPopupWindowButton = binding.btnPopupMenuYear
-        val listPopupWindow = ListPopupWindow(this.requireContext(), null, androidx.appcompat.R.attr.listPopupWindowStyle)
+        val listPopupWindow = ListPopupWindow(
+            this.requireContext(),
+            null,
+            androidx.appcompat.R.attr.listPopupWindowStyle
+        )
 
 
         // Set button as the list popup's anchor
@@ -178,9 +191,12 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
             year = listYear[position]
 
-            Log.d(MovieRecomendationFragment::class.java.name,"position year: " + position)
+            Log.d(MovieRecomendationFragment::class.java.name, "position year: " + position)
 
-            Log.d(MovieRecomendationFragment::class.java.name,"year  " + listYear[position].toString())
+            Log.d(
+                MovieRecomendationFragment::class.java.name,
+                "year  " + listYear[position].toString()
+            )
 
             listPopupWindowButton.text = listYear.get(position).toString()
 
@@ -189,7 +205,8 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         }
 
         // Show list popup window on button click.
-        listPopupWindowButton.setOnClickListener { v: View? -> listPopupWindow.show()
+        listPopupWindowButton.setOnClickListener { v: View? ->
+            listPopupWindow.show()
 
 
         }
@@ -234,7 +251,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
             poster_path = movie.posterPath
             vote_average = movie.voteAverage.toFloat()
 
-            movieResult = movie
+            saveState(movie)
 
 
         }
@@ -246,7 +263,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         binding.request.setOnClickListener {
 
-            viewModel.requestMovie(year,genre)
+            viewModel.requestMovie(year, genre)
 
         }
 
@@ -257,7 +274,11 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         binding.cardView.setOnClickListener {
 
-            val action = MovieRecomendationFragmentDirections.actionRandomToMovieDetail(movie_ID,poster_path,vote_average)
+            val action = MovieRecomendationFragmentDirections.actionRandomToMovieDetail(
+                movie_ID,
+                poster_path,
+                vote_average
+            )
             it.findNavController().navigate(action)
 
         }
@@ -296,22 +317,19 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
     }
 
+    private fun saveState(movieResult: com.example.newfilmlistapp.model.Result) {
+
+        this.movieResult = movieResult
+
+    }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
     }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-        bindRestroredMovie()
-    }
-
-
-
-
-
-
 }
+
+
 
 
 
