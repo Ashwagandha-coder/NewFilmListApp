@@ -36,7 +36,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
 
     private var list_default_movie: MutableList<com.example.newfilmlistapp.model.Result>? = null
-    private var list_movie: List<com.example.newfilmlistapp.model.Result>? = null
+    private var list_movie: MutableList<com.example.newfilmlistapp.model.Result>? = null
 
 
     override fun onCreateView(
@@ -63,10 +63,13 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         viewModel.movie.observe(viewLifecycleOwner) {
 
-            val random = (0..19).random()
-            val movie = it.results[random]
+            if (list_movie == null) {
 
-            list_default_movie!!.add(movie)
+                val random = (0..19).random()
+                val movie = it.results[random]
+
+                list_movie = mutableListOf(movie)
+                list_default_movie!!.add(movie)
 
                 Glide.with(this)
                     .load(BASE_URL_FOR_PICTURE + movie.posterPath)
@@ -96,6 +99,41 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
                 vote_average = movie.voteAverage.toFloat()
 
             }
+
+            else {
+
+                val movie = list_movie!![list_movie!!.lastIndex]
+
+
+                Glide.with(this)
+                    .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                    .apply(RequestOptions().centerCrop())
+                    .into(binding.posterPath)
+
+
+                binding.overview.also {
+
+                    it.text = movie.overview
+
+                }
+
+                binding.releaseDate.also {
+
+                    it.text = movie.releaseDate
+
+                }
+
+                binding.title.also {
+
+                    it.text = movie.title
+                }
+
+                movie_ID = movie.id.toInt()
+                poster_path = movie.posterPath
+                vote_average = movie.voteAverage.toFloat()
+
+            }
+        }
 
 
         }
@@ -218,6 +256,8 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         viewModel.requestDefaultMovie()
 
+        Log.d(MovieRecomendationFragment::class.java.name,"State list_movie - " + list_default_movie)
+
         viewModel.default_movie.observe(viewLifecycleOwner) {
 
 
@@ -264,7 +304,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
             else {
 
                 val movie = list_default_movie!![list_default_movie!!.lastIndex]
-
 
 
                 Glide.with(this)
@@ -327,6 +366,42 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
             it.findNavController().navigate(action)
 
         }
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(MovieRecomendationFragment::class.java.name,"onViewCreated")
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(MovieRecomendationFragment::class.java.name,"onStart")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(MovieRecomendationFragment::class.java.name,"onResume")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(MovieRecomendationFragment::class.java.name,"onPause")
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(MovieRecomendationFragment::class.java.name,"onStop")
+
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        Log.d(MovieRecomendationFragment::class.java.name,"onViewStateRestored")
 
     }
 
