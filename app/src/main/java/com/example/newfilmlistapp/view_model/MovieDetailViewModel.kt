@@ -18,7 +18,7 @@ class MovieDetailViewModel(private val context: Context): ViewModel() {
     private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
 
-    private val db by lazy { Room.databaseBuilder(context, AppDatabase::class.java,"Favorite Movie").build() }
+
 
 
 
@@ -28,7 +28,21 @@ class MovieDetailViewModel(private val context: Context): ViewModel() {
 
             try {
 
-                db.movieDao().insert(movie)
+
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
+
+    }
+
+    fun onDelete(movie: MovieDetailWrapper) {
+
+        viewModelScope.launch {
+
+            try {
 
 
 
@@ -37,6 +51,8 @@ class MovieDetailViewModel(private val context: Context): ViewModel() {
             }
 
         }
+
+
 
     }
 
