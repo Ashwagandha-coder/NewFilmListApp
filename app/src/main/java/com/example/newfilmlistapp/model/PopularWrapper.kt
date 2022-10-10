@@ -41,7 +41,7 @@ data class ResultPopular (
     val title: String,
 
     @Json(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String?,
 
     val popularity: Double,
 

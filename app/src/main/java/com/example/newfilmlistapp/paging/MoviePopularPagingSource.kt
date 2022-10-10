@@ -1,5 +1,6 @@
 package com.example.newfilmlistapp.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.newfilmlistapp.model.ResultPopular
@@ -34,6 +35,7 @@ class MoviePopularPagingSource(private val repositoryAPI: RepositoryAPI): Paging
             )
         }
         catch (e: Exception) {
+            Log.e("MoviePopularPaging", "error $e")
             LoadResult.Error(e)
         }
 
