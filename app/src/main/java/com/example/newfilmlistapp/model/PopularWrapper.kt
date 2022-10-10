@@ -19,7 +19,7 @@ data class PopularWrapper (
 @JsonClass(generateAdapter = true)
 data class ResultPopular (
     @Json(name = "poster_path")
-    val posterPath: String,
+    val posterPath: String?,
 
     val adult: Boolean,
     val overview: String,

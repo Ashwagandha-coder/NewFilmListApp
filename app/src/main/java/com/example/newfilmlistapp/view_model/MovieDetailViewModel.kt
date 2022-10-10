@@ -9,10 +9,9 @@ import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
-import com.example.newfilmlistapp.repository.RepositoryRoom
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel(private val repositoryRoom: RepositoryRoom): ViewModel() {
+class MovieDetailViewModel(): ViewModel() {
 
     private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
