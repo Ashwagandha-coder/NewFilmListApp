@@ -26,7 +26,7 @@ class MoviePopularPagingSource(private val repositoryAPI: RepositoryAPI): Paging
         return try {
 
             val currentPage = params.key ?: 1
-            val data = repositoryAPI.getPopularMovie().results ?: emptyList()
+            val data = repositoryAPI.getPopularMovie(currentPage).results
 
             LoadResult.Page(data = data,
                 prevKey = null,

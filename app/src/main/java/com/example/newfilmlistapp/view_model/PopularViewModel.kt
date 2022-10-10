@@ -25,7 +25,7 @@ class PopularViewModel: ViewModel() {
     val pager = mutableLiveData_pager
 
 
-    private val listData = Pager(PagingConfig(pageSize = 1)) {
+    private val listData = Pager(PagingConfig(pageSize = 7)) {
 
         MoviePopularPagingSource(ImplRepositoryAPI())
 

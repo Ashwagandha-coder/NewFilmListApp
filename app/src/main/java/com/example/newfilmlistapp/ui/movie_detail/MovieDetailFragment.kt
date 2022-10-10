@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -18,13 +18,13 @@ import com.example.newfilmlistapp.view_model.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 
 
+// todo: Сделать кнопку FAB отжимаемой
+
 class MovieDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
+    private val viewModel: MovieDetailViewModel by viewModels()
 
-    private val viewModel: MovieDetailViewModel by lazy {
-        ViewModelProvider(this).get(MovieDetailViewModel::class.java)
-    }
 
     private val args: MovieDetailFragmentArgs by navArgs()
 
