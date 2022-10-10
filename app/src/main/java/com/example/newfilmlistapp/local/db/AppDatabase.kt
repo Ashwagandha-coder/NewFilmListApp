@@ -13,9 +13,14 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
 
-    fun getDataBase(context: Context): AppDatabase {
+    @Volatile
+    private var INSTANCE: AppDatabase? = null
 
-        return Room.databaseBuilder(context.applicationContext,AppDatabase::class.java,"Movie DB").build()
+    fun getInstance(context: Context): AppDatabase {
+
+        INSTANCE = Room.databaseBuilder(context.applicationContext,AppDatabase::class.java,"Movie DB").build()
+
+        return INSTANCE as AppDatabase
 
     }
 

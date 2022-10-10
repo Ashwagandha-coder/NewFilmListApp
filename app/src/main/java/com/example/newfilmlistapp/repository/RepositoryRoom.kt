@@ -1,7 +1,6 @@
 package com.example.newfilmlistapp.repository
 
 import com.example.newfilmlistapp.model.MovieDetailWrapper
-import com.example.newfilmlistapp.model.ResultPopular
 
 
 interface RepositoryRoom {

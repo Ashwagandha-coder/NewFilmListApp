@@ -8,12 +8,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
+import com.example.newfilmlistapp.repository.RepositoryRoom
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel(): ViewModel() {
+class MovieDetailViewModel(private val repositoryRoom: RepositoryRoom): ViewModel() {
 
     private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
+
+    private val mutableLiveData_room_movie: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
+    val room_movie: LiveData<MovieDetailWrapper> = mutableLiveData_room_movie
+
 
 
 
@@ -23,6 +28,7 @@ class MovieDetailViewModel(): ViewModel() {
         viewModelScope.launch {
 
             try {
+
 
 
 
