@@ -35,7 +35,8 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private var vote_average: Float = 0.0F
 
 
-    private lateinit var list: List<com.example.newfilmlistapp.model.Result>
+    private var list_default_movie: List<com.example.newfilmlistapp.model.Result>? = null
+    private var list_movie: List<com.example.newfilmlistapp.model.Result>? = null
 
 
     override fun onCreateView(
@@ -48,7 +49,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         bindGenres()
         bindYears()
         setupDefaultMovie()
-        bindInfoMovie()
+        setupMovie()
         setListenerButtonRequest()
         toMovieDetail()
 
@@ -57,39 +58,79 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
 
 
-    private fun bindInfoMovie() {
+    private fun setupMovie() {
 
         viewModel.movie.observe(viewLifecycleOwner) {
 
-            val random = (0..19).random()
-            val movie = it.results[random]
+            if (list_movie == null) {
 
-            Glide.with(this)
-                .load(BASE_URL_FOR_PICTURE + movie.posterPath)
-                .apply(RequestOptions().centerCrop())
-                .into(binding.posterPath)
+                val random = (0..19).random()
+                val movie = it.results[random]
+
+                list_movie = mutableListOf(movie)
+
+                Glide.with(this)
+                    .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                    .apply(RequestOptions().centerCrop())
+                    .into(binding.posterPath)
 
 
-            binding.overview.also {
+                binding.overview.also {
 
-                it.text = movie.overview
+                    it.text = movie.overview
+
+                }
+
+                binding.releaseDate.also {
+
+                    it.text = movie.releaseDate
+
+                }
+
+                binding.title.also {
+
+                    it.text = movie.title
+                }
+
+                movie_ID = movie.id.toInt()
+                poster_path = movie.posterPath
+                vote_average = movie.voteAverage.toFloat()
 
             }
+            else {
 
-            binding.releaseDate.also {
+                val movie = list_movie!![0]
 
-                it.text = movie.releaseDate
+
+
+                Glide.with(this)
+                    .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                    .apply(RequestOptions().centerCrop())
+                    .into(binding.posterPath)
+
+
+                binding.overview.also {
+
+                    it.text = movie.overview
+
+                }
+
+                binding.releaseDate.also {
+
+                    it.text = movie.releaseDate
+
+                }
+
+                binding.title.also {
+
+                    it.text = movie.title
+                }
+
+                movie_ID = movie.id.toInt()
+                poster_path = movie.posterPath
+                vote_average = movie.voteAverage.toFloat()
 
             }
-
-            binding.title.also {
-
-                it.text = movie.title
-            }
-
-            movie_ID = movie.id.toInt()
-            poster_path = movie.posterPath
-            vote_average = movie.voteAverage.toFloat()
 
 
         }
@@ -217,12 +258,12 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         viewModel.default_movie.observe(viewLifecycleOwner) {
 
 
-            if (list.isEmpty()) {
+            if (list_default_movie == null) {
 
                 val random = (0..19).random()
                 val movie = it.results[random]
 
-                list = listOf(movie)
+                list_default_movie = listOf(movie)
 
 
                 Glide.with(this)
@@ -258,7 +299,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
             else {
 
-                val movie = list[0]
+                val movie = list_default_movie!![0]
 
 
                 Glide.with(this)
