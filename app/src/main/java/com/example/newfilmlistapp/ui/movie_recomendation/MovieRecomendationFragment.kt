@@ -102,35 +102,38 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
             else {
 
-                val movie = list_movie!![list_movie!!.lastIndex]
+                    val movie = list_movie!![list_movie!!.lastIndex]
+                    list_default_movie!!.add(movie)
 
 
-                Glide.with(this)
-                    .load(BASE_URL_FOR_PICTURE + movie.posterPath)
-                    .apply(RequestOptions().centerCrop())
-                    .into(binding.posterPath)
+                    Glide.with(this)
+                        .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                        .apply(RequestOptions().centerCrop())
+                        .into(binding.posterPath)
 
 
-                binding.overview.also {
+                    binding.overview.also {
 
-                    it.text = movie.overview
+                        it.text = movie.overview
 
-                }
+                    }
 
-                binding.releaseDate.also {
+                    binding.releaseDate.also {
 
-                    it.text = movie.releaseDate
+                        it.text = movie.releaseDate
 
-                }
+                    }
 
-                binding.title.also {
+                    binding.title.also {
 
-                    it.text = movie.title
-                }
+                        it.text = movie.title
+                    }
 
-                movie_ID = movie.id.toInt()
-                poster_path = movie.posterPath
-                vote_average = movie.voteAverage.toFloat()
+                    movie_ID = movie.id.toInt()
+                    poster_path = movie.posterPath
+                    vote_average = movie.voteAverage.toFloat()
+
+                list_movie = null
 
             }
         }
