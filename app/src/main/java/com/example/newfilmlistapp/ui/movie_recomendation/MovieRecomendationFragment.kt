@@ -35,7 +35,8 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private var vote_average: Float = 0.0F
 
 
-    private lateinit var list: List<com.example.newfilmlistapp.model.Result>
+    private var list_default_movie: MutableList<com.example.newfilmlistapp.model.Result>? = null
+    private var list_movie: MutableList<com.example.newfilmlistapp.model.Result>? = null
 
 
     override fun onCreateView(
@@ -48,54 +49,98 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         bindGenres()
         bindYears()
         setupDefaultMovie()
-        bindInfoMovie()
+        setupMovie()
         setListenerButtonRequest()
         toMovieDetail()
+
 
         return binding.root
     }
 
 
 
-    private fun bindInfoMovie() {
+    private fun setupMovie() {
 
         viewModel.movie.observe(viewLifecycleOwner) {
 
-            val random = (0..19).random()
-            val movie = it.results[random]
+            if (list_movie == null) {
 
-            Glide.with(this)
-                .load(BASE_URL_FOR_PICTURE + movie.posterPath)
-                .apply(RequestOptions().centerCrop())
-                .into(binding.posterPath)
+                val random = (0..19).random()
+                val movie = it.results[random]
+
+                list_movie = mutableListOf(movie)
+                list_default_movie!!.add(movie)
+
+                Glide.with(this)
+                    .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                    .apply(RequestOptions().centerCrop())
+                    .into(binding.posterPath)
 
 
-            binding.overview.also {
+                binding.overview.also {
 
-                it.text = movie.overview
+                    it.text = movie.overview
+
+                }
+
+                binding.releaseDate.also {
+
+                    it.text = movie.releaseDate
+
+                }
+
+                binding.title.also {
+
+                    it.text = movie.title
+                }
+
+                movie_ID = movie.id.toInt()
+                poster_path = movie.posterPath
+                vote_average = movie.voteAverage.toFloat()
 
             }
 
-            binding.releaseDate.also {
+            else {
 
-                it.text = movie.releaseDate
+                    val movie = list_movie!![list_movie!!.lastIndex]
+                    list_default_movie!!.add(movie)
+
+
+                    Glide.with(this)
+                        .load(BASE_URL_FOR_PICTURE + movie.posterPath)
+                        .apply(RequestOptions().centerCrop())
+                        .into(binding.posterPath)
+
+
+                    binding.overview.also {
+
+                        it.text = movie.overview
+
+                    }
+
+                    binding.releaseDate.also {
+
+                        it.text = movie.releaseDate
+
+                    }
+
+                    binding.title.also {
+
+                        it.text = movie.title
+                    }
+
+                    movie_ID = movie.id.toInt()
+                    poster_path = movie.posterPath
+                    vote_average = movie.voteAverage.toFloat()
+
+                list_movie = null
 
             }
-
-            binding.title.also {
-
-                it.text = movie.title
-            }
-
-            movie_ID = movie.id.toInt()
-            poster_path = movie.posterPath
-            vote_average = movie.voteAverage.toFloat()
+        }
 
 
         }
 
-
-    }
 
 
     private fun bindGenres() {
@@ -214,15 +259,18 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         viewModel.requestDefaultMovie()
 
+        Log.d(MovieRecomendationFragment::class.java.name,"State list_movie - " + list_default_movie)
+
         viewModel.default_movie.observe(viewLifecycleOwner) {
 
 
-            if (list.isEmpty()) {
+            if (list_default_movie == null) {
 
                 val random = (0..19).random()
                 val movie = it.results[random]
 
-                list = listOf(movie)
+                list_default_movie = mutableListOf(movie)
+
 
 
                 Glide.with(this)
@@ -258,7 +306,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
             else {
 
-                val movie = list[0]
+                val movie = list_default_movie!![list_default_movie!!.lastIndex]
 
 
                 Glide.with(this)
@@ -323,6 +371,43 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         }
 
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(MovieRecomendationFragment::class.java.name,"onViewCreated")
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(MovieRecomendationFragment::class.java.name,"onStart")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(MovieRecomendationFragment::class.java.name,"onResume")
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(MovieRecomendationFragment::class.java.name,"onPause")
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(MovieRecomendationFragment::class.java.name,"onStop")
+
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        Log.d(MovieRecomendationFragment::class.java.name,"onViewStateRestored")
+
+    }
+
 
 
 }
