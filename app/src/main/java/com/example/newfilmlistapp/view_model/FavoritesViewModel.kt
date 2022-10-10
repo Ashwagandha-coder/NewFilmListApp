@@ -1,22 +1,20 @@
 package com.example.newfilmlistapp.view_model
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.newfilmlistapp.model.PopularWrapper
-import com.example.newfilmlistapp.repository.RepositoryForRoom
+import com.example.newfilmlistapp.model.MovieDetailWrapper
 
-class FavoritesViewModel(private val repositoryForRoom: RepositoryForRoom) : ViewModel() {
 
-    private val mutableLiveData_favorite: MutableLiveData<PopularWrapper> = MutableLiveData()
+class FavoritesViewModel(private val context: Context) : ViewModel() {
+
+    private val mutableLiveData_favorite: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val favorite = mutableLiveData_favorite
 
+    fun getMovie() {}
 
+    fun deleteMovie() {}
 
-    private fun onLoad() {
-
-
-
-    }
 
 
 }

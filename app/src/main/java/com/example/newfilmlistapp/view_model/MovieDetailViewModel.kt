@@ -1,37 +1,44 @@
 package com.example.newfilmlistapp.view_model
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.Room
+import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel: ViewModel() {
+class MovieDetailViewModel(private val context: Context): ViewModel() {
 
     private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
 
-    // init room
+    private val db by lazy { Room.databaseBuilder(context, AppDatabase::class.java,"Favorite Movie").build() }
 
 
 
-
-    fun loadData() {
+    fun onLoad(movie: MovieDetailWrapper) {
 
         viewModelScope.launch {
 
+            try {
+
+                db.movieDao().insert(movie)
 
 
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
 
         }
 
-
     }
-
 
 
 
