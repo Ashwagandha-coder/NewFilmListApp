@@ -8,7 +8,7 @@ import com.example.newfilmlistapp.model.MovieDetailWrapper
 import kotlinx.coroutines.launch
 
 
-class FavoritesViewModel(private val context: Context) : ViewModel() {
+class FavoritesViewModel() : ViewModel() {
 
     private val mutableLiveData_favorite: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val favorite = mutableLiveData_favorite

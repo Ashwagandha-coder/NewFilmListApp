@@ -1,14 +1,17 @@
 package com.example.newfilmlistapp.repository
 
+import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.ResultPopular
 
-interface RepositoryForRoom {
+// todo: Продумать какие данные нужны для CardView
+
+interface RepositoryRoom {
 
     suspend fun insertDB()
 
     suspend fun updateDB()
 
-    suspend fun getMovieListLocal(): List<ResultPopular>?
+    suspend fun getMovieListLocal(): List<MovieDetailWrapper>?
 
     suspend fun getMovieLocal(id: String): ResultPopular?
 
