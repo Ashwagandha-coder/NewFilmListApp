@@ -26,6 +26,7 @@ class MovieDetailViewModel(): ViewModel() {
 
 
 
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }
