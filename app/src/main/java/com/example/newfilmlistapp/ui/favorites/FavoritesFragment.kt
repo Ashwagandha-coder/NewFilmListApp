@@ -18,12 +18,29 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        binding = FragmentFavoritesBinding.inflate(inflater,container,false)
 
-        return super.onCreateView(inflater, container, savedInstanceState)
+        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+    private fun setRecyclerView() {
+
+        binding.recyclerviewFavorites
+
+
+
+    }
+
+    private fun setFragmentTitle() {
+
+        val string = "Favorites Movie"
+
+        binding.tViewInFavorites.apply {
+            this.text = string
+        }
+
+
     }
 
 

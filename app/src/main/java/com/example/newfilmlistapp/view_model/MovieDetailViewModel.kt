@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
@@ -29,7 +30,7 @@ class MovieDetailViewModel(private val repositoryRoom: RepositoryRoom): ViewMode
 
             try {
 
-
+                Room.room.movieDao().insert(movie)
 
 
 
@@ -47,6 +48,7 @@ class MovieDetailViewModel(private val repositoryRoom: RepositoryRoom): ViewMode
 
             try {
 
+                Room.room.movieDao().deleteMovie(movie)
 
 
             } catch (e: Exception) {
