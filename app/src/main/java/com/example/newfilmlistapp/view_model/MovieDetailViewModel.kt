@@ -21,8 +21,6 @@ class MovieDetailViewModel(): ViewModel() {
 
 
 
-
-
     fun onLoad(movie: MovieDetailWrapper) {
 
         viewModelScope.launch {

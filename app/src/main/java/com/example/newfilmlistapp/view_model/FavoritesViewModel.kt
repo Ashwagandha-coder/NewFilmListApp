@@ -1,6 +1,5 @@
 package com.example.newfilmlistapp.view_model
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

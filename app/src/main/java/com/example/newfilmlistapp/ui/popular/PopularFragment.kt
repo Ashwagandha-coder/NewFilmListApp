@@ -106,11 +106,4 @@ class PopularFragment : Fragment() {
         }
     }
 
-
-    private fun toMovieDetail() {
-
-
-    }
-
-
 }
