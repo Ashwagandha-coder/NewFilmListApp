@@ -12,21 +12,21 @@ interface RepositoryRoom {
 
     suspend fun getMovieListLocal(): List<MovieDetailWrapper>?
 
-    suspend fun getMovieLocal(id: String): ResultPopular?
+    suspend fun getMovieLocal(id: String): MovieDetailWrapper?
 
-    suspend fun insertLocal(movie: ResultPopular)
+    suspend fun insertLocal(movie: MovieDetailWrapper)
 
-    suspend fun insertLocal(list: List<ResultPopular>)
+    suspend fun insertLocal(list: List<MovieDetailWrapper>)
 
-    suspend fun updateLocal(movie: ResultPopular)
+    suspend fun updateLocal(movie: MovieDetailWrapper)
 
-    suspend fun deleteMovieLocal(movie: ResultPopular)
+    suspend fun deleteMovieLocal(movie: MovieDetailWrapper)
 
     suspend fun deleteMovieLocal(id: String)
 
-    suspend fun getMoviePageLocal(pageSize: Int, pageIndex: Int): List<ResultPopular>?
+    suspend fun getMoviePageLocal(pageSize: Int, pageIndex: Int): List<MovieDetailWrapper>?
 
-    suspend fun getFavoriteLocal(pageSize: Int, pageIndex: Int): List<ResultPopular>?
+    suspend fun getFavoriteLocal(pageSize: Int, pageIndex: Int): List<MovieDetailWrapper>?
 
 
 }
