@@ -20,7 +20,7 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
 
     private val viewModel: FavoritesViewModel by viewModels()
 
-    private val favoriteAdapter: PopularAdapter = PopularAdapter()
+    private val favoriteAdapter: FavoritesAdapter = FavoritesAdapter()
     //private val mScrollListener by lazy { RecyclerViewScrollListener(this) }
 
     private lateinit var binding: FragmentFavoritesBinding
@@ -45,7 +45,9 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
 
         viewModel.favorite.observe(viewLifecycleOwner) {
 
+            // todo: Данные submit либо сделать через flow
 
+            favoriteAdapter
 
 
         }
