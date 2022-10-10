@@ -40,6 +40,8 @@ class MovieDetailFragment : Fragment() {
         onBackScreen()
         workWithViewModel()
         requestWrapper()
+        setFAB()
+        changeFAB()
 
         return binding.root
     }
@@ -61,12 +63,20 @@ class MovieDetailFragment : Fragment() {
 
     }
 
+    private fun setFAB() {
 
-    private fun onAddInDB() {
+        binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
+
+
+    }
+
+
+    private fun changeFAB() {
 
         binding.buttonFavorite.setOnClickListener {
 
-            viewModel.loadData()
+
+            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
 
         }
 

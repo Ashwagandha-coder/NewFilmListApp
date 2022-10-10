@@ -12,36 +12,11 @@ class FavoritesViewModel(private val repositoryForRoom: RepositoryForRoom) : Vie
 
 
 
+    private fun onLoad() {
 
 
-//
-//    private fun onLoad(page: Int, items: List<ResultPopular>) {
-//
-//        // load success then update current page
-//        currentPage.value = page
-//        // case load first page then clear data from listItem
-//        if (currentPage.value == getFirstPage()) itemList.value?.clear()
-//        // case refresh then reset load more
-//        if (isRefreshing.value == true) resetLoadMore()
-//
-//        // add new data to listItem
-//        val newList = itemList.value ?: ArrayList()
-//        newList.addAll(items ?: listOf())
-//        itemList.value = newList
-//
-//        // check last page
-//        isLastPage.value = items?.size ?: 0 < getNumberItemPerPage()
-//
-//        // reset load
-//        hideLoading()
-//        isRefreshing.value = false
-//        isLoadMore.value = false
-//
-//        // check empty list
-//        checkEmptyList()
-//
-//
-//    }
+
+    }
 
 
 }
