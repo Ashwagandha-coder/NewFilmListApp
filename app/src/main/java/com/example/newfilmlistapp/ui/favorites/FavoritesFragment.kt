@@ -26,7 +26,7 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     ): View? {
         binding = FragmentFavoritesBinding.inflate(inflater,container,false)
 
-        workWithViewModel()
+        //workWithViewModel()
         setFragmentTitle()
         setRecyclerView()
 
@@ -37,7 +37,7 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     private fun workWithViewModel() {
 
         lifecycleScope.launch {
-            viewModel.getListData.collect {
+            viewModel.getListData_favorite.collect {
                 favoriteAdapter.submitData(it)
             }
         }

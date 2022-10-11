@@ -8,11 +8,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.model.MovieDetailWrapper
+import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.ui.popular.PopularViewHolder
 import com.example.newfilmlistapp.ui.recycler_view.UserDiffCallBackFavorite
 
-class FavoritesAdapter(): PagingDataAdapter<MovieDetailWrapper,PopularViewHolder>(UserDiffCallBackFavorite()) {
+class FavoritesAdapter(): PagingDataAdapter<MovieDetailWrapperRoom,PopularViewHolder>(UserDiffCallBackFavorite()) {
 
     override fun getItemCount(): Int {
         return super.getItemCount()
@@ -27,7 +27,7 @@ class FavoritesAdapter(): PagingDataAdapter<MovieDetailWrapper,PopularViewHolder
 
     override fun onBindViewHolder(viewHolder: PopularViewHolder, position: Int) {
 
-        val movie: MovieDetailWrapper = getItem(position)!!
+        val movie: MovieDetailWrapperRoom = getItem(position)!!
         val date = movie.releaseDate
 
 
