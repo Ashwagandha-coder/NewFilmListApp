@@ -1,10 +1,12 @@
 package com.example.newfilmlistapp.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.newfilmlistapp.model.MovieDetailWrapper
+import com.example.newfilmlistapp.repository.RepositoryRoom
 
-class MovieFavoritePagingSource: PagingSource<Int,MovieDetailWrapper>() {
+class MovieFavoritePagingSource(private val repositoryRoom: RepositoryRoom): PagingSource<Int,MovieDetailWrapper>() {
 
 
     override fun getRefreshKey(state: PagingState<Int, MovieDetailWrapper>): Int? {
@@ -17,6 +19,21 @@ class MovieFavoritePagingSource: PagingSource<Int,MovieDetailWrapper>() {
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieDetailWrapper> {
-        TODO("Not yet implemented")
+
+        return try {
+
+            val currentPage = params.key ?: 1
+            val data = repositoryRoom.getMovieListLocal()
+
+            LoadResult.Page(data = data!!,
+                prevKey = null,
+                nextKey = currentPage.plus(1)
+            )
+        }
+        catch (e: Exception) {
+            Log.e("MovieFavoritePaging", "error $e")
+            LoadResult.Error(e)
+        }
+
     }
 }
