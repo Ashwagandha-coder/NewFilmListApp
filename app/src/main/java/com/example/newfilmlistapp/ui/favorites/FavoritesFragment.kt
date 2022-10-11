@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.view_model.FavoritesViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 
@@ -23,7 +22,6 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     private val viewModel: FavoritesViewModel by viewModels()
 
     private val favoriteAdapter: FavoritesAdapter = FavoritesAdapter()
-    //private val mScrollListener by lazy { RecyclerViewScrollListener(this) }
 
     private lateinit var binding: FragmentFavoritesBinding
 
@@ -50,7 +48,6 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
                 favoriteAdapter.submitData(it)
             }
         }
-
 
 
     }

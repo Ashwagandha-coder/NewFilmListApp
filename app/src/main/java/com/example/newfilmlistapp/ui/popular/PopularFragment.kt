@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.CombinedLoadStates
@@ -21,20 +22,14 @@ import kotlinx.coroutines.launch
 
 class PopularFragment : Fragment() {
 
-    // field
-
     private var allMovies = arrayListOf<ResultPopular>()
     private var totalResults: Int = -1
     private var isLoading: Boolean = false
 
     private lateinit var binding: FragmentPopularBinding
 
-    private val viewModel: PopularViewModel by lazy {
-        ViewModelProvider(this).get(PopularViewModel::class.java)
-    }
-
+    private val viewModel: PopularViewModel by viewModels()
     private val popularAdapter: PopularAdapter = PopularAdapter()
-    //private val mScrollListener by lazy { RecyclerViewScrollListener(this) }
 
 
     override fun onCreateView(
@@ -71,31 +66,12 @@ class PopularFragment : Fragment() {
             }
         }
 
-
-    }
-
-
-    fun workWithViewModel() {
-        viewModel.requestPopular()
-
-
-        viewModel.popularMovie.observe(viewLifecycleOwner) {
-
-            totalResults = it.totalResults.toInt()
-            allMovies.addAll(it.results)
-//            popularAdapter.submitAll(allMovies)
-            isLoading = false
-
-        }
-
-
     }
 
     private fun setRecyclerView() {
         binding.recyclerview.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = popularAdapter
-            //addOnScrollListener(mScrollListener)
         }
     }
 
