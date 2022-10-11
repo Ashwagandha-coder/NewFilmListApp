@@ -16,8 +16,7 @@ import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
-import com.example.newfilmlistapp.model.MovieDetailWrapper
-import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
+import com.example.newfilmlistapp.model.*
 
 
 // todo: Сделать кнопку FAB отжимаемой
@@ -87,7 +86,7 @@ class MovieDetailFragment : Fragment() {
 
         viewModel.movieDetailWrapper.observe(viewLifecycleOwner) {
 
-            movieDetailWrapperRoom = it
+            movieDetailWrapperRoom = parse(it)
 
             val backdrop_path = it.backdropPath
 
@@ -194,6 +193,39 @@ class MovieDetailFragment : Fragment() {
 
     }
 
+
+    private fun parse(movieDetailWrapper: MovieDetailWrapper): MovieDetailWrapperRoom {
+
+
+        return MovieDetailWrapperRoom(
+            adult = movieDetailWrapper.adult,
+            backdropPath = movieDetailWrapper.backdropPath,
+            belongsToCollection = movieDetailWrapper.belongsToCollection,
+            budget = movieDetailWrapper.budget,
+            genres = movieDetailWrapper.genres,
+            homepage = movieDetailWrapper.homepage,
+            id = movieDetailWrapper.id,
+            imdbID = movieDetailWrapper.imdbID,
+            originalLanguage = movieDetailWrapper.originalLanguage,
+            originalTitle = movieDetailWrapper.originalTitle,
+            overview = movieDetailWrapper.overview,
+            popularity = movieDetailWrapper.popularity,
+            posterPath = movieDetailWrapper.posterPath,
+            productionCompanies = movieDetailWrapper.productionCompanies,
+            productionCountries = movieDetailWrapper.productionCountries,
+            releaseDate = movieDetailWrapper.releaseDate,
+            revenue = movieDetailWrapper.revenue,
+            runtime = movieDetailWrapper.runtime,
+            spokenLanguages = movieDetailWrapper.spokenLanguages,
+            status = movieDetailWrapper.status,
+            tagline = movieDetailWrapper.tagline,
+            title = movieDetailWrapper.title,
+            video = movieDetailWrapper.video,
+            voteAverage = movieDetailWrapper.voteAverage,
+            voteCount = movieDetailWrapper.voteCount
+        )
+
+    }
 
 
 

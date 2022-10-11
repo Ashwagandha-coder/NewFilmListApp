@@ -41,10 +41,10 @@ data class MovieDetailWrapperRoom (
     val posterPath: String? = null,
 
     @Json(name = "production_companies")
-    val productionCompanies: List<ProductionCompanyWrapperRoom>,
+    val productionCompanies: List<ProductionCompanyWrapper>,
 
     @Json(name = "production_countries")
-    val productionCountries: List<ProductionCountryWrapperRoom>,
+    val productionCountries: List<ProductionCountryWrapper>,
 
     @Json(name = "release_date")
     val releaseDate: String,
@@ -53,7 +53,7 @@ data class MovieDetailWrapperRoom (
     val runtime: Long? = null,
 
     @Json(name = "spoken_languages")
-    val spokenLanguages: List<SpokenLanguageWrapperRoom>,
+    val spokenLanguages: List<SpokenLanguageWrapper>,
 
     val status: String,
     val tagline: String? = null,
@@ -67,31 +67,4 @@ data class MovieDetailWrapperRoom (
     val voteCount: Long,
 
     var isFavorite: Boolean? = false
-)
-
-@JsonClass(generateAdapter = true)
-data class ProductionCompanyWrapperRoom (
-    val id: Long,
-
-    @Json(name = "logo_path")
-    val logoPath: String? = null,
-
-    val name: String,
-
-    @Json(name = "origin_country")
-    val originCountry: String
-)
-@JsonClass(generateAdapter = true)
-data class ProductionCountryWrapperRoom (
-    @Json(name = "iso_3166_1")
-    val iso3166_1: String? = null,
-
-    val name: String? = null
-)
-@JsonClass(generateAdapter = true)
-data class SpokenLanguageWrapperRoom (
-    @Json(name = "iso_639_1")
-    val iso639_1: String,
-
-    val name: String
 )
