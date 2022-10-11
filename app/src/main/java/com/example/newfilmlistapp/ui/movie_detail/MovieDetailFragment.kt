@@ -17,6 +17,7 @@ import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 import com.example.newfilmlistapp.model.MovieDetailWrapper
+import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 
 
 // todo: Сделать кнопку FAB отжимаемой
@@ -28,7 +29,7 @@ class MovieDetailFragment : Fragment() {
 
     private val args: MovieDetailFragmentArgs by navArgs()
 
-    private lateinit var movieDetailWrapper: MovieDetailWrapper
+    private lateinit var movieDetailWrapperRoom: MovieDetailWrapperRoom
 
 
 
@@ -76,7 +77,7 @@ class MovieDetailFragment : Fragment() {
         binding.buttonFavorite.setOnClickListener {
             binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
 
-            viewModel.onLoad(movieDetailWrapper)
+            viewModel.onLoad(movieDetailWrapperRoom)
         }
 
 
@@ -86,7 +87,7 @@ class MovieDetailFragment : Fragment() {
 
         viewModel.movieDetailWrapper.observe(viewLifecycleOwner) {
 
-            movieDetailWrapper = it
+            movieDetailWrapperRoom = it
 
             val backdrop_path = it.backdropPath
 
@@ -96,14 +97,14 @@ class MovieDetailFragment : Fragment() {
 
             val runtime = it.runtime
 
-            if (it.releaseDate!!.isNotEmpty()) {
+            if (it.releaseDate.isNotEmpty()) {
                 var date = it.releaseDate
-                val dateYear = date?.removeRange(4, date.length)
-                var dateMonth = date?.removeRange(0, 5)
-                dateMonth = dateMonth?.removeRange(2, dateMonth.length)
-                val dateDay = date?.removeRange(0, 8)
+                val dateYear = date.removeRange(4, date.length)
+                var dateMonth = date.removeRange(0, 5)
+                dateMonth = dateMonth.removeRange(2, dateMonth.length)
+                val dateDay = date.removeRange(0, 8)
                 date =
-                    "$dateDay/$dateMonth/$dateYear" + " (${it.productionCountries!![0]?.iso3166_1})"
+                    "$dateDay/$dateMonth/$dateYear" + " (${it.productionCountries[0].iso3166_1})"
 
                 binding.tvYear.apply {
                     text = date
@@ -129,13 +130,13 @@ class MovieDetailFragment : Fragment() {
 
 
             var genres: String? = ""
-            for (element in it.genres!!)
+            for (element in it.genres)
                 genres += "${element.name}, "
             binding.movieGenres.apply {
-                text = genres!!.substring(0, genres.length - 2)
+                text = genres?.substring(0, genres.length - 2)
             }
 
-            val runtimeStr = "${runtime!!.toInt() / 60}h ${runtime.toInt() % 60}m"
+            val runtimeStr = "${runtime!!.toInt() / 60}h ${runtime.toInt()!! % 60}m"
             if (runtime.toInt() >= 60) {
                 binding.movieRuntime.apply {
                     text = runtimeStr
@@ -185,7 +186,7 @@ class MovieDetailFragment : Fragment() {
 
             binding.tvDescription.text = it.overview
            // binding.tvRatingValue.text = it.voteAverage.toString()
-            Log.d(MovieDetailFragment::class.java.name,"realease Date " + it.releaseDate?.substring(0,3))
+            Log.d(MovieDetailFragment::class.java.name,"realease Date " + it.releaseDate.substring(0,3))
 
 
 

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
+import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
 import kotlinx.coroutines.launch
@@ -21,7 +22,7 @@ class MovieDetailViewModel(): ViewModel() {
 
 
 
-    fun onLoad(movie: MovieDetailWrapper) {
+    fun onLoad(movie: MovieDetailWrapperRoom) {
 
         viewModelScope.launch {
 
@@ -39,7 +40,7 @@ class MovieDetailViewModel(): ViewModel() {
 
     }
 
-    fun onDelete(movie: MovieDetailWrapper) {
+    fun onDelete(movie: MovieDetailWrapperRoom) {
 
         viewModelScope.launch {
 
