@@ -13,7 +13,7 @@ import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
 class FavoritesViewModel : ViewModel() {
 
 
-    private val listData = Pager(PagingConfig(pageSize = 20)) {
+    private val listData = Pager(PagingConfig(pageSize = 1)) {
         MovieFavoritePagingSource(ImplRepositoryRoom(Room.room.movieDao()))
     }.flow.cachedIn(viewModelScope)
     val getListData = listData
