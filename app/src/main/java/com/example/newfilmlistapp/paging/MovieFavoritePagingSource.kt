@@ -3,13 +3,13 @@ package com.example.newfilmlistapp.paging
 import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.newfilmlistapp.model.MovieDetailWrapper
+import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.repository.RepositoryRoom
 
-class MovieFavoritePagingSource(private val repositoryRoom: RepositoryRoom): PagingSource<Int,MovieDetailWrapper>() {
+class MovieFavoritePagingSource(private val repositoryRoom: RepositoryRoom): PagingSource<Int,MovieDetailWrapperRoom>() {
 
 
-    override fun getRefreshKey(state: PagingState<Int, MovieDetailWrapper>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, MovieDetailWrapperRoom>): Int? {
 
         return state.anchorPosition?.let { anchorPosition ->
             val anchorPage = state.closestPageToPosition(anchorPosition)
@@ -18,7 +18,7 @@ class MovieFavoritePagingSource(private val repositoryRoom: RepositoryRoom): Pag
 
     }
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieDetailWrapper> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieDetailWrapperRoom> {
 
         return try {
 
