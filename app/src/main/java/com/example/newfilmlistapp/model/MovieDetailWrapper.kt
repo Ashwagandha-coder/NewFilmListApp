@@ -10,59 +10,59 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class MovieDetailWrapper (
     @PrimaryKey(autoGenerate = false)
-    val adult: Boolean,
+    val adult: Boolean? = null,
 
     @Json(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String? = null,
 
     @Json(name = "belongs_to_collection")
     val belongsToCollection: Any? = null,
 
-    val budget: Long,
-    val genres: List<Genres>,
-    val homepage: String,
-    val id: Long,
+    val budget: Long? = null,
+    val genres: List<Genres>? = null,
+    val homepage: String? = null,
+    val id: Long? = null,
 
     @Json(name = "imdb_id")
-    val imdbID: String,
+    val imdbID: String? = null,
 
     @Json(name = "original_language")
-    val originalLanguage: String,
+    val originalLanguage: String? = null,
 
     @Json(name = "original_title")
-    val originalTitle: String,
+    val originalTitle: String? = null,
 
-    val overview: String,
-    val popularity: Double,
+    val overview: String? = null,
+    val popularity: Double? = null,
 
     @Json(name = "poster_path")
     val posterPath: String? = null,
 
     @Json(name = "production_companies")
-    val productionCompanies: List<ProductionCompanyWrapper>,
+    val productionCompanies: List<ProductionCompanyWrapper>? = null,
 
     @Json(name = "production_countries")
-    val productionCountries: List<ProductionCountryWrapper>,
+    val productionCountries: List<ProductionCountryWrapper>? = null,
 
     @Json(name = "release_date")
-    val releaseDate: String,
+    val releaseDate: String? = null,
 
-    val revenue: Long,
-    val runtime: Long,
+    val revenue: Long? = null,
+    val runtime: Long? = null,
 
     @Json(name = "spoken_languages")
-    val spokenLanguages: List<SpokenLanguageWrapper>,
+    val spokenLanguages: List<SpokenLanguageWrapper>? = null,
 
-    val status: String,
-    val tagline: String,
-    val title: String,
-    val video: Boolean,
+    val status: String? = null,
+    val tagline: String? = null,
+    val title: String? = null,
+    val video: Boolean? = null,
 
     @Json(name = "vote_average")
-    val voteAverage: Double,
+    val voteAverage: Double? = null,
 
     @Json(name = "vote_count")
-    val voteCount: Long,
+    val voteCount: Long? = null,
 
     var isFavorite: Boolean? = false
 )
