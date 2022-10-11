@@ -4,22 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
+import com.example.newfilmlistapp.view_model.FavoritesViewModel
+import kotlinx.coroutines.launch
 
 
 class FavoritesFragment : androidx.fragment.app.Fragment() {
-/*
+
+    private val viewModel: FavoritesViewModel by viewModels()
+    private val favoriteAdapter: FavoritesAdapter = FavoritesAdapter()
     private lateinit var binding: FragmentFavoritesBinding
-
-    private var allMovies = arrayListOf<ResultPopular>()
-    private var totalResults: Int = -1
-    private var isLoading: Boolean = false
-
-    private val viewModel: FavoritesViewModel by lazy {
-        ViewModelProvider(this).get(FavoritesViewModel::class.java)
-    }
-
-    private val favoritesAdapter: PopularAdapter = PopularAdapter()
-    private val mScrollListener by lazy { RecyclerViewScrollListener(this) }
 
 
     override fun onCreateView(
@@ -28,70 +25,46 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentFavoritesBinding.inflate(inflater,container,false)
-        workWithViewModel()
-        setRecyclerView()
+
+        //workWithViewModel()
         setFragmentTitle()
+        setRecyclerView()
+
+
         return binding.root
-    }
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun workWithViewModel() {
 
-       // viewModel.loadData(1)
-        viewModel.favorite.observe(viewLifecycleOwner) {
-
-            totalResults = it.totalResults.toInt()
-            allMovies.addAll(it.results)
-           // favoritesAdapter.submitList(allMovies)
-            isLoading = false
-
+        lifecycleScope.launch {
+            viewModel.getListData_favorite.collect {
+                favoriteAdapter.submitData(it)
+            }
         }
+
 
     }
 
+
     private fun setRecyclerView() {
+
         binding.recyclerviewFavorites.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = favoritesAdapter
-            addOnScrollListener(mScrollListener)
+            adapter = favoriteAdapter
         }
+
     }
 
     private fun setFragmentTitle() {
-        val string = "Favorites"
+
+        val string = "Favorites Movie"
         binding.tViewInFavorites.apply {
-            text = string
+            this.text = string
         }
+
+
     }
 
 
-    override fun onScrollCompleted(firstVisibleItem: Int, isLoadingMoreData: Boolean) {
-        if (allMovies.size != totalResults) {
-            if (!isLoading) {
-                isLoading = true
-                //viewModel.loadData(1)
-            }
-        }
-    }
-
-
-
-
-}
-
-
- */
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
 }

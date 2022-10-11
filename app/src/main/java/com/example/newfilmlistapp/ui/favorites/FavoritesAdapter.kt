@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.ui.popular
+package com.example.newfilmlistapp.ui.favorites
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,12 +8,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.model.ResultPopular
-import com.example.newfilmlistapp.ui.recycler_view.UserDiffCallBack
+import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
+import com.example.newfilmlistapp.ui.popular.PopularViewHolder
+import com.example.newfilmlistapp.ui.recycler_view.UserDiffCallBackFavorite
 
-
-class PopularAdapter() : PagingDataAdapter<ResultPopular,PopularViewHolder>(UserDiffCallBack()) {
-
+class FavoritesAdapter(): PagingDataAdapter<MovieDetailWrapperRoom,PopularViewHolder>(UserDiffCallBackFavorite()) {
 
     override fun getItemCount(): Int {
         return super.getItemCount()
@@ -28,7 +27,7 @@ class PopularAdapter() : PagingDataAdapter<ResultPopular,PopularViewHolder>(User
 
     override fun onBindViewHolder(viewHolder: PopularViewHolder, position: Int) {
 
-        val movie: ResultPopular = getItem(position)!!
+        val movie: MovieDetailWrapperRoom = getItem(position)!!
         val date = movie.releaseDate
 
 
@@ -51,7 +50,7 @@ class PopularAdapter() : PagingDataAdapter<ResultPopular,PopularViewHolder>(User
                 .into(viewHolder.posterPath)
         }
 
-        toMovieDetail(viewHolder, movie.id.toInt(),movie.posterPath, movie.voteAverage.toFloat())
+        toMovieDetail(viewHolder, movie.id!!.toInt(),movie.posterPath, movie.voteAverage!!.toFloat())
 
     }
 
@@ -59,13 +58,14 @@ class PopularAdapter() : PagingDataAdapter<ResultPopular,PopularViewHolder>(User
 
         viewHolder.cardView.setOnClickListener {
 
-            val action = PopularFragmentDirections.actionPopularToMovieDetailPopular(movieID,
-                poster_path!!,vote_average)
+            val action = FavoritesFragmentDirections.actionFavoriteToMovieDetailFavorite(movieID, poster_path!!,vote_average)
             it.findNavController().navigate(action)
 
         }
 
     }
+
+
 
 
 }

@@ -6,7 +6,6 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.databinding.FragmentPopularBinding
 
 class PopularViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 

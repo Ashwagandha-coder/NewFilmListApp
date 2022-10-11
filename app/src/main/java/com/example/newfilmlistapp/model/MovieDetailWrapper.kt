@@ -1,30 +1,28 @@
 package com.example.newfilmlistapp.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
-@Entity(tableName = "movie")
+
 @JsonClass(generateAdapter = true)
 data class MovieDetailWrapper (
-    @PrimaryKey(autoGenerate = false)
+
     val adult: Boolean,
 
     @Json(name = "backdrop_path")
-    val backdropPath: String,
+    val backdropPath: String? = null,
 
     @Json(name = "belongs_to_collection")
     val belongsToCollection: Any? = null,
 
-    val budget: Long,
+    val budget: Long?,
     val genres: List<Genres>,
-    val homepage: String,
+    val homepage: String? = null,
     val id: Long,
 
     @Json(name = "imdb_id")
-    val imdbID: String,
+    val imdbID: String? = null,
 
     @Json(name = "original_language")
     val originalLanguage: String,
@@ -32,7 +30,7 @@ data class MovieDetailWrapper (
     @Json(name = "original_title")
     val originalTitle: String,
 
-    val overview: String,
+    val overview: String? = null,
     val popularity: Double,
 
     @Json(name = "poster_path")
@@ -48,13 +46,13 @@ data class MovieDetailWrapper (
     val releaseDate: String,
 
     val revenue: Long,
-    val runtime: Long,
+    val runtime: Long? = null,
 
     @Json(name = "spoken_languages")
     val spokenLanguages: List<SpokenLanguageWrapper>,
 
     val status: String,
-    val tagline: String,
+    val tagline: String? = null,
     val title: String,
     val video: Boolean,
 
@@ -64,7 +62,6 @@ data class MovieDetailWrapper (
     @Json(name = "vote_count")
     val voteCount: Long,
 
-    var isFavorite: Boolean? = false
 )
 
 @JsonClass(generateAdapter = true)
@@ -82,9 +79,9 @@ data class ProductionCompanyWrapper (
 @JsonClass(generateAdapter = true)
 data class ProductionCountryWrapper (
     @Json(name = "iso_3166_1")
-    val iso3166_1: String,
+    val iso3166_1: String? = null,
 
-    val name: String
+    val name: String? = null
 )
 @JsonClass(generateAdapter = true)
 data class SpokenLanguageWrapper (

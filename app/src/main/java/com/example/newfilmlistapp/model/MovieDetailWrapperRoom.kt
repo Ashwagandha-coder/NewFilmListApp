@@ -1,26 +1,32 @@
 package com.example.newfilmlistapp.model
 
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
+@Entity(tableName = "movie")
 @JsonClass(generateAdapter = true)
-data class Movie (
+data class MovieDetailWrapperRoom (
+
+    @PrimaryKey(autoGenerate = false)
     val adult: Boolean,
 
     @Json(name = "backdrop_path")
-    val backdropPath: String?,
+    val backdropPath: String? = null,
 
     @Json(name = "belongs_to_collection")
     val belongsToCollection: Any? = null,
 
-    val budget: Long,
+    val budget: Long?,
     val genres: List<Genres>,
-    val homepage: String,
+    val homepage: String? = null,
     val id: Long,
 
     @Json(name = "imdb_id")
-    val imdbID: String,
+    val imdbID: String? = null,
 
     @Json(name = "original_language")
     val originalLanguage: String,
@@ -28,29 +34,29 @@ data class Movie (
     @Json(name = "original_title")
     val originalTitle: String,
 
-    val overview: String,
+    val overview: String? = null,
     val popularity: Double,
 
     @Json(name = "poster_path")
-    val posterPath: Any? = null,
+    val posterPath: String? = null,
 
     @Json(name = "production_companies")
-    val productionCompanies: List<ProductionCompany>,
+    val productionCompanies: List<ProductionCompanyWrapper>,
 
     @Json(name = "production_countries")
-    val productionCountries: List<ProductionCountry>,
+    val productionCountries: List<ProductionCountryWrapper>,
 
     @Json(name = "release_date")
     val releaseDate: String,
 
     val revenue: Long,
-    val runtime: Long,
+    val runtime: Long? = null,
 
     @Json(name = "spoken_languages")
-    val spokenLanguages: List<SpokenLanguage>,
+    val spokenLanguages: List<SpokenLanguageWrapper>,
 
     val status: String,
-    val tagline: String,
+    val tagline: String? = null,
     val title: String,
     val video: Boolean,
 
@@ -58,32 +64,7 @@ data class Movie (
     val voteAverage: Double,
 
     @Json(name = "vote_count")
-    val voteCount: Long
-) {
+    val voteCount: Long,
 
-}
-
-
-data class ProductionCompany (
-    val id: Long,
-
-    @Json(name = "logo_path")
-    val logoPath: String? = null,
-
-    val name: String,
-
-    @Json(name = "origin_country")
-    val originCountry: String
-)
-
-data class ProductionCountry (
-    @Json(name = "iso_3166_1")
-    val iso3166_1: String,
-
-    val name: String
-)
-
-data class SpokenLanguage (
-    @Json(name = "iso_639_1")
-    val iso639_1: String,
+    var isFavorite: Boolean? = false
 )

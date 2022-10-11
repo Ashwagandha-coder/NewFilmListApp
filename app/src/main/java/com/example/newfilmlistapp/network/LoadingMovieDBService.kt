@@ -15,7 +15,8 @@ interface LoadingMovieDBService {
     @GET("movie/popular")
     suspend fun getPopularMovie(
         @Query("api_key") api_key: String = API_KEY,
-        @Query("language") language: String = LANGUAGE
+        @Query("language") language: String = LANGUAGE,
+        @Query("page") page: Int = 7
     ): PopularWrapper
 
 

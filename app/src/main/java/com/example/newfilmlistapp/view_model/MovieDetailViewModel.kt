@@ -5,33 +5,59 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
+import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.network.Retrofit
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel: ViewModel() {
+class MovieDetailViewModel(): ViewModel() {
 
     private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
 
-    // init room
+    private val mutableLiveData_room_movie: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
+    val room_movie: LiveData<MovieDetailWrapper> = mutableLiveData_room_movie
 
 
-
-
-    fun loadData() {
+    fun onLoad(movie: MovieDetailWrapperRoom) {
 
         viewModelScope.launch {
 
+            try {
 
+                Room.room.movieDao().insert(movie)
+                Log.d(MovieDetailViewModel::class.java.name, "request OK - insert in DB")
 
+            } catch (e: Exception) {
+                Log.e(MovieDetailViewModel::class.java.name, "Error request - insert in DB")
+                e.printStackTrace()
+            }
+
+        }
+
+    }
+
+    fun onDelete(movie: MovieDetailWrapperRoom) {
+
+        viewModelScope.launch {
+
+            try {
+
+                Room.room.movieDao().deleteMovie(movie)
+                Log.d(MovieDetailViewModel::class.java.name, "request OK - delete from DB")
+
+            } catch (e: Exception) {
+                Log.d(MovieDetailViewModel::class.java.name, "Error request - delete from DB")
+                e.printStackTrace()
+            }
 
         }
 
 
-    }
 
+    }
 
 
 
