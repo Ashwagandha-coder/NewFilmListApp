@@ -12,19 +12,14 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newfilmlistapp.view_model.PopularViewModel
 import com.example.newfilmlistapp.databinding.FragmentPopularBinding
-import com.example.newfilmlistapp.model.ResultPopular
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
 class PopularFragment : Fragment() {
 
-    private var allMovies = arrayListOf<ResultPopular>()
-    private var totalResults: Int = -1
-    private var isLoading: Boolean = false
 
     private lateinit var binding: FragmentPopularBinding
-
     private val viewModel: PopularViewModel by viewModels()
     private val popularAdapter: PopularAdapter = PopularAdapter()
 

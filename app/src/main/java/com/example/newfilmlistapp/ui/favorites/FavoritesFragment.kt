@@ -8,21 +8,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
-import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.view_model.FavoritesViewModel
 import kotlinx.coroutines.launch
 
 
 class FavoritesFragment : androidx.fragment.app.Fragment() {
 
-    private var allMovies = arrayListOf<MovieDetailWrapper>()
-    private var totalResults: Int = -1
-    private var isLoading: Boolean = false
-
     private val viewModel: FavoritesViewModel by viewModels()
-
     private val favoriteAdapter: FavoritesAdapter = FavoritesAdapter()
-
     private lateinit var binding: FragmentFavoritesBinding
 
 
@@ -65,7 +58,6 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     private fun setFragmentTitle() {
 
         val string = "Favorites Movie"
-
         binding.tViewInFavorites.apply {
             this.text = string
         }
