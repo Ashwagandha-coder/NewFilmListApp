@@ -62,7 +62,6 @@ data class MovieDetailWrapper (
     @Json(name = "vote_count")
     val voteCount: Long,
 
-    var isFavorite: Boolean? = false
 )
 
 @JsonClass(generateAdapter = true)
