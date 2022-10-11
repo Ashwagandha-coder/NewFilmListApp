@@ -69,27 +69,27 @@ data class MovieDetailWrapper (
 
 @JsonClass(generateAdapter = true)
 data class ProductionCompanyWrapper (
-    val id: Long,
+    val id: Long? = null,
 
     @Json(name = "logo_path")
     val logoPath: String? = null,
 
-    val name: String,
+    val name: String? = null,
 
     @Json(name = "origin_country")
-    val originCountry: String
+    val originCountry: String? = null
 )
 @JsonClass(generateAdapter = true)
 data class ProductionCountryWrapper (
     @Json(name = "iso_3166_1")
-    val iso3166_1: String,
+    val iso3166_1: String? = null,
 
-    val name: String
+    val name: String? = null
 )
 @JsonClass(generateAdapter = true)
 data class SpokenLanguageWrapper (
     @Json(name = "iso_639_1")
-    val iso639_1: String,
+    val iso639_1: String? = null,
 
-    val name: String
+    val name: String? = null
 )

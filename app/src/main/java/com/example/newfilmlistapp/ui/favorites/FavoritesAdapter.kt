@@ -50,7 +50,7 @@ class FavoritesAdapter(): PagingDataAdapter<MovieDetailWrapper,PopularViewHolder
                 .into(viewHolder.posterPath)
         }
 
-        toMovieDetail(viewHolder, movie.id.toInt(),movie.posterPath, movie.voteAverage.toFloat())
+        toMovieDetail(viewHolder, movie.id!!.toInt(),movie.posterPath, movie.voteAverage!!.toFloat())
 
     }
 
