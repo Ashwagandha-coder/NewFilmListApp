@@ -28,10 +28,10 @@ class MovieDetailViewModel(): ViewModel() {
             try {
 
                 Room.room.movieDao().insert(movie)
-
-
+                Log.d(MovieDetailViewModel::class.java.name, "request OK - insert in DB")
 
             } catch (e: Exception) {
+                Log.e(MovieDetailViewModel::class.java.name, "Error request - insert in DB")
                 e.printStackTrace()
             }
 
@@ -46,9 +46,10 @@ class MovieDetailViewModel(): ViewModel() {
             try {
 
                 Room.room.movieDao().deleteMovie(movie)
-
+                Log.d(MovieDetailViewModel::class.java.name, "request OK - delete from DB")
 
             } catch (e: Exception) {
+                Log.d(MovieDetailViewModel::class.java.name, "Error request - delete from DB")
                 e.printStackTrace()
             }
 

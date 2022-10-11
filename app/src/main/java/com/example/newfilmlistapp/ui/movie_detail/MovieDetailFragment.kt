@@ -16,6 +16,7 @@ import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
+import com.example.newfilmlistapp.model.MovieDetailWrapper
 
 
 // todo: Сделать кнопку FAB отжимаемой
@@ -25,8 +26,9 @@ class MovieDetailFragment : Fragment() {
     private lateinit var binding: FragmentMovieDetailBinding
     private val viewModel: MovieDetailViewModel by viewModels()
 
-
     private val args: MovieDetailFragmentArgs by navArgs()
+
+    private lateinit var movieDetailWrapper: MovieDetailWrapper
 
 
 
@@ -41,7 +43,7 @@ class MovieDetailFragment : Fragment() {
         workWithViewModel()
         requestWrapper()
         setFAB()
-        changeFAB()
+        setListenerFAB()
 
         return binding.root
     }
@@ -64,20 +66,17 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun setFAB() {
-
         binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
-
 
     }
 
 
-    private fun changeFAB() {
+    private fun setListenerFAB() {
 
         binding.buttonFavorite.setOnClickListener {
-
-
             binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
 
+            viewModel.onLoad(movieDetailWrapper)
         }
 
 
@@ -86,6 +85,8 @@ class MovieDetailFragment : Fragment() {
     private fun workWithViewModel() {
 
         viewModel.movieDetailWrapper.observe(viewLifecycleOwner) {
+
+            movieDetailWrapper = it
 
             val backdrop_path = it.backdropPath
 
