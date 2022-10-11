@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
 import com.example.newfilmlistapp.model.ResultPopular
-import com.example.newfilmlistapp.ui.popular.PopularAdapter
 import com.example.newfilmlistapp.view_model.FavoritesViewModel
 
 

@@ -24,11 +24,8 @@ class PopularViewModel: ViewModel() {
     private val mutableLiveData_pager: MutableLiveData<Pager<Int,ResultPopular>> = MutableLiveData()
     val pager = mutableLiveData_pager
 
-
     private val listData = Pager(PagingConfig(pageSize = 20)) {
-
         MoviePopularPagingSource(ImplRepositoryAPI())
-
     }.flow.cachedIn(viewModelScope)
     val getListData = listData
 
