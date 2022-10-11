@@ -18,7 +18,7 @@ class ImplRepositoryRoom(private val movieDao: MovieDao): RepositoryRoom {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getMovieListLocal(): List<MovieDetailWrapper>? =  withContext(Dispatchers.IO) {
+    override suspend fun getMovieListLocal(): List<MovieDetailWrapper>? = withContext(Dispatchers.IO) {
         movieDao.getMovieList()
     }
 
