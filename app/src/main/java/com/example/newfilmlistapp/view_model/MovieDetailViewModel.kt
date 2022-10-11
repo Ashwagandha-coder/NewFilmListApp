@@ -21,7 +21,6 @@ class MovieDetailViewModel(): ViewModel() {
     val room_movie: LiveData<MovieDetailWrapper> = mutableLiveData_room_movie
 
 
-
     fun onLoad(movie: MovieDetailWrapperRoom) {
 
         viewModelScope.launch {
