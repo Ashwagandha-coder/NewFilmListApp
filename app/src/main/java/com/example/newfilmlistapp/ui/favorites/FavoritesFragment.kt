@@ -5,15 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
-import com.example.newfilmlistapp.model.ResultPopular
+import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.view_model.FavoritesViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class FavoritesFragment : androidx.fragment.app.Fragment() {
 
-    private var allMovies = arrayListOf<ResultPopular>()
+    private var allMovies = arrayListOf<MovieDetailWrapper>()
     private var totalResults: Int = -1
     private var isLoading: Boolean = false
 
@@ -32,9 +35,9 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     ): View? {
         binding = FragmentFavoritesBinding.inflate(inflater,container,false)
 
+        workWithViewModel()
         setFragmentTitle()
         setRecyclerView()
-
 
 
         return binding.root
@@ -42,13 +45,10 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
 
     private fun workWithViewModel() {
 
-        viewModel.favorite.observe(viewLifecycleOwner) {
-
-            // todo: Данные submit либо сделать через flow
-
-            favoriteAdapter
-
-
+        lifecycleScope.launch {
+            viewModel.getListData.collect {
+                favoriteAdapter.submitData(it)
+            }
         }
 
 

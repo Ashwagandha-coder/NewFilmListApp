@@ -6,11 +6,9 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
-import com.example.newfilmlistapp.paging.MoviePopularPagingSource
-import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
-import kotlinx.coroutines.launch
+import com.example.newfilmlistapp.paging.MovieFavoritePagingSource
+import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
 
 
 class FavoritesViewModel() : ViewModel() {
@@ -20,29 +18,10 @@ class FavoritesViewModel() : ViewModel() {
 
 
     private val listData = Pager(PagingConfig(pageSize = 20)) {
-        MoviePopularPagingSource(ImplRepositoryAPI())
+        MovieFavoritePagingSource(ImplRepositoryRoom())
     }.flow.cachedIn(viewModelScope)
     val getListData = listData
 
 
-    fun getMovie() {
-
-        viewModelScope.launch {
-
-            try {
-
-                mutableLiveData_favorite.value = Room.room.movieDao().getMovieList()
-
-
-            }
-            catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-        }
-
-    }
-
-    fun getMovies() {}
 
 }
