@@ -36,6 +36,7 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
 
                 Log.d(MovieRecomendationViewModel::class.java.name,"Error Request -  Genres")
                 e.printStackTrace()
+
             }
 
 

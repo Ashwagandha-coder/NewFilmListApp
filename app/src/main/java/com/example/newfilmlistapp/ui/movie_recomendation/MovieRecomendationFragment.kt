@@ -41,6 +41,10 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private var list_movie: MutableList<com.example.newfilmlistapp.model.Result>? = null
 
 
+    private var movieRecomendationView: View? = null
+    val viewMovie = movieRecomendationView
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,6 +59,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         setListenerButtonRequest()
         toMovieDetail()
 
+        movieRecomendationView = binding.root
 
         return binding.root
     }
