@@ -17,6 +17,8 @@ import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 import com.example.newfilmlistapp.model.*
+import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
+import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModelFactory
 
 
 // todo: Сделать кнопку FAB отжимаемой
@@ -24,7 +26,7 @@ import com.example.newfilmlistapp.model.*
 class MovieDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
-    private val viewModel: MovieDetailViewModel by viewModels()
+    private val viewModel: MovieDetailViewModel by viewModels { MovieDetailViewModelFactory(ImplRepositoryAPI()) }
 
     private val args: MovieDetailFragmentArgs by navArgs()
 

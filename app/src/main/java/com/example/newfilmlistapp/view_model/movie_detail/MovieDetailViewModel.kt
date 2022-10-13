@@ -9,10 +9,11 @@ import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.network.LoadingMovieDBService
+import com.example.newfilmlistapp.repository.RepositoryAPI
 import com.example.newfilmlistapp.view_model.movie_recomendation.MovieRecomendationViewModel
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel(): ViewModel() {
+class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel() {
 
     private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
