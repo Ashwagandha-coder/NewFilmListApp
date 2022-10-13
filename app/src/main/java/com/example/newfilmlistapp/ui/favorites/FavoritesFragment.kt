@@ -37,7 +37,7 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     private fun workWithViewModel() {
 
         lifecycleScope.launch {
-            viewModel.getListData_favorite.collect {
+            viewModel.getListDataFavorite.collect {
                 favoriteAdapter.submitData(it)
             }
         }

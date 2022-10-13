@@ -4,22 +4,20 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
-import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.repository.RepositoryAPI
 import kotlinx.coroutines.launch
 
 class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : ViewModel(), ViewModelProvider.Factory {
 
 
-    private val mutableLiveData_movie: MutableLiveData<MovieWrapper> = MutableLiveData()
-    val movie: LiveData<MovieWrapper> = mutableLiveData_movie
-    private val mutableLiveData_genres: MutableLiveData<GenresWrapper> = MutableLiveData()
-    val genres: LiveData<GenresWrapper> = mutableLiveData_genres
+    private val mutableLiveDataMovie: MutableLiveData<MovieWrapper> = MutableLiveData()
+    val movie: LiveData<MovieWrapper> = mutableLiveDataMovie
 
-    // Default Movie
+    private val mutableLiveDataGenres: MutableLiveData<GenresWrapper> = MutableLiveData()
+    val genres: LiveData<GenresWrapper> = mutableLiveDataGenres
 
-    private val mutableLiveData_default_movie: MutableLiveData<MovieWrapper> = MutableLiveData()
-    val default_movie: LiveData<MovieWrapper> = mutableLiveData_default_movie
+    private val mutableLiveDataDefaultMovie: MutableLiveData<MovieWrapper> = MutableLiveData()
+    val defaultMovie: LiveData<MovieWrapper> = mutableLiveDataDefaultMovie
 
 
 
@@ -29,7 +27,9 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
 
             try {
 
-                mutableLiveData_genres.value = getGenres()!!
+                val variable = repositoryAPI.getGenres()
+
+                mutableLiveDataGenres.value = variable
 
             }
             catch (e: Exception) {
@@ -44,16 +44,15 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
 
     }
 
-
     fun requestDefaultMovie() {
 
         viewModelScope.launch {
 
             try {
 
-                val variable = getDefaultMovie()
+                val variable = repositoryAPI.getDefaultMovie()
 
-                mutableLiveData_default_movie.value = variable
+                mutableLiveDataDefaultMovie.value = variable
 
             }
             catch (e: Exception) {
@@ -61,10 +60,7 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
                 e.printStackTrace()
             }
 
-
-
         }
-
 
     }
 
@@ -73,13 +69,11 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
         viewModelScope.launch {
 
             try {
-
                 Log.d(MovieRecomendationViewModel::class.java.name,"year " + year.javaClass + " " + "genre " + genre.javaClass + " " + "- In Request Movie")
 
-                val variable = getMovie(year, genre)
+                val variable = repositoryAPI.getMovie(year, genre)
 
-                mutableLiveData_movie.value = variable
-
+                mutableLiveDataMovie.value = variable
 
             }
             catch (e: Exception) {
@@ -88,52 +82,8 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
             }
 
 
-
         }
     }
-
-
-    suspend fun getMovie(year: Int, genre: String): MovieWrapper {
-
-        val service = LoadingMovieDBService.create()
-
-        val result = service.getMovie(primary_release_year = year, genres = listOf(genre))
-
-        Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Random Movie ")
-
-        return result
-
-    }
-
-
-    suspend fun getGenres(): GenresWrapper {
-
-        val service = LoadingMovieDBService.create()
-
-        val result = service.getGenres()
-
-         Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Genres")
-
-        return result
-    }
-
-
-    suspend fun getDefaultMovie(): MovieWrapper {
-
-        val service = LoadingMovieDBService.create()
-
-        val result = service.getDefaultMovie()
-
-        Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Default Movie ")
-
-        return result
-
-
-    }
-
-
-
-
 
 
 }

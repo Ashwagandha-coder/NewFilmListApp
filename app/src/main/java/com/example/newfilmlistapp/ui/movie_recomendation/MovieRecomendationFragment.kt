@@ -263,7 +263,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         Log.d(MovieRecomendationFragment::class.java.name,"State list_movie - " + list_default_movie)
 
-        viewModel.default_movie.observe(viewLifecycleOwner) {
+        viewModel.defaultMovie.observe(viewLifecycleOwner) {
 
 
             if (list_default_movie == null) {
