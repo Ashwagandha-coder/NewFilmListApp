@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.view_model
+package com.example.newfilmlistapp.view_model.movie_detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -8,17 +8,17 @@ import androidx.lifecycle.viewModelScope
 import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
-import com.example.newfilmlistapp.network.LoadingMovieDBService
-import com.example.newfilmlistapp.network.Retrofit
+import com.example.newfilmlistapp.repository.RepositoryAPI
+import com.example.newfilmlistapp.view_model.movie_recomendation.MovieRecomendationViewModel
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel(): ViewModel() {
+class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel() {
 
-    private val mutableLiveData_movie_detail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
-    val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveData_movie_detail
+    private val mutableLiveDataMovieDetail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
+    val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveDataMovieDetail
 
-    private val mutableLiveData_room_movie: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
-    val room_movie: LiveData<MovieDetailWrapper> = mutableLiveData_room_movie
+    private val mutableLiveDataRoom: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
+    val roomMovie: LiveData<MovieDetailWrapper> = mutableLiveDataRoom
 
 
     fun onLoad(movie: MovieDetailWrapperRoom) {
@@ -27,7 +27,7 @@ class MovieDetailViewModel(): ViewModel() {
 
             try {
 
-                Room.room.movieDao().insert(movie)
+                Room.create().movieDao().insert(movie)
                 Log.d(MovieDetailViewModel::class.java.name, "request OK - insert in DB")
 
             } catch (e: Exception) {
@@ -45,7 +45,7 @@ class MovieDetailViewModel(): ViewModel() {
 
             try {
 
-                Room.room.movieDao().deleteMovie(movie)
+                Room.create().movieDao().deleteMovie(movie)
                 Log.d(MovieDetailViewModel::class.java.name, "request OK - delete from DB")
 
             } catch (e: Exception) {
@@ -61,19 +61,16 @@ class MovieDetailViewModel(): ViewModel() {
 
 
 
-
     fun requestMovieDetail(id: Int) {
 
         viewModelScope.launch {
 
             try {
 
-
                 // Movie Detail
                 Log.d(MovieDetailViewModel::class.java.name,"Значение movieID before request - $id") // todo: вставить значение movieID
 
-                mutableLiveData_movie_detail.value = getMovieDetail(id.toString())!!
-
+                mutableLiveDataMovieDetail.value = repositoryAPI.getMovieDetail(id.toString())
 
             }
 
@@ -88,17 +85,5 @@ class MovieDetailViewModel(): ViewModel() {
 
     }
 
-    suspend fun getMovieDetail(movieID: String): MovieDetailWrapper {
-
-        val loadingMovieDBService = Retrofit.retrofit.create(LoadingMovieDBService::class.java)
-
-        val result = loadingMovieDBService.getMovieDetail(movieID)
-
-        Log.d(MovieRecomendationViewModel::class.java.name, "request OK - Movie Detail ")
-
-
-        return result
-
-    }
 
 }

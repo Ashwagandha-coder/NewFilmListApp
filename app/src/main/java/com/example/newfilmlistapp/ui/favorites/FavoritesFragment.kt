@@ -7,9 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
-import com.example.newfilmlistapp.view_model.FavoritesViewModel
+import com.example.newfilmlistapp.local.db.AppDatabase
+import com.example.newfilmlistapp.view_model.favorite.FavoritesViewModel
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.snackbar.Snackbar.SnackbarLayout
 import kotlinx.coroutines.launch
+
+
+// todo: Сделать логику добавления фильма
 
 
 class FavoritesFragment : androidx.fragment.app.Fragment() {
@@ -26,6 +33,8 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     ): View? {
         binding = FragmentFavoritesBinding.inflate(inflater,container,false)
 
+
+
         //workWithViewModel()
         setFragmentTitle()
         setRecyclerView()
@@ -37,9 +46,9 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     private fun workWithViewModel() {
 
         lifecycleScope.launch {
-            viewModel.getListData_favorite.collect {
-                favoriteAdapter.submitData(it)
-            }
+//            viewModel.listDataFavorite(requireContext().applicationContext).collect {
+//                favoriteAdapter.submitData(it)
+//            }
         }
 
 

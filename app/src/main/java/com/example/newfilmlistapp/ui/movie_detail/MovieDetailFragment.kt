@@ -14,9 +14,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.view_model.MovieDetailViewModel
+import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 import com.example.newfilmlistapp.model.*
+import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
+import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModelFactory
 
 
 // todo: Сделать кнопку FAB отжимаемой
@@ -24,7 +26,7 @@ import com.example.newfilmlistapp.model.*
 class MovieDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
-    private val viewModel: MovieDetailViewModel by viewModels()
+    private val viewModel: MovieDetailViewModel by viewModels { MovieDetailViewModelFactory(ImplRepositoryAPI()) }
 
     private val args: MovieDetailFragmentArgs by navArgs()
 
@@ -200,9 +202,9 @@ class MovieDetailFragment : Fragment() {
         return MovieDetailWrapperRoom(
             adult = movieDetailWrapper.adult,
             backdropPath = movieDetailWrapper.backdropPath,
-            belongsToCollection = movieDetailWrapper.belongsToCollection,
+            //belongsToCollection = movieDetailWrapper.belongsToCollection,
             budget = movieDetailWrapper.budget,
-            genres = movieDetailWrapper.genres,
+            //genres = movieDetailWrapper.genres,
             homepage = movieDetailWrapper.homepage,
             id = movieDetailWrapper.id,
             imdbID = movieDetailWrapper.imdbID,
@@ -211,12 +213,12 @@ class MovieDetailFragment : Fragment() {
             overview = movieDetailWrapper.overview,
             popularity = movieDetailWrapper.popularity,
             posterPath = movieDetailWrapper.posterPath,
-            productionCompanies = movieDetailWrapper.productionCompanies,
-            productionCountries = movieDetailWrapper.productionCountries,
+            //productionCompanies = movieDetailWrapper.productionCompanies,
+            //productionCountries = movieDetailWrapper.productionCountries,
             releaseDate = movieDetailWrapper.releaseDate,
             revenue = movieDetailWrapper.revenue,
             runtime = movieDetailWrapper.runtime,
-            spokenLanguages = movieDetailWrapper.spokenLanguages,
+            //spokenLanguages = movieDetailWrapper.spokenLanguages,
             status = movieDetailWrapper.status,
             tagline = movieDetailWrapper.tagline,
             title = movieDetailWrapper.title,

@@ -11,6 +11,7 @@
     <string name="ImageContent">imageContent</string>
     <string name="favorites">Favorites</string>
     <string name="overview">Overview</string>
+    <string name="error_message">Error Network</string>
 
 
 </resources>

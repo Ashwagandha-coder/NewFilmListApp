@@ -1,70 +1,93 @@
 package com.example.newfilmlistapp.model
 
 
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 
 @Entity(tableName = "movie")
-@JsonClass(generateAdapter = true)
 data class MovieDetailWrapperRoom (
 
     @PrimaryKey(autoGenerate = false)
-    val adult: Boolean,
+    var adult: Boolean,
 
-    @Json(name = "backdrop_path")
-    val backdropPath: String? = null,
+    var backdropPath: String? = null,
 
-    @Json(name = "belongs_to_collection")
-    val belongsToCollection: Any? = null,
+//    @Embedded
+//    var belongsToCollection: Any? = null,
 
-    val budget: Long?,
-    val genres: List<Genres>,
-    val homepage: String? = null,
-    val id: Long,
+    var budget: Long?,
+//    @Embedded
+//    var genres: List<GenresRoom>? = null,
+    var homepage: String? = null,
+    var id: Long,
 
-    @Json(name = "imdb_id")
-    val imdbID: String? = null,
+    var imdbID: String? = null,
 
-    @Json(name = "original_language")
-    val originalLanguage: String,
+    var originalLanguage: String,
 
-    @Json(name = "original_title")
-    val originalTitle: String,
+    var originalTitle: String,
 
-    val overview: String? = null,
-    val popularity: Double,
+    var overview: String? = null,
+    var popularity: Double,
 
-    @Json(name = "poster_path")
-    val posterPath: String? = null,
+    var posterPath: String? = null,
 
-    @Json(name = "production_companies")
-    val productionCompanies: List<ProductionCompanyWrapper>,
+//    @Embedded
+//    var productionCompanies: List<ProductionCompanyWrapperRoom>,
 
-    @Json(name = "production_countries")
-    val productionCountries: List<ProductionCountryWrapper>,
+//    @Embedded
+//    var productionCountries: List<ProductionCountryWrapperRoom>,
 
-    @Json(name = "release_date")
-    val releaseDate: String,
+    var releaseDate: String? = null,
 
-    val revenue: Long,
-    val runtime: Long? = null,
+    var revenue: Long? = null,
+    var runtime: Long? = null,
 
-    @Json(name = "spoken_languages")
-    val spokenLanguages: List<SpokenLanguageWrapper>,
+//    @Embedded
+//    var spokenLanguages: List<SpokenLanguageWrapperRoom>,
 
-    val status: String,
-    val tagline: String? = null,
-    val title: String,
-    val video: Boolean,
+    var status: String? = null,
+    var tagline: String? = null,
+    var title: String? = null,
+    var video: Boolean,
 
-    @Json(name = "vote_average")
-    val voteAverage: Double,
+    var voteAverage: Double,
 
-    @Json(name = "vote_count")
-    val voteCount: Long,
+    var voteCount: Long,
 
     var isFavorite: Boolean? = false
+)
+
+data class GenresRoom(
+     var id: Long,
+     var name: String
+
+)
+
+data class ProductionCompanyWrapperRoom (
+    var id: Long,
+
+    @ColumnInfo(name = "logo_path")
+    var logoPath: String? = null,
+
+    var name: String? = null,
+
+    @ColumnInfo(name = "origin_country")
+    var originCountry: String? = null
+)
+
+data class ProductionCountryWrapperRoom (
+    @ColumnInfo(name = "iso_3166_1")
+    var iso3166_1: String? = null,
+
+    var name: String? = null
+)
+
+data class SpokenLanguageWrapperRoom (
+    @ColumnInfo(name = "iso_639_1")
+    var iso639_1: String,
+    var name: String
 )
