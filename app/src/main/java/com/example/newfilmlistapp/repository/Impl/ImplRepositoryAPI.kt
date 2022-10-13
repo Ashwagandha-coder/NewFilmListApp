@@ -37,7 +37,7 @@ class ImplRepositoryAPI: RepositoryAPI {
 
     }
 
-    override suspend fun getMovie(year: Int, genre: String): MovieWrapper {
+    override suspend fun getMovie(year: Int?, genre: String?): MovieWrapper {
 
         val service = LoadingMovieDBService.create()
 

@@ -22,7 +22,7 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
 
     init {
 
-        requestMovie(4,"99")
+        requestMovie()
 
     }
 
@@ -72,11 +72,11 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
     }
 
 
-    fun requestMovie(year: Int = 2018, genre: String = "18") {
+    fun requestMovie(year: Int? =  null, genre: String? = null) {
         viewModelScope.launch {
 
             try {
-                Log.d(MovieRecomendationViewModel::class.java.name,"year " + year.javaClass + " " + "genre " + genre.javaClass + " " + "- In Request Movie")
+                Log.d(MovieRecomendationViewModel::class.java.name,"year " + year?.javaClass + " " + "genre " + genre?.javaClass + " " + "- In Request Movie")
 
                 val variable = repositoryAPI.getMovie(year, genre)
 

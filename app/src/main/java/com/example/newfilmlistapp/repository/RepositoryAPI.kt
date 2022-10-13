@@ -11,7 +11,7 @@ interface RepositoryAPI {
 
     suspend fun getMovieDetail(movieID: String): MovieDetailWrapper
 
-    suspend fun getMovie(year: Int, genre: String): MovieWrapper
+    suspend fun getMovie(year: Int?, genre: String?): MovieWrapper
 
     suspend fun getGenres(): GenresWrapper
 

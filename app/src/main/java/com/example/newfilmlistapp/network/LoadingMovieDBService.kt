@@ -51,8 +51,8 @@ interface LoadingMovieDBService {
     suspend fun getMovie(
         @Query("api_key") api_key: String = API_KEY,
         @Query("language") language: String = LANGUAGE,
-        @Query("primary_release_year") primary_release_year: Int,
-        @Query("with_genres") genres: List<String>
+        @Query("primary_release_year") primary_release_year: Int? = null,
+        @Query("with_genres") genres: List<String?>? = null
     ): MovieWrapper
 
 

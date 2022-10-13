@@ -27,7 +27,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private val viewModel: MovieRecomendationViewModel by viewModels { MovieRecomendationViewModelFactory(ImplRepositoryAPI()) }
 
 
-    private lateinit var genre: String
+    private var genre: String? = null
     private var year = 0
 
     // for navigation
@@ -35,11 +35,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private var movieID: Int = 0
     private lateinit var posterPath: String
     private var voteAverage: Float = 0.0F
-
-
-    private var listDefaultMovie: MutableList<com.example.newfilmlistapp.model.Result>? = null
-    private var listMovie: MutableList<com.example.newfilmlistapp.model.Result>? = null
-
 
     private var movieRecomendationView: View? = null
     val viewMovie = movieRecomendationView
@@ -54,7 +49,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         bindGenres()
         bindYears()
-        //setupDefaultMovie()
         setupMovie()
         setListenerButtonRequest()
         toMovieDetail()
@@ -70,12 +64,8 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         viewModel.movie.observe(viewLifecycleOwner) {
 
-            if (listMovie == null) {
-
                 val movie = it
 
-                listMovie = mutableListOf(movie)
-                listDefaultMovie!!.add(movie)
 
                 Glide.with(this)
                     .load(BASE_URL_FOR_PICTURE + movie.posterPath)
@@ -106,47 +96,8 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
             }
 
-            else {
-
-                    val movie = listMovie!![listMovie!!.lastIndex]
-                    listDefaultMovie!!.add(movie)
-
-
-                    Glide.with(this)
-                        .load(BASE_URL_FOR_PICTURE + movie.posterPath)
-                        .apply(RequestOptions().centerCrop())
-                        .into(binding.posterPath)
-
-
-                    binding.overview.also {
-
-                        it.text = movie.overview
-
-                    }
-
-                    binding.releaseDate.also {
-
-                        it.text = movie.releaseDate
-
-                    }
-
-                    binding.title.also {
-
-                        it.text = movie.title
-                    }
-
-                    movieID = movie.id.toInt()
-                    posterPath = movie.posterPath
-                    voteAverage = movie.voteAverage.toFloat()
-
-                listMovie = null
-
-            }
-        }
-
 
         }
-
 
 
     private fun bindGenres() {
@@ -259,98 +210,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
 
     }
-
-
-    private fun setupDefaultMovie() {
-
-        viewModel.requestDefaultMovie()
-
-        Log.d(MovieRecomendationFragment::class.java.name,"State list_movie - " + listDefaultMovie)
-
-        viewModel.defaultMovie.observe(viewLifecycleOwner) {
-
-
-            if (listDefaultMovie == null) {
-
-                val random = (0..19).random()
-                val movie = it.results[random]
-
-                listDefaultMovie = mutableListOf(movie)
-
-
-
-                Glide.with(this)
-                    .load(BASE_URL_FOR_PICTURE + movie.posterPath)
-                    .apply(RequestOptions().centerCrop())
-                    .into(binding.posterPath)
-
-
-                binding.overview.also {
-
-                    it.text = movie.overview
-
-                }
-
-                binding.releaseDate.also {
-
-                    it.text = movie.releaseDate
-
-                }
-
-                binding.title.also {
-
-                    it.text = movie.title
-                }
-
-                movieID = movie.id.toInt()
-                posterPath = movie.posterPath
-                voteAverage = movie.voteAverage.toFloat()
-
-
-
-            }
-
-            else {
-
-                val movie = listDefaultMovie!![listDefaultMovie!!.lastIndex]
-
-
-                Glide.with(this)
-                    .load(BASE_URL_FOR_PICTURE + movie.posterPath)
-                    .apply(RequestOptions().centerCrop())
-                    .into(binding.posterPath)
-
-
-                binding.overview.also {
-
-                    it.text = movie.overview
-
-                }
-
-                binding.releaseDate.also {
-
-                    it.text = movie.releaseDate
-
-                }
-
-                binding.title.also {
-
-                    it.text = movie.title
-                }
-
-                movieID = movie.id.toInt()
-                posterPath = movie.posterPath
-                voteAverage = movie.voteAverage.toFloat()
-
-
-
-            }
-
-
-        }
-
-    }
-
 
     private fun setListenerButtonRequest() {
 
