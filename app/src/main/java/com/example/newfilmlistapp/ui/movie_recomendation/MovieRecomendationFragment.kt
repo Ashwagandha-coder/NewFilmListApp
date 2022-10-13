@@ -26,7 +26,6 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
     private lateinit var binding: FragmentMovieRecomendationBinding
     private val viewModel: MovieRecomendationViewModel by viewModels { MovieRecomendationViewModelFactory(ImplRepositoryAPI()) }
 
-
     private var genre: String? = null
     private var year = 0
 

@@ -51,25 +51,6 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
 
     }
 
-    fun requestDefaultMovie() {
-
-        viewModelScope.launch {
-
-            try {
-
-                val variable = repositoryAPI.getDefaultMovie()
-
-                mutableLiveDataDefaultMovie.value = variable
-
-            }
-            catch (e: Exception) {
-                Log.d(MovieRecomendationViewModel::class.java.name,"Error Request - Default Movie")
-                e.printStackTrace()
-            }
-
-        }
-
-    }
 
 
     fun requestMovie(year: Int? =  null, genre: String? = null) {

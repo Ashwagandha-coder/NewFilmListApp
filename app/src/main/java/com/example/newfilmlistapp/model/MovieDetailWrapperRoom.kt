@@ -2,6 +2,7 @@ package com.example.newfilmlistapp.model
 
 
 import androidx.room.ColumnInfo
+import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -10,78 +11,83 @@ import androidx.room.PrimaryKey
 data class MovieDetailWrapperRoom (
 
     @PrimaryKey(autoGenerate = false)
-    val adult: Boolean,
+    var adult: Boolean,
 
-    val backdropPath: String? = null,
+    var backdropPath: String? = null,
 
-    val belongsToCollection: Any? = null,
+    @Embedded
+    var belongsToCollection: Any? = null,
 
-    val budget: Long?,
-    val genres: List<GenresRoom>? = null,
-    val homepage: String? = null,
-    val id: Long,
+    var budget: Long?,
+    @Embedded
+    var genres: List<GenresRoom>? = null,
+    var homepage: String? = null,
+    var id: Long,
 
-    val imdbID: String? = null,
+    var imdbID: String? = null,
 
-    val originalLanguage: String,
+    var originalLanguage: String,
 
-    val originalTitle: String,
+    var originalTitle: String,
 
-    val overview: String? = null,
-    val popularity: Double,
+    var overview: String? = null,
+    var popularity: Double,
 
-    val posterPath: String? = null,
+    var posterPath: String? = null,
 
-    val productionCompanies: List<ProductionCompanyWrapperRoom>,
+    @Embedded
+    var productionCompanies: List<ProductionCompanyWrapperRoom>,
 
-    val productionCountries: List<ProductionCountryWrapperRoom>,
+    @Embedded
+    var productionCountries: List<ProductionCountryWrapperRoom>,
 
-    val releaseDate: String? = null,
+    var releaseDate: String? = null,
 
-    val revenue: Long? = null,
-    val runtime: Long? = null,
+    var revenue: Long? = null,
+    var runtime: Long? = null,
 
-    val spokenLanguages: List<SpokenLanguageWrapperRoom>,
+    @Embedded
+    var spokenLanguages: List<SpokenLanguageWrapperRoom>,
 
-    val status: String? = null,
-    val tagline: String? = null,
-    val title: String? = null,
-    val video: Boolean,
+    var status: String? = null,
+    var tagline: String? = null,
+    var title: String? = null,
+    var video: Boolean,
 
-    val voteAverage: Double,
+    var voteAverage: Double,
 
-    val voteCount: Long,
+    var voteCount: Long,
 
     var isFavorite: Boolean? = false
 )
 
 data class GenresRoom(
-     val id: Long,
-     val name: String
+     var id: Long,
+     var name: String
 )
 
 data class ProductionCompanyWrapperRoom(
-    val id: Long,
+    var id: Long,
 
     @ColumnInfo(name = "logo_path")
-    val logoPath: String? = null,
+    var logoPath: String? = null,
 
-    val name: String? = null,
+    var name: String? = null,
 
     @ColumnInfo(name = "origin_country")
-    val originCountry: String? = null
+    var originCountry: String? = null
 )
 
 data class ProductionCountryWrapperRoom(
     @ColumnInfo(name = "iso_3166_1")
-    val iso3166_1: String? = null,
+    var iso3166_1: String? = null,
 
-    val name: String? = null
+    var name: String? = null
 )
 
 data class SpokenLanguageWrapperRoom(
     @ColumnInfo(name = "iso_639_1")
-    val iso639_1: String,
+    var iso639_1: String,
 
-    val name: String
+    var name: String
 )
