@@ -8,7 +8,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class MovieWrapper (
     val page: Long,
-    val results: List<Result>,
+    val results: List<com.example.newfilmlistapp.model.Result>,
 
     @Json(name = "total_pages")
     val totalPages: Long,

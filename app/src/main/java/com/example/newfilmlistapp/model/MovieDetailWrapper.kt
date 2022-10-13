@@ -13,8 +13,8 @@ data class MovieDetailWrapper (
     @Json(name = "backdrop_path")
     val backdropPath: String? = null,
 
-//    @Json(name = "belongs_to_collection")
-//    val belongsToCollection: Any? = null,
+    @Json(name = "belongs_to_collection")
+    val belongsToCollection: Any? = null,
 
     val budget: Long?,
     val genres: List<Genres>,

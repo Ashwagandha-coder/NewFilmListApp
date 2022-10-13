@@ -32,13 +32,13 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
     // for navigation
 
-    private var movie_ID: Int = 0
-    private lateinit var poster_path: String
-    private var vote_average: Float = 0.0F
+    private var movieID: Int = 0
+    private lateinit var posterPath: String
+    private var voteAverage: Float = 0.0F
 
 
-    private var list_default_movie: MutableList<com.example.newfilmlistapp.model.Result>? = null
-    private var list_movie: MutableList<com.example.newfilmlistapp.model.Result>? = null
+    private var listDefaultMovie: MutableList<com.example.newfilmlistapp.model.Result>? = null
+    private var listMovie: MutableList<com.example.newfilmlistapp.model.Result>? = null
 
 
     private var movieRecomendationView: View? = null
@@ -70,13 +70,12 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         viewModel.movie.observe(viewLifecycleOwner) {
 
-            if (list_movie == null) {
+            if (listMovie == null) {
 
-                val random = (0..19).random()
-                val movie = it.results[random]
+                val movie = it
 
-                list_movie = mutableListOf(movie)
-                list_default_movie!!.add(movie)
+                listMovie = mutableListOf(movie)
+                listDefaultMovie!!.add(movie)
 
                 Glide.with(this)
                     .load(BASE_URL_FOR_PICTURE + movie.posterPath)
@@ -101,16 +100,16 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
                     it.text = movie.title
                 }
 
-                movie_ID = movie.id.toInt()
-                poster_path = movie.posterPath
-                vote_average = movie.voteAverage.toFloat()
+                movieID = movie.id.toInt()
+                posterPath = movie.posterPath
+                voteAverage = movie.voteAverage.toFloat()
 
             }
 
             else {
 
-                    val movie = list_movie!![list_movie!!.lastIndex]
-                    list_default_movie!!.add(movie)
+                    val movie = listMovie!![listMovie!!.lastIndex]
+                    listDefaultMovie!!.add(movie)
 
 
                     Glide.with(this)
@@ -136,11 +135,11 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
                         it.text = movie.title
                     }
 
-                    movie_ID = movie.id.toInt()
-                    poster_path = movie.posterPath
-                    vote_average = movie.voteAverage.toFloat()
+                    movieID = movie.id.toInt()
+                    posterPath = movie.posterPath
+                    voteAverage = movie.voteAverage.toFloat()
 
-                list_movie = null
+                listMovie = null
 
             }
         }
@@ -266,17 +265,17 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         viewModel.requestDefaultMovie()
 
-        Log.d(MovieRecomendationFragment::class.java.name,"State list_movie - " + list_default_movie)
+        Log.d(MovieRecomendationFragment::class.java.name,"State list_movie - " + listDefaultMovie)
 
         viewModel.defaultMovie.observe(viewLifecycleOwner) {
 
 
-            if (list_default_movie == null) {
+            if (listDefaultMovie == null) {
 
                 val random = (0..19).random()
                 val movie = it.results[random]
 
-                list_default_movie = mutableListOf(movie)
+                listDefaultMovie = mutableListOf(movie)
 
 
 
@@ -303,9 +302,9 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
                     it.text = movie.title
                 }
 
-                movie_ID = movie.id.toInt()
-                poster_path = movie.posterPath
-                vote_average = movie.voteAverage.toFloat()
+                movieID = movie.id.toInt()
+                posterPath = movie.posterPath
+                voteAverage = movie.voteAverage.toFloat()
 
 
 
@@ -313,7 +312,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
             else {
 
-                val movie = list_default_movie!![list_default_movie!!.lastIndex]
+                val movie = listDefaultMovie!![listDefaultMovie!!.lastIndex]
 
 
                 Glide.with(this)
@@ -339,9 +338,9 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
                     it.text = movie.title
                 }
 
-                movie_ID = movie.id.toInt()
-                poster_path = movie.posterPath
-                vote_average = movie.voteAverage.toFloat()
+                movieID = movie.id.toInt()
+                posterPath = movie.posterPath
+                voteAverage = movie.voteAverage.toFloat()
 
 
 
@@ -369,9 +368,9 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
         binding.cardView.setOnClickListener {
 
             val action = MovieRecomendationFragmentDirections.actionRandomToMovieDetail(
-                movie_ID,
-                poster_path,
-                vote_average
+                movieID,
+                posterPath,
+                voteAverage
             )
             it.findNavController().navigate(action)
 
