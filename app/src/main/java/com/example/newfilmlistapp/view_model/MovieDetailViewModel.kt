@@ -9,7 +9,6 @@ import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.network.LoadingMovieDBService
-import com.example.newfilmlistapp.network.Retrofit
 import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(): ViewModel() {

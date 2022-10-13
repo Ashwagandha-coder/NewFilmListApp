@@ -5,9 +5,10 @@ import androidx.lifecycle.*
 import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
+import com.example.newfilmlistapp.repository.RepositoryAPI
 import kotlinx.coroutines.launch
 
-class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
+class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : ViewModel(), ViewModelProvider.Factory {
 
 
     private val mutableLiveData_movie: MutableLiveData<MovieWrapper> = MutableLiveData()

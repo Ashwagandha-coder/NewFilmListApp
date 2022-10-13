@@ -8,7 +8,6 @@ import com.example.newfilmlistapp.view_model.PopularViewModel
 
 class ImplRepositoryAPI: RepositoryAPI {
 
-
     override suspend fun getPopularMovie(page: Int): PopularWrapper {
 
         val service = LoadingMovieDBService.create()

@@ -17,12 +17,14 @@ import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.databinding.FragmentMovieRecomendationBinding
 import com.example.newfilmlistapp.view_model.MovieRecomendationViewModel
 import com.example.newfilmlistapp.model.Genres
+import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
+import com.example.newfilmlistapp.view_model.MovieRecomendationViewModelFactory
 
 
 class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
     private lateinit var binding: FragmentMovieRecomendationBinding
-    private val viewModel: MovieRecomendationViewModel by viewModels()
+    private val viewModel: MovieRecomendationViewModel by viewModels { MovieRecomendationViewModelFactory(ImplRepositoryAPI()) }
 
 
     private lateinit var genre: String
