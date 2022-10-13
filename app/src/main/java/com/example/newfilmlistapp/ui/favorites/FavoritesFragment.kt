@@ -11,6 +11,8 @@ import androidx.room.Room
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
 import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.view_model.favorite.FavoritesViewModel
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.snackbar.Snackbar.SnackbarLayout
 import kotlinx.coroutines.launch
 
 
