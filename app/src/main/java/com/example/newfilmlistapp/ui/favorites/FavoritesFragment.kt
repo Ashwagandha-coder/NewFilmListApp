@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
-import com.example.newfilmlistapp.view_model.FavoritesViewModel
+import com.example.newfilmlistapp.view_model.favorite.FavoritesViewModel
 import kotlinx.coroutines.launch
 
 

@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.view_model
+package com.example.newfilmlistapp.view_model.movie_recomendation
 
 import android.util.Log
 import androidx.lifecycle.*

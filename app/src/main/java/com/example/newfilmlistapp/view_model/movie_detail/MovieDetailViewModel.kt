@@ -1,4 +1,4 @@
-package com.example.newfilmlistapp.view_model
+package com.example.newfilmlistapp.view_model.movie_detail
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -9,6 +9,7 @@ import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.network.LoadingMovieDBService
+import com.example.newfilmlistapp.view_model.movie_recomendation.MovieRecomendationViewModel
 import kotlinx.coroutines.launch
 
 class MovieDetailViewModel(): ViewModel() {

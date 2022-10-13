@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
-import com.example.newfilmlistapp.view_model.MovieDetailViewModel
+import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
 import com.example.newfilmlistapp.model.*
 

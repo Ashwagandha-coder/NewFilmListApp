@@ -15,10 +15,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.databinding.FragmentMovieRecomendationBinding
-import com.example.newfilmlistapp.view_model.MovieRecomendationViewModel
+import com.example.newfilmlistapp.view_model.movie_recomendation.MovieRecomendationViewModel
 import com.example.newfilmlistapp.model.Genres
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
-import com.example.newfilmlistapp.view_model.MovieRecomendationViewModelFactory
+import com.example.newfilmlistapp.view_model.movie_recomendation.MovieRecomendationViewModelFactory
 
 
 class MovieRecomendationFragment : androidx.fragment.app.Fragment() {

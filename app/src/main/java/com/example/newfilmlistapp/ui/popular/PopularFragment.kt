@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.newfilmlistapp.view_model.PopularViewModel
+import com.example.newfilmlistapp.view_model.popular.PopularViewModel
 import com.example.newfilmlistapp.databinding.FragmentPopularBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

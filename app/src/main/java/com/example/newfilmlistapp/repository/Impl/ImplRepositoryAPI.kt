@@ -4,7 +4,7 @@ import android.util.Log
 import com.example.newfilmlistapp.model.PopularWrapper
 import com.example.newfilmlistapp.network.LoadingMovieDBService
 import com.example.newfilmlistapp.repository.RepositoryAPI
-import com.example.newfilmlistapp.view_model.PopularViewModel
+import com.example.newfilmlistapp.view_model.popular.PopularViewModel
 
 class ImplRepositoryAPI: RepositoryAPI {
 
