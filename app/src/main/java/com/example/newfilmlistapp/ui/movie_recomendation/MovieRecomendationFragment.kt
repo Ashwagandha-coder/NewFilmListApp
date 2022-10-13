@@ -54,7 +54,7 @@ class MovieRecomendationFragment : androidx.fragment.app.Fragment() {
 
         bindGenres()
         bindYears()
-        setupDefaultMovie()
+        //setupDefaultMovie()
         setupMovie()
         setListenerButtonRequest()
         toMovieDetail()

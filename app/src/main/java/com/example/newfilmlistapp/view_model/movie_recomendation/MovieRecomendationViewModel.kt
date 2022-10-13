@@ -20,6 +20,15 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
     val defaultMovie: LiveData<MovieWrapper> = mutableLiveDataDefaultMovie
 
 
+    init {
+
+        requestGenres()
+        requestMovie(2018,"18")
+
+
+    }
+
+
 
     fun requestGenres() {
 

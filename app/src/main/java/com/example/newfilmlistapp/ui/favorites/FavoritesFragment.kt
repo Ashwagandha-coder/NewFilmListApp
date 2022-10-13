@@ -31,9 +31,8 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
         binding = FragmentFavoritesBinding.inflate(inflater,container,false)
 
 
-        val room = Room.databaseBuilder(requireContext().applicationContext, AppDatabase::class.java,"Movie_DB").build()
 
-        workWithViewModel()
+        //workWithViewModel()
         setFragmentTitle()
         setRecyclerView()
 

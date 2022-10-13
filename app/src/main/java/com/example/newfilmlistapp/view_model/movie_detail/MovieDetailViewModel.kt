@@ -27,7 +27,7 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
 
             try {
 
-                Room.room.movieDao().insert(movie)
+                Room.create().movieDao().insert(movie)
                 Log.d(MovieDetailViewModel::class.java.name, "request OK - insert in DB")
 
             } catch (e: Exception) {
@@ -45,7 +45,7 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
 
             try {
 
-                Room.room.movieDao().deleteMovie(movie)
+                Room.create().movieDao().deleteMovie(movie)
                 Log.d(MovieDetailViewModel::class.java.name, "request OK - delete from DB")
 
             } catch (e: Exception) {
