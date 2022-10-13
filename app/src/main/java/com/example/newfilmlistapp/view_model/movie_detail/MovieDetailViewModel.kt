@@ -97,7 +97,6 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
 
         Log.d(MovieRecomendationViewModel::class.java.name, "request OK - Movie Detail ")
 
-
         return result
 
     }
