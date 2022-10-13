@@ -90,9 +90,9 @@ class MovieDetailViewModel(): ViewModel() {
 
     suspend fun getMovieDetail(movieID: String): MovieDetailWrapper {
 
-        val loadingMovieDBService = Retrofit.retrofit.create(LoadingMovieDBService::class.java)
+        val service = LoadingMovieDBService.create()
 
-        val result = loadingMovieDBService.getMovieDetail(movieID)
+        val result = service.getMovieDetail(movieID)
 
         Log.d(MovieRecomendationViewModel::class.java.name, "request OK - Movie Detail ")
 

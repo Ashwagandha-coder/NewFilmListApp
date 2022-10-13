@@ -94,9 +94,9 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
     suspend fun getMovie(year: Int, genre: String): MovieWrapper {
 
-        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java)
+        val service = LoadingMovieDBService.create()
 
-        val result = loadingMovieDBService.getMovie(primary_release_year = year, genres = listOf(genre))
+        val result = service.getMovie(primary_release_year = year, genres = listOf(genre))
 
         Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Random Movie ")
 
@@ -107,10 +107,9 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
     suspend fun getGenres(): GenresWrapper {
 
+        val service = LoadingMovieDBService.create()
 
-        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java)
-
-        val result = loadingMovieDBService.getGenres()
+        val result = service.getGenres()
 
          Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Genres")
 
@@ -120,9 +119,9 @@ class MovieRecomendationViewModel : ViewModel(), ViewModelProvider.Factory {
 
     suspend fun getDefaultMovie(): MovieWrapper {
 
-        val loadingMovieDBService = com.example.newfilmlistapp.network.Retrofit.retrofit.create(LoadingMovieDBService::class.java)
+        val service = LoadingMovieDBService.create()
 
-        val result = loadingMovieDBService.getDefaultMovie()
+        val result = service.getDefaultMovie()
 
         Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Default Movie ")
 

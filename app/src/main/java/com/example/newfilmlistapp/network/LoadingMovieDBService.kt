@@ -2,6 +2,10 @@ package com.example.newfilmlistapp.network
 
 import com.example.newfilmlistapp.*
 import com.example.newfilmlistapp.model.*
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -61,4 +65,28 @@ interface LoadingMovieDBService {
     ) : MovieWrapper
 
 
+    companion object {
+
+
+        fun create(): LoadingMovieDBService {
+            val logInterceptor = HttpLoggingInterceptor()
+            logInterceptor.level = HttpLoggingInterceptor.Level.BODY
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(logInterceptor)
+                .build()
+
+            return retrofit2.Retrofit.Builder()
+                .client(client)
+                .baseUrl(BASE_URL)
+                .addConverterFactory(MoshiConverterFactory.create(Moshi.moshi))
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                .build()
+                .create(LoadingMovieDBService::class.java)
+        }
+    }
+
+
+
 }
+
