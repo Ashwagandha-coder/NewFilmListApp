@@ -6,7 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class ErrorMessage(private val view: View) {
 
-    fun errorMessage(message: String) {
+    fun errorMessage() {
 
         val snackbar = Snackbar.make(view, R.string.error_message, Snackbar.LENGTH_LONG)
 
