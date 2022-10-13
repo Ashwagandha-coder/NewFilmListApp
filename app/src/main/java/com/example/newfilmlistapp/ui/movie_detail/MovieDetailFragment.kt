@@ -202,7 +202,7 @@ class MovieDetailFragment : Fragment() {
         return MovieDetailWrapperRoom(
             adult = movieDetailWrapper.adult,
             backdropPath = movieDetailWrapper.backdropPath,
-            belongsToCollection = movieDetailWrapper.belongsToCollection,
+//            belongsToCollection = movieDetailWrapper.belongsToCollection,
             budget = movieDetailWrapper.budget,
             genres = movieDetailWrapper.genres,
             homepage = movieDetailWrapper.homepage,

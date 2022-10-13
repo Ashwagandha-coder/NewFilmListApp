@@ -1,11 +1,14 @@
 package com.example.newfilmlistapp.view_model.favorite
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.example.newfilmlistapp.local.db.Room
+import androidx.room.Room
+import com.example.newfilmlistapp.app.FilmListApp
+import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.paging.MovieFavoritePagingSource
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
 
@@ -13,10 +16,10 @@ import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
 class FavoritesViewModel : ViewModel() {
 
 
-    private val listDataFavorite = Pager(PagingConfig(pageSize = 1)) {
-        MovieFavoritePagingSource(ImplRepositoryRoom(Room.room.movieDao()))
+    fun listDataFavorite(appContext: Context) = Pager(PagingConfig(pageSize = 1)) {
+        val room = Room.databaseBuilder(appContext, AppDatabase::class.java,"Movie_DB").build()
+        MovieFavoritePagingSource(ImplRepositoryRoom(room.movieDao()))
     }.flow.cachedIn(viewModelScope)
-    val getListDataFavorite = listDataFavorite
 
 
 }

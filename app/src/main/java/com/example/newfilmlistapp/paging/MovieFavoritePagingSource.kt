@@ -25,10 +25,12 @@ class MovieFavoritePagingSource(private val repositoryRoom: RepositoryRoom): Pag
             val currentPage = params.key ?: 1
             val data = repositoryRoom.getMovieListLocal()
 
-            LoadResult.Page(data = data!!,
-                prevKey = null,
-                nextKey = currentPage.plus(1)
-            )
+//
+//            LoadResult.Page(data = data ?: emptyList(),
+//                prevKey = null,
+//                nextKey = currentPage.plus(1)
+//            )
+            LoadResult.Error(Exception())
         }
         catch (e: Exception) {
             Log.e("MovieFavoritePaging", "error $e")

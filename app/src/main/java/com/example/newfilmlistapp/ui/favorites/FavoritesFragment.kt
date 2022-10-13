@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import com.example.newfilmlistapp.databinding.FragmentFavoritesBinding
+import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.view_model.favorite.FavoritesViewModel
 import kotlinx.coroutines.launch
 
@@ -26,7 +28,10 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     ): View? {
         binding = FragmentFavoritesBinding.inflate(inflater,container,false)
 
-        //workWithViewModel()
+
+        val room = Room.databaseBuilder(requireContext().applicationContext, AppDatabase::class.java,"Movie_DB").build()
+
+        workWithViewModel()
         setFragmentTitle()
         setRecyclerView()
 
@@ -37,9 +42,9 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     private fun workWithViewModel() {
 
         lifecycleScope.launch {
-            viewModel.getListDataFavorite.collect {
-                favoriteAdapter.submitData(it)
-            }
+//            viewModel.listDataFavorite(requireContext().applicationContext).collect {
+//                favoriteAdapter.submitData(it)
+//            }
         }
 
 
