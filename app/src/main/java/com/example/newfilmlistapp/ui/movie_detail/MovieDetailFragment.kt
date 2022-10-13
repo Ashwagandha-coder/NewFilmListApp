@@ -88,7 +88,7 @@ class MovieDetailFragment : Fragment() {
 
         viewModel.movieDetailWrapper.observe(viewLifecycleOwner) {
 
-            //movieDetailWrapperRoom = parse(it)
+            movieDetailWrapperRoom = parse(it)
 
             val backdrop_path = it.backdropPath
 
@@ -196,38 +196,38 @@ class MovieDetailFragment : Fragment() {
     }
 
 
-//    private fun parse(movieDetailWrapper: MovieDetailWrapper): MovieDetailWrapperRoom {
-//
-//
-//        return MovieDetailWrapperRoom(
-//            adult = movieDetailWrapper.adult,
-//            backdropPath = movieDetailWrapper.backdropPath,
-//            belongsToCollection = movieDetailWrapper.belongsToCollection,
-//            budget = movieDetailWrapper.budget,
-//            genres = movieDetailWrapper.genres,
-//            homepage = movieDetailWrapper.homepage,
-//            id = movieDetailWrapper.id,
-//            imdbID = movieDetailWrapper.imdbID,
-//            originalLanguage = movieDetailWrapper.originalLanguage,
-//            originalTitle = movieDetailWrapper.originalTitle,
-//            overview = movieDetailWrapper.overview,
-//            popularity = movieDetailWrapper.popularity,
-//            posterPath = movieDetailWrapper.posterPath,
-//            productionCompanies = movieDetailWrapper.productionCompanies,
-//            productionCountries = movieDetailWrapper.productionCountries,
-//            releaseDate = movieDetailWrapper.releaseDate,
-//            revenue = movieDetailWrapper.revenue,
-//            runtime = movieDetailWrapper.runtime,
-//            spokenLanguages = movieDetailWrapper.spokenLanguages,
-//            status = movieDetailWrapper.status,
-//            tagline = movieDetailWrapper.tagline,
-//            title = movieDetailWrapper.title,
-//            video = movieDetailWrapper.video,
-//            voteAverage = movieDetailWrapper.voteAverage,
-//            voteCount = movieDetailWrapper.voteCount
-//        )
-//
-//    }
+    private fun parse(movieDetailWrapper: MovieDetailWrapper): MovieDetailWrapperRoom {
+
+
+        return MovieDetailWrapperRoom(
+            adult = movieDetailWrapper.adult,
+            backdropPath = movieDetailWrapper.backdropPath,
+            //belongsToCollection = movieDetailWrapper.belongsToCollection,
+            budget = movieDetailWrapper.budget,
+            //genres = movieDetailWrapper.genres,
+            homepage = movieDetailWrapper.homepage,
+            id = movieDetailWrapper.id,
+            imdbID = movieDetailWrapper.imdbID,
+            originalLanguage = movieDetailWrapper.originalLanguage,
+            originalTitle = movieDetailWrapper.originalTitle,
+            overview = movieDetailWrapper.overview,
+            popularity = movieDetailWrapper.popularity,
+            posterPath = movieDetailWrapper.posterPath,
+            //productionCompanies = movieDetailWrapper.productionCompanies,
+            //productionCountries = movieDetailWrapper.productionCountries,
+            releaseDate = movieDetailWrapper.releaseDate,
+            revenue = movieDetailWrapper.revenue,
+            runtime = movieDetailWrapper.runtime,
+            //spokenLanguages = movieDetailWrapper.spokenLanguages,
+            status = movieDetailWrapper.status,
+            tagline = movieDetailWrapper.tagline,
+            title = movieDetailWrapper.title,
+            video = movieDetailWrapper.video,
+            voteAverage = movieDetailWrapper.voteAverage,
+            voteCount = movieDetailWrapper.voteCount
+        )
+
+    }
 
 
 

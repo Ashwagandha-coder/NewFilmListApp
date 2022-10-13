@@ -16,6 +16,9 @@ import com.google.android.material.snackbar.Snackbar.SnackbarLayout
 import kotlinx.coroutines.launch
 
 
+// todo: Сделать логику добавления фильма
+
+
 class FavoritesFragment : androidx.fragment.app.Fragment() {
 
     private val viewModel: FavoritesViewModel by viewModels()
