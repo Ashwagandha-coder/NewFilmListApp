@@ -14,10 +14,10 @@ data class MovieDetailWrapperRoom (
 
     val backdropPath: String? = null,
 
-    val belongsToCollection: String? = null,
+    val belongsToCollection: Any? = null,
 
     val budget: Long?,
-    val genres: List<GenresRoom>,
+    val genres: List<GenresRoom>? = null,
     val homepage: String? = null,
     val id: Long,
 
