@@ -50,8 +50,6 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
     }
 
     private fun workWithViewModel() {
-        val room = Room.databaseBuilder(requireContext().applicationContext, AppDatabase::class.java,"Movie_DB").build()
-
         lifecycleScope.launch {
 
             try {
@@ -64,7 +62,7 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
 //
 //                }
 
-                viewModel.listDataFavorite(room).collect {
+                viewModel.listDataFavorite().collect {
                     favoriteAdapter.submitData(it)
                 }
             } catch (e: Exception) {

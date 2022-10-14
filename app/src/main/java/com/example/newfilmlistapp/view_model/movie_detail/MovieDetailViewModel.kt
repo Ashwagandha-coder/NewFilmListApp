@@ -84,7 +84,6 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI, private val
 
     }
 
-
     fun searchInDb(id_movie: Long): Boolean {
 
         var flag: Boolean = false
