@@ -86,17 +86,14 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI, private val
 
     fun searchInDb(id_movie: Long): Boolean {
 
-        var flag: Boolean = false
+        var flag = true
 
         viewModelScope.launch {
 
             val data = repositoryRoom.getMovieListLocal()
 
             data?.forEach {
-                if (it.id.toInt() == id_movie.toInt())
-                    flag = true
-                else
-                    flag = false
+                flag = it.id == id_movie
             }
 
         }

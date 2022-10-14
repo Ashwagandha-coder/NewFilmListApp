@@ -64,9 +64,7 @@ class MovieDetailFragment : Fragment() {
     private fun onBackScreen() {
 
         binding.topNavBar.returnImageView.setOnClickListener {
-
             findNavController().popBackStack()
-
         }
 
     }

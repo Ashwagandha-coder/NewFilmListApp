@@ -61,9 +61,9 @@ class FavoritesFragment : androidx.fragment.app.Fragment() {
 //                    }
 //
 //                }
-
-                viewModel.listDataFavorite().collect {
-                    favoriteAdapter.submitData(it)
+                viewModel.getFavoriteMovie()
+                viewModel.favorite.observe(viewLifecycleOwner) {
+                    favoriteAdapter.submitList(it)
                 }
             } catch (e: Exception) {
                 Log.e("FavoritesFragment", "workWithViewModel error ${e}")

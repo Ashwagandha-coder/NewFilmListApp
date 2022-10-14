@@ -3,7 +3,7 @@ package com.example.newfilmlistapp.ui.favorites
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
@@ -12,8 +12,7 @@ import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.ui.popular.PopularViewHolder
 import com.example.newfilmlistapp.ui.recycler_view.UserDiffCallBackFavorite
 
-class FavoritesAdapter() :
-    PagingDataAdapter<MovieDetailWrapperRoom, PopularViewHolder>(UserDiffCallBackFavorite()) {
+class FavoritesAdapter() : ListAdapter<MovieDetailWrapperRoom, PopularViewHolder>(UserDiffCallBackFavorite()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularViewHolder {
