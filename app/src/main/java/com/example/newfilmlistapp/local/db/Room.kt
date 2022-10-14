@@ -6,8 +6,8 @@ import com.example.newfilmlistapp.app.FilmListApp
 object Room {
 
 
-    fun create(): AppDatabase {
-        return androidx.room.Room.databaseBuilder(FilmListApp().baseContext,AppDatabase::class.java,"Movie DB").build()
+    fun create(context: Context): AppDatabase {
+        return androidx.room.Room.databaseBuilder(context,AppDatabase::class.java,"Movie DB").build()
     }
 
 }

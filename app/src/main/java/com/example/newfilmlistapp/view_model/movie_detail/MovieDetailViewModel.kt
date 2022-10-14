@@ -1,5 +1,6 @@
 package com.example.newfilmlistapp.view_model.movie_detail
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,13 +22,13 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
     val roomMovie: LiveData<MovieDetailWrapper> = mutableLiveDataRoom
 
 
-    fun onLoad(movie: MovieDetailWrapperRoom) {
+    fun onLoad(movie: MovieDetailWrapperRoom, context: Context) {
 
         viewModelScope.launch {
 
             try {
 
-                Room.create().movieDao().insert(movie)
+                Room.create(context).movieDao().insert(movie)
                 Log.d(MovieDetailViewModel::class.java.name, "request OK - insert in DB")
 
             } catch (e: Exception) {
@@ -39,13 +40,13 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
 
     }
 
-    fun onDelete(movie: MovieDetailWrapperRoom) {
+    fun onDelete(movie: MovieDetailWrapperRoom,context: Context) {
 
         viewModelScope.launch {
 
             try {
 
-                Room.create().movieDao().deleteMovie(movie)
+                Room.create(context).movieDao().deleteMovie(movie)
                 Log.d(MovieDetailViewModel::class.java.name, "request OK - delete from DB")
 
             } catch (e: Exception) {
