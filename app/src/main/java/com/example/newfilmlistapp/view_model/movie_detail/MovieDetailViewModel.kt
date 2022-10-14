@@ -10,10 +10,11 @@ import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.repository.RepositoryAPI
+import com.example.newfilmlistapp.repository.RepositoryRoom
 import com.example.newfilmlistapp.view_model.movie_recomendation.MovieRecomendationViewModel
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel() {
+class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI, private val repositoryRoom: RepositoryRoom): ViewModel() {
 
     private val mutableLiveDataMovieDetail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveDataMovieDetail
@@ -84,7 +85,7 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
     }
 
 
-    fun searchInDb(id_movie: Int): Boolean {
+    fun searchInDb(id_movie: Long): Boolean {
 
         var flag: Boolean = false
 
@@ -93,7 +94,7 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
             val data = repositoryRoom.getMovieListLocal()
 
             data?.forEach {
-                if (it.id.toInt() == id_movie)
+                if (it.id.toInt() == id_movie.toInt())
                     flag = true
                 else
                     flag = false

@@ -16,15 +16,18 @@ import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
+import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.model.*
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
+import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
 import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModelFactory
 
 
 class MovieDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
-    private val viewModel: MovieDetailViewModel by viewModels { MovieDetailViewModelFactory(ImplRepositoryAPI()) }
+    private val viewModel: MovieDetailViewModel by viewModels { MovieDetailViewModelFactory(ImplRepositoryAPI(),ImplRepositoryRoom(
+        AppDatabase.getDatabase(requireContext().applicationContext))) }
 
     private val args: MovieDetailFragmentArgs by navArgs()
 
@@ -208,7 +211,7 @@ class MovieDetailFragment : Fragment() {
            // binding.tvRatingValue.text = it.voteAverage.toString()
             Log.d(MovieDetailFragment::class.java.name,"realease Date " + it.releaseDate.substring(0,3))
 
-
+            isMovieDB = viewModel.searchInDb(it.id)
 
         }
 
