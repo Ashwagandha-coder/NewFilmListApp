@@ -7,7 +7,7 @@ object Room {
 
 
     fun create(context: Context): AppDatabase {
-        return androidx.room.Room.databaseBuilder(context,AppDatabase::class.java,"Movie DB").build()
+        return androidx.room.Room.databaseBuilder(context,AppDatabase::class.java,"Movie_DB").build()
     }
 
 }

@@ -1,6 +1,5 @@
 package com.example.newfilmlistapp.ui.movie_detail
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
@@ -21,8 +20,6 @@ import com.example.newfilmlistapp.model.*
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
 import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModelFactory
 
-
-// todo: Сделать кнопку FAB отжимаемой
 
 class MovieDetailFragment : Fragment() {
 
@@ -68,6 +65,8 @@ class MovieDetailFragment : Fragment() {
         }
 
     }
+
+    // todo: Сделать сохранение состояния FAB
 
     private fun setFAB() {
 

@@ -69,7 +69,7 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
             try {
 
                 // Movie Detail
-                Log.d(MovieDetailViewModel::class.java.name,"Значение movieID before request - $id") // todo: вставить значение movieID
+                Log.d(MovieDetailViewModel::class.java.name,"Значение movieID before request - $id")
 
                 mutableLiveDataMovieDetail.value = repositoryAPI.getMovieDetail(id.toString())
 

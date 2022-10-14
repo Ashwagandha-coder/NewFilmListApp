@@ -10,7 +10,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "movie")
 data class MovieDetailWrapperRoom (
 
-    @PrimaryKey(autoGenerate = false)
     var adult: Boolean,
 
     var backdropPath: String? = null,
@@ -22,6 +21,7 @@ data class MovieDetailWrapperRoom (
 //    @Embedded
 //    var genres: List<GenresRoom>? = null,
     var homepage: String? = null,
+    @PrimaryKey(autoGenerate = false)
     var id: Long,
 
     var imdbID: String? = null,
