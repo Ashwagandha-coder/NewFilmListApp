@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.local.db.Room
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieDetailWrapperRoom

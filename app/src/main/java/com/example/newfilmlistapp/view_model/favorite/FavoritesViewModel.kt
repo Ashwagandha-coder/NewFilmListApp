@@ -14,7 +14,6 @@ import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
 
 class FavoritesViewModel : ViewModel() {
 
-
     fun listDataFavorite(appContext: Context) = Pager(PagingConfig(pageSize = 1)) {
         val room = Room.databaseBuilder(appContext, AppDatabase::class.java,"Movie_DB").build()
         MovieFavoritePagingSource(ImplRepositoryRoom(room.movieDao()))

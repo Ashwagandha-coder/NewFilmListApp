@@ -74,16 +74,16 @@ class MovieDetailFragment : Fragment() {
 
         binding.buttonFavorite.setOnClickListener {
 
-            if (movieDetailWrapperRoom.isFavorite == true) {
+            if (movieDetailWrapperRoom.isFavorite == false) {
 
-                binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
+                binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
                 viewModel.onLoad(movieDetailWrapperRoom)
 
             }
 
             else {
 
-                binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
+                binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
                 viewModel.onDelete(movieDetailWrapperRoom)
 
             }
