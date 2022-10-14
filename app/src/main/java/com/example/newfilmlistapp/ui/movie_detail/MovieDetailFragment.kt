@@ -89,7 +89,6 @@ class MovieDetailFragment : Fragment() {
             }
         }
 
-
     }
 
     private fun workWithViewModel() {
