@@ -1,5 +1,6 @@
 package com.example.newfilmlistapp.ui.movie_detail
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
@@ -31,6 +32,7 @@ class MovieDetailFragment : Fragment() {
     private val args: MovieDetailFragmentArgs by navArgs()
 
     private lateinit var movieDetailWrapperRoom: MovieDetailWrapperRoom
+
 
 
 
@@ -67,20 +69,31 @@ class MovieDetailFragment : Fragment() {
 
     }
 
-    private fun setFAB() {
-        binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
-
-    }
+    private fun setFAB() { binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp) }
 
 
     private fun setListenerFAB() {
 
+
         binding.buttonFavorite.setOnClickListener {
-            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
 
-            viewModel.onLoad(movieDetailWrapperRoom)
+
+
+            if (movieDetailWrapperRoom.isFavorite == false) {
+
+                binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
+                viewModel.onLoad(movieDetailWrapperRoom,requireContext().applicationContext)
+                movieDetailWrapperRoom.isFavorite = true
+
+            }
+
+            else {
+
+                binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
+                viewModel.onDelete(movieDetailWrapperRoom,requireContext().applicationContext)
+
+            }
         }
-
 
     }
 
