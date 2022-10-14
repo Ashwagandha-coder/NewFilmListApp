@@ -7,7 +7,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import androidx.room.Room
-import com.example.newfilmlistapp.app.FilmListApp
 import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.paging.MovieFavoritePagingSource
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
