@@ -1,13 +1,14 @@
 package com.example.newfilmlistapp.repository.Impl
 
-import com.example.newfilmlistapp.local.MovieDao
+
+import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.repository.RepositoryRoom
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-class ImplRepositoryRoom(private val movieDao: MovieDao): RepositoryRoom {
+class ImplRepositoryRoom(private val room: AppDatabase): RepositoryRoom {
 
 
     override suspend fun insertDB() = withContext(Dispatchers.IO) {
@@ -19,44 +20,44 @@ class ImplRepositoryRoom(private val movieDao: MovieDao): RepositoryRoom {
     }
 
     override suspend fun getMovieListLocal(): List<MovieDetailWrapperRoom>? = withContext(Dispatchers.IO) {
-        movieDao.getMovieList()
+        room.movieDao().getMovieList()
     }
 
     override suspend fun getMovieLocal(id: String): MovieDetailWrapperRoom? = withContext(Dispatchers.IO) {
-        movieDao.getMovie(id)
+        room.movieDao().getMovie(id)
     }
 
     override suspend fun insertLocal(movie: MovieDetailWrapperRoom) = withContext(Dispatchers.IO) {
-        movieDao.insert(movie)
+        room.movieDao().insert(movie)
     }
 
     override suspend fun insertLocal(list: List<MovieDetailWrapperRoom>) = withContext(Dispatchers.IO) {
-        movieDao.insert(list)
+        room.movieDao().insert(list)
     }
 
     override suspend fun updateLocal(movie: MovieDetailWrapperRoom) = withContext(Dispatchers.IO) {
-        movieDao.update(movie)
+        room.movieDao().update(movie)
     }
 
     override suspend fun deleteMovieLocal(movie: MovieDetailWrapperRoom) = withContext(Dispatchers.IO) {
-        movieDao.deleteMovie(movie)
+        room.movieDao().deleteMovie(movie)
     }
 
     override suspend fun deleteMovieLocal(id: String) = withContext(Dispatchers.IO) {
-        movieDao.deleteMovie(id)
+        room.movieDao().deleteMovie(id)
     }
 
     override suspend fun getMoviePageLocal(
         pageSize: Int,
         pageIndex: Int
     ): List<MovieDetailWrapperRoom>? = withContext(Dispatchers.IO) {
-        movieDao.getMoviePage(pageSize, pageIndex)
+        room.movieDao().getMoviePage(pageSize, pageIndex)
     }
 
     override suspend fun getFavoriteLocal(
         pageSize: Int,
         pageIndex: Int
     ): List<MovieDetailWrapperRoom>? = withContext(Dispatchers.IO) {
-        movieDao.getFavorite(pageSize, pageIndex)
+        room.movieDao().getFavorite(pageSize, pageIndex)
     }
 }

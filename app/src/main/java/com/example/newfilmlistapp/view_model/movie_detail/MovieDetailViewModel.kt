@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.newfilmlistapp.local.db.Room
+import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieDetailWrapperRoom
 import com.example.newfilmlistapp.repository.RepositoryAPI
@@ -18,9 +18,6 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
     private val mutableLiveDataMovieDetail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveDataMovieDetail
 
-    private val mutableLiveDataRoom: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
-    val roomMovie: LiveData<MovieDetailWrapper> = mutableLiveDataRoom
-
 
     fun onLoad(movie: MovieDetailWrapperRoom, context: Context) {
 
@@ -28,7 +25,7 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
 
             try {
 
-                Room.create(context).movieDao().insert(movie)
+                AppDatabase.getDatabase(context).movieDao().insert(movie)
                 Log.d(MovieDetailViewModel::class.java.name, "request OK - insert in DB")
 
             } catch (e: Exception) {
@@ -46,7 +43,7 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
 
             try {
 
-                Room.create(context).movieDao().deleteMovie(movie)
+                AppDatabase.getDatabase(context).movieDao().deleteMovie(movie)
                 Log.d(MovieDetailViewModel::class.java.name, "request OK - delete from DB")
 
             } catch (e: Exception) {
