@@ -69,15 +69,16 @@ class MovieDetailFragment : Fragment() {
 
     }
 
-    private fun setFAB() { binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp) }
+    private fun setFAB() {
+
+        binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
+
+    }
 
 
     private fun setListenerFAB() {
 
-
         binding.buttonFavorite.setOnClickListener {
-
-
 
             if (movieDetailWrapperRoom.isFavorite == false) {
 
@@ -91,6 +92,7 @@ class MovieDetailFragment : Fragment() {
 
                 binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
                 viewModel.onDelete(movieDetailWrapperRoom,requireContext().applicationContext)
+                movieDetailWrapperRoom.isFavorite = false
 
             }
         }
