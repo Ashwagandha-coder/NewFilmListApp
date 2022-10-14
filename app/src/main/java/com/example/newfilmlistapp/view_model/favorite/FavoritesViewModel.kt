@@ -8,12 +8,15 @@ import androidx.paging.cachedIn
 import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.paging.MovieFavoritePagingSource
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
+import com.example.newfilmlistapp.repository.RepositoryRoom
 
 
-class FavoritesViewModel : ViewModel() {
+class FavoritesViewModel(private var repositoryRoom: RepositoryRoom) : ViewModel() {
+
 
     fun listDataFavorite(room: AppDatabase) = Pager(PagingConfig(pageSize = 1)) {
-        MovieFavoritePagingSource(ImplRepositoryRoom(room))
+        repositoryRoom = ImplRepositoryRoom(room)
+        MovieFavoritePagingSource(repositoryRoom)
     }.flow.cachedIn(viewModelScope)
 
 

@@ -84,4 +84,26 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI): ViewModel(
     }
 
 
+    fun searchInDb(id_movie: Int): Boolean {
+
+        var flag: Boolean = false
+
+        viewModelScope.launch {
+
+            val data = repositoryRoom.getMovieListLocal()
+
+            data?.forEach {
+                if (it.id.toInt() == id_movie)
+                    flag = true
+                else
+                    flag = false
+            }
+
+        }
+
+        return flag
+
+    }
+
+
 }

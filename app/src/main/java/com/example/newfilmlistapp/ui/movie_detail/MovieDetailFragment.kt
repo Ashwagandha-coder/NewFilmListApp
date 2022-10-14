@@ -30,6 +30,8 @@ class MovieDetailFragment : Fragment() {
 
     private lateinit var movieDetailWrapperRoom: MovieDetailWrapperRoom
 
+    private var isMovieDB: Boolean = false
+
 
 
 
@@ -70,7 +72,10 @@ class MovieDetailFragment : Fragment() {
 
     private fun setFAB() {
 
-        binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
+        if (isMovieDB)
+            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
+        else
+            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
 
     }
 
