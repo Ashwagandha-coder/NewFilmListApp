@@ -211,6 +211,7 @@ class MovieDetailFragment : Fragment() {
 
             isMovieDB = viewModel.searchInDb(it.id)
 
+
         }
 
     }
