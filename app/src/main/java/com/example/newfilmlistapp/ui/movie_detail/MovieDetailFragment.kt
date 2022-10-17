@@ -1,6 +1,5 @@
 package com.example.newfilmlistapp.ui.movie_detail
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Html
 import android.util.Log
@@ -9,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -17,23 +17,30 @@ import com.example.newfilmlistapp.BASE_URL_FOR_PICTURE
 import com.example.newfilmlistapp.R
 import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModel
 import com.example.newfilmlistapp.databinding.FragmentMovieDetailBinding
+import com.example.newfilmlistapp.local.db.AppDatabase
 import com.example.newfilmlistapp.model.*
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
+import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
 import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModelFactory
+import kotlinx.coroutines.launch
 
-
-// todo: Сделать кнопку FAB отжимаемой
 
 class MovieDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
-    private val viewModel: MovieDetailViewModel by viewModels { MovieDetailViewModelFactory(ImplRepositoryAPI()) }
+    private val viewModel: MovieDetailViewModel by viewModels {
+        MovieDetailViewModelFactory(
+            ImplRepositoryAPI(), ImplRepositoryRoom(
+                AppDatabase.getDatabase(requireContext().applicationContext)
+            )
+        )
+    }
 
     private val args: MovieDetailFragmentArgs by navArgs()
 
     private lateinit var movieDetailWrapperRoom: MovieDetailWrapperRoom
 
-
+    private var isMovieDB: Boolean = false
 
 
     override fun onCreateView(
@@ -41,56 +48,59 @@ class MovieDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMovieDetailBinding.inflate(inflater,container,false)
+        binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
 
         onBackScreen()
         workWithViewModel()
         requestWrapper()
-        setFAB()
         setListenerFAB()
 
         return binding.root
     }
 
     private fun requestWrapper() {
-
-        val id: Int = args.movieID
-        viewModel.requestMovieDetail(id)
+        lifecycleScope.launch {
+            val id: Int = args.movieID
+            viewModel.requestMovieDetail(id)
+            isMovieDB = viewModel.flag
+            checkFAB(isMovieDB)
+        }
 
     }
 
     private fun onBackScreen() {
 
         binding.topNavBar.returnImageView.setOnClickListener {
-
             findNavController().popBackStack()
-
         }
 
     }
 
-    private fun setFAB() { binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp) }
+    private fun checkFAB(flag: Boolean) {
+
+        if (flag)
+            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
+        else
+            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
+
+    }
 
 
     private fun setListenerFAB() {
 
-
         binding.buttonFavorite.setOnClickListener {
-
-
 
             if (movieDetailWrapperRoom.isFavorite == false) {
 
                 binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
-                viewModel.onLoad(movieDetailWrapperRoom,requireContext().applicationContext)
+                viewModel.onLoad(movieDetailWrapperRoom, requireContext().applicationContext)
                 movieDetailWrapperRoom.isFavorite = true
 
-            }
-
-            else {
+            } else {
 
                 binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
-                viewModel.onDelete(movieDetailWrapperRoom,requireContext().applicationContext)
+                viewModel.onDelete(movieDetailWrapperRoom, requireContext().applicationContext)
+                movieDetailWrapperRoom.isFavorite = false
 
             }
         }
@@ -139,8 +149,6 @@ class MovieDetailFragment : Fragment() {
                     text = it.title
                 }
             }
-
-
 
 
             var genres: String? = ""
@@ -199,9 +207,16 @@ class MovieDetailFragment : Fragment() {
                 .into(binding.poster)
 
             binding.tvDescription.text = it.overview
-           // binding.tvRatingValue.text = it.voteAverage.toString()
-            Log.d(MovieDetailFragment::class.java.name,"realease Date " + it.releaseDate.substring(0,3))
+            // binding.tvRatingValue.text = it.voteAverage.toString()
+            Log.d(
+                MovieDetailFragment::class.java.name,
+                "realease Date " + it.releaseDate.substring(0, 3)
+            )
 
+
+//            var isMovieDB = viewModel.testSearchDB(it.id)
+//            Log.d(MovieDetailFragment::class.java.name,"isMovieDB - ${isMovieDB}")
+//            checkFAB(isMovieDB)
 
 
         }
@@ -241,7 +256,6 @@ class MovieDetailFragment : Fragment() {
         )
 
     }
-
 
 
 }

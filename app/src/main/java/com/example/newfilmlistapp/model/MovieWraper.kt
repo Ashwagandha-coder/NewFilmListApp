@@ -4,9 +4,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
-
 @JsonClass(generateAdapter = true)
-data class MovieWrapper (
+data class MovieWrapper(
     val page: Long,
     val results: List<com.example.newfilmlistapp.model.Result>,
 
@@ -16,8 +15,9 @@ data class MovieWrapper (
     @Json(name = "total_results")
     val totalResults: Long
 )
+
 @JsonClass(generateAdapter = true)
-data class Result (
+data class Result(
     val adult: Boolean,
 
     @Json(name = "backdrop_path")

@@ -12,9 +12,9 @@ import com.example.newfilmlistapp.view_model.popular.PopularViewModel
 
 class ImplRepositoryAPI: RepositoryAPI {
 
-    override suspend fun getPopularMovie(page: Int): PopularWrapper {
+    private val service = RepositoryAPI.create()
 
-        val service = LoadingMovieDBService.create()
+    override suspend fun getPopularMovie(page: Int): PopularWrapper {
 
         val result = service.getPopularMovie(page = page)
 
@@ -27,8 +27,6 @@ class ImplRepositoryAPI: RepositoryAPI {
 
     override suspend fun getMovieDetail(movieID: String): MovieDetailWrapper {
 
-        val service = LoadingMovieDBService.create()
-
         val result = service.getMovieDetail(movieID)
 
         Log.d(MovieRecomendationViewModel::class.java.name, "request OK - Movie Detail ")
@@ -38,8 +36,6 @@ class ImplRepositoryAPI: RepositoryAPI {
     }
 
     override suspend fun getMovie(year: Int?, genre: String?): MovieWrapper {
-
-        val service = LoadingMovieDBService.create()
 
         val result = service.getMovie(primary_release_year = year, genres = listOf(genre))
 
@@ -52,8 +48,6 @@ class ImplRepositoryAPI: RepositoryAPI {
 
     override suspend fun getGenres(): GenresWrapper {
 
-        val service = LoadingMovieDBService.create()
-
         val result = service.getGenres()
 
         Log.d(MovieRecomendationViewModel::class.java.name,"request OK in suspend - Genres")
@@ -63,8 +57,6 @@ class ImplRepositoryAPI: RepositoryAPI {
 
 
     override suspend fun getDefaultMovie(): MovieWrapper {
-
-        val service = LoadingMovieDBService.create()
 
         val result = service.getDefaultMovie()
 

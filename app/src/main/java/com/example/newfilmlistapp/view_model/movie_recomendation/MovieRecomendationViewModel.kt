@@ -3,21 +3,19 @@ package com.example.newfilmlistapp.view_model.movie_recomendation
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.newfilmlistapp.model.GenresWrapper
-import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.repository.RepositoryAPI
 import kotlinx.coroutines.launch
 
-class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : ViewModel(), ViewModelProvider.Factory {
+class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : ViewModel(),
+    ViewModelProvider.Factory {
 
 
-    private val mutableLiveDataMovie: MutableLiveData<com.example.newfilmlistapp.model.Result> = MutableLiveData()
+    private val mutableLiveDataMovie: MutableLiveData<com.example.newfilmlistapp.model.Result> =
+        MutableLiveData()
     val movie: LiveData<com.example.newfilmlistapp.model.Result> = mutableLiveDataMovie
 
     private val mutableLiveDataGenres: MutableLiveData<GenresWrapper> = MutableLiveData()
     val genres: LiveData<GenresWrapper> = mutableLiveDataGenres
-
-    private val mutableLiveDataDefaultMovie: MutableLiveData<MovieWrapper> = MutableLiveData()
-    val defaultMovie: LiveData<MovieWrapper> = mutableLiveDataDefaultMovie
 
 
     init {
@@ -28,7 +26,6 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
 
 
     fun requestGenres() {
-
         viewModelScope.launch {
 
             try {
@@ -37,10 +34,9 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
 
                 mutableLiveDataGenres.value = variable
 
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
 
-                Log.d(MovieRecomendationViewModel::class.java.name,"Error Request -  Genres")
+                Log.d(MovieRecomendationViewModel::class.java.name, "Error Request -  Genres")
                 e.printStackTrace()
 
             }
@@ -52,12 +48,14 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
     }
 
 
-
-    fun requestMovie(year: Int? =  null, genre: String? = null) {
+    fun requestMovie(year: Int? = null, genre: String? = null) {
         viewModelScope.launch {
 
             try {
-                Log.d(MovieRecomendationViewModel::class.java.name,"year " + year?.javaClass + " " + "genre " + genre?.javaClass + " " + "- In Request Movie")
+                Log.d(
+                    MovieRecomendationViewModel::class.java.name,
+                    "year " + year?.javaClass + " " + "genre " + genre?.javaClass + " " + "- In Request Movie"
+                )
 
                 val variable = repositoryAPI.getMovie(year, genre)
 
@@ -65,9 +63,8 @@ class MovieRecomendationViewModel(private val repositoryAPI: RepositoryAPI) : Vi
 
                 mutableLiveDataMovie.value = movie
 
-            }
-            catch (e: Exception) {
-                Log.d(MovieRecomendationViewModel::class.java.name,"Error Request -  Movie")
+            } catch (e: Exception) {
+                Log.d(MovieRecomendationViewModel::class.java.name, "Error Request -  Movie")
                 e.printStackTrace()
             }
 
