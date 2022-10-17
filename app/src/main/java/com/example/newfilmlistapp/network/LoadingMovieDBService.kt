@@ -44,7 +44,6 @@ interface LoadingMovieDBService {
     ): MovieDetailWrapper
 
 
-
     // Random Movie
 
     @GET("discover/movie")
@@ -62,11 +61,10 @@ interface LoadingMovieDBService {
     suspend fun getDefaultMovie(
         @Query("api_key") api_key: String = API_KEY,
         @Query("language") language: String = LANGUAGE
-    ) : MovieWrapper
+    ): MovieWrapper
 
 
     companion object {
-
 
         fun create(): LoadingMovieDBService {
             val logInterceptor = HttpLoggingInterceptor()
@@ -85,7 +83,6 @@ interface LoadingMovieDBService {
                 .create(LoadingMovieDBService::class.java)
         }
     }
-
 
 
 }

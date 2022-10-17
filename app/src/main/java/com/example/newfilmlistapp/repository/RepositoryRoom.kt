@@ -27,5 +27,4 @@ interface RepositoryRoom {
 
     suspend fun getFavoriteLocal(pageSize: Int, pageIndex: Int): List<MovieDetailWrapperRoom>?
 
-
 }

@@ -8,14 +8,13 @@ import androidx.paging.cachedIn
 import com.example.newfilmlistapp.paging.MoviePopularPagingSource
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
 
-class PopularViewModel: ViewModel() {
+class PopularViewModel : ViewModel() {
 
 
     private val listData = Pager(PagingConfig(pageSize = 20)) {
         MoviePopularPagingSource(ImplRepositoryAPI())
     }.flow.cachedIn(viewModelScope)
     val getListData = listData
-
 
 
 }

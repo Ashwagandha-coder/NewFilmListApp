@@ -4,6 +4,7 @@ import com.example.newfilmlistapp.model.GenresWrapper
 import com.example.newfilmlistapp.model.MovieDetailWrapper
 import com.example.newfilmlistapp.model.MovieWrapper
 import com.example.newfilmlistapp.model.PopularWrapper
+import com.example.newfilmlistapp.network.LoadingMovieDBService
 
 interface RepositoryAPI {
 
@@ -16,6 +17,13 @@ interface RepositoryAPI {
     suspend fun getGenres(): GenresWrapper
 
     suspend fun getDefaultMovie(): MovieWrapper
+
+
+    companion object {
+
+        fun create(): LoadingMovieDBService = LoadingMovieDBService.create()
+
+    }
 
 
 }
