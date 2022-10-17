@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -21,6 +22,7 @@ import com.example.newfilmlistapp.model.*
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryAPI
 import com.example.newfilmlistapp.repository.Impl.ImplRepositoryRoom
 import com.example.newfilmlistapp.view_model.movie_detail.MovieDetailViewModelFactory
+import kotlinx.coroutines.launch
 
 
 class MovieDetailFragment : Fragment() {
@@ -33,7 +35,7 @@ class MovieDetailFragment : Fragment() {
 
     private lateinit var movieDetailWrapperRoom: MovieDetailWrapperRoom
 
-    private var isMovieDB: Boolean = false
+    //private var isMovieDB: Boolean = false
 
 
 
@@ -48,7 +50,7 @@ class MovieDetailFragment : Fragment() {
         onBackScreen()
         workWithViewModel()
         requestWrapper()
-        setFAB()
+        //setFAB()
         setListenerFAB()
 
         return binding.root
@@ -73,7 +75,21 @@ class MovieDetailFragment : Fragment() {
 
     private fun setFAB() {
 
-        if (isMovieDB)
+//        if (isMovieDB) binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
+//        else binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
+
+
+//        if (movieDetailWrapperRoom.isFavorite == true)
+//            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
+//        else
+//            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
+
+
+    }
+
+    private fun checkFAB(flag: Boolean) {
+
+        if (flag)
             binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
         else
             binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
@@ -209,7 +225,12 @@ class MovieDetailFragment : Fragment() {
            // binding.tvRatingValue.text = it.voteAverage.toString()
             Log.d(MovieDetailFragment::class.java.name,"realease Date " + it.releaseDate.substring(0,3))
 
-            isMovieDB = viewModel.searchInDb(it.id)
+            var job = viewModel.searchInDb(it.id)
+            job.start()
+            var isMovieDB = viewModel.flag
+            Log.d(MovieDetailFragment::class.java.name,"isMovieDB - ${isMovieDB}")
+            checkFAB(isMovieDB)
+
 
 
         }
