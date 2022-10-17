@@ -6,6 +6,13 @@
 
 Application for test. MovieDB
 
+![Screenshot_20221017_183808](https://user-images.githubusercontent.com/58209188/196192046-c5ffe6f2-7997-4815-9af9-77e746cefc35.png)
+
+![Screenshot_20221017_183832](https://user-images.githubusercontent.com/58209188/196192080-b2ad8cd6-6940-4fb8-aa59-05dd7b5570cf.png)
+
+![Screenshot_20221017_183849](https://user-images.githubusercontent.com/58209188/196192109-10d1bbbc-e014-45d9-a516-34b4b7779879.png)
+
+
 ## What usage?
 
 - Kotlin
