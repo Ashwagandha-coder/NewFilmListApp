@@ -14,22 +14,20 @@ import com.example.newfilmlistapp.repository.RepositoryRoom
 import com.example.newfilmlistapp.view_model.movie_recomendation.MovieRecomendationViewModel
 import kotlinx.coroutines.launch
 
-class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI, private val repositoryRoom: RepositoryRoom): ViewModel() {
+class MovieDetailViewModel(
+    private val repositoryAPI: RepositoryAPI, private val repositoryRoom: RepositoryRoom
+) : ViewModel() {
 
     private val mutableLiveDataMovieDetail: MutableLiveData<MovieDetailWrapper> = MutableLiveData()
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveDataMovieDetail
 
 
-    //var flag: Boolean = false
-
+    var flag: Boolean = false
 
 
     fun onLoad(movie: MovieDetailWrapperRoom, context: Context) {
-
         viewModelScope.launch {
-
             try {
-
                 AppDatabase.getDatabase(context).movieDao().insert(movie)
                 Log.d(MovieDetailViewModel::class.java.name, "request OK - insert in DB")
 
@@ -37,12 +35,11 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI, private val
                 Log.e(MovieDetailViewModel::class.java.name, "Error request - insert in DB")
                 e.printStackTrace()
             }
-
         }
 
     }
 
-    fun onDelete(movie: MovieDetailWrapperRoom,context: Context) {
+    fun onDelete(movie: MovieDetailWrapperRoom, context: Context) {
 
         viewModelScope.launch {
 
@@ -57,67 +54,38 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI, private val
             }
 
         }
-
-
-
     }
 
+    suspend fun requestMovieDetail(id: Int) {
+        try {
+            // Movie Detail
+            Log.d(MovieDetailViewModel::class.java.name, "Значение movieID before request - $id")
 
+            mutableLiveDataMovieDetail.value = repositoryAPI.getMovieDetail(id.toString())
+            flag = searchInDB(id.toLong())
 
-    fun requestMovieDetail(id: Int) {
-
-        viewModelScope.launch {
-
-            try {
-
-                // Movie Detail
-                Log.d(MovieDetailViewModel::class.java.name,"Значение movieID before request - $id")
-
-                mutableLiveDataMovieDetail.value = repositoryAPI.getMovieDetail(id.toString())
-
-            }
-
-            catch (e: Exception) {
-                Log.d(MovieRecomendationViewModel::class.java.name,"Значение movieID before request with error - $id")
-                Log.d(MovieRecomendationViewModel::class.java.name,"Error Request -  Movie Detail")
-                e.printStackTrace()
-            }
-
-
+        } catch (e: Exception) {
+            Log.d(
+                MovieRecomendationViewModel::class.java.name,
+                "Значение movieID before request with error - $id"
+            )
+            Log.d(MovieRecomendationViewModel::class.java.name, "Error Request -  Movie Detail")
+            e.printStackTrace()
         }
-
     }
 
-    fun searchInDb(id_movie: Long): Boolean {
-
+    suspend fun searchInDB(idMovie: Long): Boolean {
         var flag = false
+        val data = repositoryRoom.getMovieListLocal()
 
-        viewModelScope.launch {
-
-            val data = repositoryRoom.getMovieListLocal()
-
-            Log.d(MovieDetailViewModel::class.java.name, "search In DB - data: ${data}")
-            Log.d(MovieDetailViewModel::class.java.name, "id movie - ${id_movie}")
-
-            data?.forEach {
-
-                Log.d(MovieDetailViewModel::class.java.name, "${it.id}")
-
-                if (it.id == id_movie)
-                    flag = true
-
-
-                Log.d(MovieDetailViewModel::class.java.name, "value flag - ${flag}")
-            }
-
+        data?.forEach {
+            if (it.id == idMovie) flag = true
         }
+
+        Log.d(MovieDetailViewModel::class.java.name, "value before return - ${flag}")
 
         return flag
-
     }
-
-
-
 
 
 }

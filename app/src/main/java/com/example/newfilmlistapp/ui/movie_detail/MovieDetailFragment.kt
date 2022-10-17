@@ -28,16 +28,19 @@ import kotlinx.coroutines.launch
 class MovieDetailFragment : Fragment() {
 
     private lateinit var binding: FragmentMovieDetailBinding
-    private val viewModel: MovieDetailViewModel by viewModels { MovieDetailViewModelFactory(ImplRepositoryAPI(),ImplRepositoryRoom(
-        AppDatabase.getDatabase(requireContext().applicationContext))) }
+    private val viewModel: MovieDetailViewModel by viewModels {
+        MovieDetailViewModelFactory(
+            ImplRepositoryAPI(), ImplRepositoryRoom(
+                AppDatabase.getDatabase(requireContext().applicationContext)
+            )
+        )
+    }
 
     private val args: MovieDetailFragmentArgs by navArgs()
 
     private lateinit var movieDetailWrapperRoom: MovieDetailWrapperRoom
 
-    //private var isMovieDB: Boolean = false
-
-
+    private var isMovieDB: Boolean = false
 
 
     override fun onCreateView(
@@ -45,21 +48,23 @@ class MovieDetailFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMovieDetailBinding.inflate(inflater,container,false)
+        binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
 
         onBackScreen()
         workWithViewModel()
         requestWrapper()
-        //setFAB()
         setListenerFAB()
 
         return binding.root
     }
 
     private fun requestWrapper() {
-
-        val id: Int = args.movieID
-        viewModel.requestMovieDetail(id)
+        lifecycleScope.launch {
+            val id: Int = args.movieID
+            viewModel.requestMovieDetail(id)
+            isMovieDB = viewModel.flag
+            checkFAB(isMovieDB)
+        }
 
     }
 
@@ -68,22 +73,6 @@ class MovieDetailFragment : Fragment() {
         binding.topNavBar.returnImageView.setOnClickListener {
             findNavController().popBackStack()
         }
-
-    }
-
-    // todo: Сделать сохранение состояния FAB
-
-    private fun setFAB() {
-
-//        if (isMovieDB) binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
-//        else binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
-
-
-//        if (movieDetailWrapperRoom.isFavorite == true)
-//            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
-//        else
-//            binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
-
 
     }
 
@@ -104,15 +93,13 @@ class MovieDetailFragment : Fragment() {
             if (movieDetailWrapperRoom.isFavorite == false) {
 
                 binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
-                viewModel.onLoad(movieDetailWrapperRoom,requireContext().applicationContext)
+                viewModel.onLoad(movieDetailWrapperRoom, requireContext().applicationContext)
                 movieDetailWrapperRoom.isFavorite = true
 
-            }
-
-            else {
+            } else {
 
                 binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
-                viewModel.onDelete(movieDetailWrapperRoom,requireContext().applicationContext)
+                viewModel.onDelete(movieDetailWrapperRoom, requireContext().applicationContext)
                 movieDetailWrapperRoom.isFavorite = false
 
             }
@@ -162,8 +149,6 @@ class MovieDetailFragment : Fragment() {
                     text = it.title
                 }
             }
-
-
 
 
             var genres: String? = ""
@@ -222,14 +207,16 @@ class MovieDetailFragment : Fragment() {
                 .into(binding.poster)
 
             binding.tvDescription.text = it.overview
-           // binding.tvRatingValue.text = it.voteAverage.toString()
-            Log.d(MovieDetailFragment::class.java.name,"realease Date " + it.releaseDate.substring(0,3))
+            // binding.tvRatingValue.text = it.voteAverage.toString()
+            Log.d(
+                MovieDetailFragment::class.java.name,
+                "realease Date " + it.releaseDate.substring(0, 3)
+            )
 
 
-            var isMovieDB = viewModel.searchInDb(it.id)
-            Log.d(MovieDetailFragment::class.java.name,"isMovieDB - ${isMovieDB}")
-            checkFAB(isMovieDB)
-
+//            var isMovieDB = viewModel.testSearchDB(it.id)
+//            Log.d(MovieDetailFragment::class.java.name,"isMovieDB - ${isMovieDB}")
+//            checkFAB(isMovieDB)
 
 
         }
@@ -269,7 +256,6 @@ class MovieDetailFragment : Fragment() {
         )
 
     }
-
 
 
 }
