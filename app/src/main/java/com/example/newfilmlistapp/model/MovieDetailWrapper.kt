@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
-data class MovieDetailWrapper (
+data class MovieDetailWrapper(
 
     val adult: Boolean,
 
@@ -61,10 +61,10 @@ data class MovieDetailWrapper (
     @Json(name = "vote_count")
     val voteCount: Long,
 
-)
+    )
 
 @JsonClass(generateAdapter = true)
-data class ProductionCompanyWrapper (
+data class ProductionCompanyWrapper(
     val id: Long,
 
     @Json(name = "logo_path")
@@ -75,15 +75,17 @@ data class ProductionCompanyWrapper (
     @Json(name = "origin_country")
     val originCountry: String
 )
+
 @JsonClass(generateAdapter = true)
-data class ProductionCountryWrapper (
+data class ProductionCountryWrapper(
     @Json(name = "iso_3166_1")
     val iso3166_1: String? = null,
 
     val name: String? = null
 )
+
 @JsonClass(generateAdapter = true)
-data class SpokenLanguageWrapper (
+data class SpokenLanguageWrapper(
     @Json(name = "iso_639_1")
     val iso639_1: String,
 

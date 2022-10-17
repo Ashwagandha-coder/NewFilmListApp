@@ -8,7 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 
-class ImplRepositoryRoom(private val room: AppDatabase) : RepositoryRoom {
+class ImplRepositoryRoom(room: AppDatabase) : RepositoryRoom {
 
     private val movieDao = room.movieDao()
 

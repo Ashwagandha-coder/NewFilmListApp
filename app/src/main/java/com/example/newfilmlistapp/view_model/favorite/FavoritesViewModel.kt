@@ -12,7 +12,8 @@ import kotlinx.coroutines.launch
 
 class FavoritesViewModel(private var repositoryRoom: RepositoryRoom) : ViewModel() {
 
-    private val mutableLiveDataFavorite: MutableLiveData<List<MovieDetailWrapperRoom>> = MutableLiveData()
+    private val mutableLiveDataFavorite: MutableLiveData<List<MovieDetailWrapperRoom>> =
+        MutableLiveData()
     val favorite = mutableLiveDataFavorite
 
 
@@ -21,20 +22,16 @@ class FavoritesViewModel(private var repositoryRoom: RepositoryRoom) : ViewModel
         viewModelScope.launch {
 
             try {
-
                 mutableLiveDataFavorite.value = repositoryRoom.getMovieListLocal()
-                Log.d(FavoritesViewModel::class.java.name,"request OK - Favorite Movie")
-            }
-            catch (e: Exception) {
-                Log.d(FavoritesFragment::class.java.name,"Error request - Favorite Movie")
+                Log.d(FavoritesViewModel::class.java.name, "request OK - Favorite Movie")
+            } catch (e: Exception) {
+                Log.d(FavoritesFragment::class.java.name, "Error request - Favorite Movie")
                 e.printStackTrace()
             }
         }
 
 
     }
-
-
 
 
 }
