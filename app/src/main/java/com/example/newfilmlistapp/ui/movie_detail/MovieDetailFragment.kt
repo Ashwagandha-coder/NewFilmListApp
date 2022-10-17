@@ -42,6 +42,8 @@ class MovieDetailFragment : Fragment() {
 
     private var isMovieDB: Boolean = false
 
+    private var flag = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -83,6 +85,7 @@ class MovieDetailFragment : Fragment() {
         else
             binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
 
+        this.flag = flag
     }
 
 
@@ -90,18 +93,15 @@ class MovieDetailFragment : Fragment() {
 
         binding.buttonFavorite.setOnClickListener {
 
-            if (movieDetailWrapperRoom.isFavorite == false) {
-
-                binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
-                viewModel.onLoad(movieDetailWrapperRoom, requireContext().applicationContext)
-                movieDetailWrapperRoom.isFavorite = true
-
-            } else {
-
+            if (flag) {
                 binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_border_white_24dp)
                 viewModel.onDelete(movieDetailWrapperRoom, requireContext().applicationContext)
                 movieDetailWrapperRoom.isFavorite = false
-
+            }
+            else {
+                binding.buttonFavorite.setImageResource(R.drawable.ic_favorite_white_24dp)
+                viewModel.onLoad(movieDetailWrapperRoom, requireContext().applicationContext)
+                movieDetailWrapperRoom.isFavorite = true
             }
         }
 
