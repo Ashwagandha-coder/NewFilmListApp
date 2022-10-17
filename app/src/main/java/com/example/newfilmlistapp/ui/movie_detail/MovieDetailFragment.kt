@@ -225,9 +225,8 @@ class MovieDetailFragment : Fragment() {
            // binding.tvRatingValue.text = it.voteAverage.toString()
             Log.d(MovieDetailFragment::class.java.name,"realease Date " + it.releaseDate.substring(0,3))
 
-            var job = viewModel.searchInDb(it.id)
-            job.start()
-            var isMovieDB = viewModel.flag
+
+            var isMovieDB = viewModel.searchInDb(it.id)
             Log.d(MovieDetailFragment::class.java.name,"isMovieDB - ${isMovieDB}")
             checkFAB(isMovieDB)
 

@@ -20,7 +20,7 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI, private val
     val movieDetailWrapper: LiveData<MovieDetailWrapper> = mutableLiveDataMovieDetail
 
 
-    var flag: Boolean = false
+    //var flag: Boolean = false
 
 
 
@@ -88,25 +88,33 @@ class MovieDetailViewModel(private val repositoryAPI: RepositoryAPI, private val
 
     }
 
-    fun searchInDb(id_movie: Long) = viewModelScope.launch {
+    fun searchInDb(id_movie: Long): Boolean {
 
-        val data = repositoryRoom.getMovieListLocal()
+        var flag = false
 
-        Log.d(MovieDetailViewModel::class.java.name,"search In DB - data: ${data}")
-        Log.d(MovieDetailViewModel::class.java.name,"id movie - ${id_movie}")
+        viewModelScope.launch {
 
-        data?.forEach {
+            val data = repositoryRoom.getMovieListLocal()
 
-            Log.d(MovieDetailViewModel::class.java.name,"${it.id}")
+            Log.d(MovieDetailViewModel::class.java.name, "search In DB - data: ${data}")
+            Log.d(MovieDetailViewModel::class.java.name, "id movie - ${id_movie}")
 
-            if (it.id == id_movie)
-                flag = true
+            data?.forEach {
+
+                Log.d(MovieDetailViewModel::class.java.name, "${it.id}")
+
+                if (it.id == id_movie)
+                    flag = true
 
 
-            Log.d(MovieDetailViewModel::class.java.name,"value flag - ${flag}")
+                Log.d(MovieDetailViewModel::class.java.name, "value flag - ${flag}")
+            }
+
         }
 
-        }
+        return flag
+
+    }
 
 
 
