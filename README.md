@@ -12,6 +12,9 @@ Application for test. MovieDB
 
 ![Screenshot_20221017_183849](https://user-images.githubusercontent.com/58209188/196192109-10d1bbbc-e014-45d9-a516-34b4b7779879.png)
 
+<img src="ttps://user-images.githubusercontent.com/58209188/196192109-10d1bbbc-e014-45d9-a516-34b4b7779879.png" width="100" height="111" alt="Винни-Пух">
+
+
 
 ## What usage?
 
